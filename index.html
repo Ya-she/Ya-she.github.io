@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What Nature-Based Solution Are You?</title>
+    <meta
+      name="description"
+      content="A BuzzFeed-style climate quiz with editable JSON content and cookie-based progress saving."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <main class="container">
+        <section class="hero-card card">
+          <div class="hero-accent"></div>
+          <div class="hero-topline">
+            <span class="pill">BuzzFeed-style quiz scaffold</span>
+            <span class="pill pill-soft" id="data-source-pill">Loading quiz data…</span>
+            <span class="pill pill-soft">Cookie save enabled</span>
+          </div>
+          <h1 id="quiz-title">What Nature-Based Solution Are You?</h1>
+          <p class="subtitle" id="quiz-subtitle"></p>
+          <p class="intro" id="quiz-intro"></p>
+
+          <div class="info-grid">
+            <article class="info-block">
+              <h2>Simple deployment</h2>
+              <p>
+                This version is plain HTML, CSS, JS, and JSON. No framework, no build step, and easy to host almost anywhere.
+              </p>
+            </article>
+            <article class="info-block info-block-green">
+              <h2>Easy updates</h2>
+              <p>
+                Edit <code>quiz-data.json</code> to change questions, answer photos, results, and point values without touching the quiz engine.
+              </p>
+            </article>
+            <article class="info-block info-block-olive">
+              <h2>Saved progress</h2>
+              <p>
+                Cookies store the current question, selected answers, and finished result so people can come back later.
+              </p>
+            </article>
+          </div>
+
+          <div class="hero-actions">
+            <button class="button button-primary" id="start-button">Start quiz</button>
+            <button class="button button-secondary" id="clear-button">Clear saved progress</button>
+          </div>
+
+          <div class="status-row" id="restore-banner" hidden>
+            <span class="status-dot"></span>
+            <span>Previous quiz progress was restored from a cookie.</span>
+          </div>
+        </section>
+
+        <section class="content-grid">
+          <section class="card main-panel" id="question-panel" hidden>
+            <header class="question-header">
+              <div>
+                <div class="kicker" id="question-kicker"></div>
+                <h2 class="question-title" id="question-title"></h2>
+              </div>
+              <div class="progress-block">
+                <div class="progress-label-row">
+                  <span>Progress</span>
+                  <span id="progress-text">0 / 0</span>
+                </div>
+                <div class="progress-track">
+                  <div class="progress-fill" id="progress-fill"></div>
+                </div>
+              </div>
+            </header>
+
+            <div class="answers-grid" id="answers-grid"></div>
+
+            <footer class="question-footer">
+              <button class="button button-secondary" id="back-button">Back</button>
+              <p class="footer-note">Answers advance automatically to keep the quiz moving.</p>
+            </footer>
+          </section>
+
+          <section class="card result-panel" id="result-panel" hidden>
+            <div class="result-hero" id="result-hero">
+              <div class="result-label" id="result-label"></div>
+              <div class="result-icon" id="result-icon" aria-hidden="true"></div>
+              <h2 class="result-title" id="result-title"></h2>
+              <p class="result-subtitle" id="result-subtitle"></p>
+              <p class="result-description" id="result-description"></p>
+            </div>
+
+            <div class="result-body">
+              <section class="result-section">
+                <h3>Your badge</h3>
+                <div class="badge-card" id="result-badge"></div>
+              </section>
+
+              <section class="result-section">
+                <h3>Why this fits</h3>
+                <div class="fit-list" id="fit-list"></div>
+              </section>
+
+              <div class="result-actions">
+                <button class="button button-primary" id="retake-button">Retake quiz</button>
+                <button class="button button-secondary" id="clear-result-button">Clear saved result</button>
+              </div>
+            </div>
+          </section>
+
+          <aside class="side-column">
+            <section class="card side-card">
+              <h2>Recommended file split</h2>
+              <div class="stacked-note">
+                <div><code>index.html</code> — page structure</div>
+                <div><code>styles.css</code> — layout and color system</div>
+                <div><code>script.js</code> — rendering, scoring, cookies</div>
+                <div><code>quiz-data.json</code> — quiz content</div>
+              </div>
+            </section>
+
+            <section class="card side-card">
+              <h2>Score breakdown</h2>
+              <div id="score-breakdown" class="score-breakdown empty-state">
+                Finish the quiz to see how each NbS scored.
+              </div>
+            </section>
+
+            <section class="card side-card">
+              <h2>Cookie behavior</h2>
+              <p>
+                The cookie stores the quiz version, selected answers, the current step, and the finished result state.
+              </p>
+              <p>
+                When you significantly change the quiz structure later, update <code>meta.version</code> in the JSON to invalidate old saved progress cleanly.
+              </p>
+            </section>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <template id="answer-card-template">
+      <button class="answer-card" type="button">
+        <img class="answer-image" alt="" />
+        <div class="answer-content">
+          <h3 class="answer-text"></h3>
+          <p class="answer-helper">Choose this answer</p>
+        </div>
+      </button>
+    </template>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
