@@ -1,0 +1,526 @@
+{
+  "meta": {
+    "version": "nbs-quiz-v1",
+    "title": "What Nature-Based Solution Are You?",
+    "subtitle": "BuzzFeed energy, climate-policy flavor.",
+    "intro": "This static-site version keeps the content in one JSON file so you can easily swap in your real questions, answer images, results, and scoring later without touching the website logic.",
+    "resultLabel": "Your personalized NbS"
+  },
+  "scoring": {
+    "method": "highest-score-wins",
+    "tieBreaker": [
+      "mangrove_flood_protection",
+      "green_roofs",
+      "urban_forest_corridor",
+      "constructed_wetland",
+      "living_dune_restoration",
+      "rain_garden_bioswale"
+    ]
+  },
+  "results": {
+    "mangrove_flood_protection": {
+      "name": "Mangrove Flood Protection",
+      "subtitle": "Quiet, rooted, and unexpectedly powerful.",
+      "badge": "Coastal guardian",
+      "palette": ["#2F7A5D", "#9FD7BB"],
+      "description": "You absorb shocks, hold the line, and make difficult environments more survivable. You look calm, but you are doing serious system work under the surface.",
+      "whyItFits": [
+        "You are resilient without being flashy.",
+        "You prefer layered protection over one giant fix.",
+        "You thrive where ecology and infrastructure overlap."
+      ]
+    },
+    "green_roofs": {
+      "name": "Green Roofs",
+      "subtitle": "Polished, practical, and a little aspirational.",
+      "badge": "Urban overachiever",
+      "palette": ["#5B8F4F", "#D7EDC7"],
+      "description": "You make hard spaces softer and more useful. You bring biodiversity, cooling, and aesthetic credibility to places that forgot they needed all three.",
+      "whyItFits": [
+        "You like visible wins and clever retrofits.",
+        "You make cities feel more breathable.",
+        "You combine function with a strong visual identity."
+      ]
+    },
+    "urban_forest_corridor": {
+      "name": "Urban Forest Corridor",
+      "subtitle": "Big canopy energy with long-term vision.",
+      "badge": "Shade strategist",
+      "palette": ["#3D6F2C", "#B7D698"],
+      "description": "You are generous, connective, and good at thinking beyond a single site. You improve movement, comfort, habitat, and health all at once.",
+      "whyItFits": [
+        "You think in networks, not isolated interventions.",
+        "You value longevity and public benefit.",
+        "You make systems cooler in every sense."
+      ]
+    },
+    "constructed_wetland": {
+      "name": "Constructed Wetland",
+      "subtitle": "Low-key elegant and surprisingly effective.",
+      "badge": "Water whisperer",
+      "palette": ["#3D8679", "#BFE4DA"],
+      "description": "You clean up messes while looking deceptively serene. People may underestimate you until they realize you are doing filtration, habitat creation, and climate adaptation at the same time.",
+      "whyItFits": [
+        "You turn excess into something useful.",
+        "You are calm in the face of complexity.",
+        "You prefer multifunctionality over single-purpose fixes."
+      ]
+    },
+    "living_dune_restoration": {
+      "name": "Living Dune Restoration",
+      "subtitle": "Windswept, stubborn, and more dynamic than people think.",
+      "badge": "Edge-of-the-map icon",
+      "palette": ["#8E7B46", "#EBDDB6"],
+      "description": "You are adaptive, protective, and a bit untamable. You understand that stability sometimes comes from movement, not rigidity.",
+      "whyItFits": [
+        "You do not panic when systems shift.",
+        "You protect coastlines through process, not brute force.",
+        "You make unpredictability look strategic."
+      ]
+    },
+    "rain_garden_bioswale": {
+      "name": "Rain Garden / Bioswale",
+      "subtitle": "Charming, tactical, and good in a crisis.",
+      "badge": "Stormwater darling",
+      "palette": ["#4D8C55", "#D5EDC8"],
+      "description": "You handle overflow with grace. You are approachable, adaptable, and better at solving day-to-day urban problems than people first assume.",
+      "whyItFits": [
+        "You are small-scale but mighty.",
+        "You know local interventions can still shift systems.",
+        "You turn runoff into relief."
+      ]
+    }
+  },
+  "questions": [
+    {
+      "id": "ecosystem_identity",
+      "kicker": "Question 1",
+      "prompt": "Which ecosystem do you identify with most?",
+      "answers": [
+        {
+          "id": "roots_in_tides",
+          "text": "A tidal forest with roots doing secret engineering.",
+          "image": { "label": "Mangrove coast", "emoji": "🌊", "palette": ["#2F7A5D", "#9FD7BB"] },
+          "points": { "mangrove_flood_protection": 3, "constructed_wetland": 1 }
+        },
+        {
+          "id": "meadow_on_concrete",
+          "text": "A rooftop meadow proving gray boxes can improve themselves.",
+          "image": { "label": "Green roof", "emoji": "🏙️", "palette": ["#5B8F4F", "#D7EDC7"] },
+          "points": { "green_roofs": 3, "rain_garden_bioswale": 1 }
+        },
+        {
+          "id": "cool_shady_avenue",
+          "text": "A shady corridor where everyone walks slower on purpose.",
+          "image": { "label": "Urban forest", "emoji": "🌳", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "urban_forest_corridor": 3, "green_roofs": 1 }
+        },
+        {
+          "id": "reedy_marsh",
+          "text": "A reedy wetland that looks peaceful and is absolutely doing the most.",
+          "image": { "label": "Wetland", "emoji": "💧", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "constructed_wetland": 3, "mangrove_flood_protection": 1 }
+        },
+        {
+          "id": "windy_dunes",
+          "text": "A windswept dune system with strong boundary-setting energy.",
+          "image": { "label": "Living dunes", "emoji": "🏖️", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "living_dune_restoration": 3, "mangrove_flood_protection": 1 }
+        },
+        {
+          "id": "street_corner_bloom",
+          "text": "A planted curb that turns chaos into drainage and flowers.",
+          "image": { "label": "Rain garden", "emoji": "🌿", "palette": ["#4D8C55", "#D5EDC8"] },
+          "points": { "rain_garden_bioswale": 3, "green_roofs": 1 }
+        }
+      ]
+    },
+    {
+      "id": "appealing_project",
+      "kicker": "Question 2",
+      "prompt": "Which infrastructure project is most appealing?",
+      "answers": [
+        {
+          "id": "coastal_buffer",
+          "text": "A living coastal buffer that makes storm surge regret meeting you.",
+          "image": { "label": "Coastal buffer", "emoji": "🛟", "palette": ["#2F7A5D", "#9FD7BB"] },
+          "points": { "mangrove_flood_protection": 3, "living_dune_restoration": 1 }
+        },
+        {
+          "id": "roof_retreat",
+          "text": "A public roofscape with plants, pollinators, and suspiciously good branding.",
+          "image": { "label": "Roofscape", "emoji": "🌼", "palette": ["#5B8F4F", "#D7EDC7"] },
+          "points": { "green_roofs": 3, "urban_forest_corridor": 1 }
+        },
+        {
+          "id": "green_streets",
+          "text": "A tree-lined corridor that cools a whole district over time.",
+          "image": { "label": "Green corridor", "emoji": "🚶", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "urban_forest_corridor": 3, "rain_garden_bioswale": 1 }
+        },
+        {
+          "id": "water_polisher",
+          "text": "A water treatment landscape that does not need to brag.",
+          "image": { "label": "Treatment wetland", "emoji": "🪷", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "constructed_wetland": 3, "rain_garden_bioswale": 1 }
+        },
+        {
+          "id": "soft_coastline",
+          "text": "A sandy defense that works with wind and waves instead of yelling at them.",
+          "image": { "label": "Soft coastline", "emoji": "🌬️", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "living_dune_restoration": 3, "mangrove_flood_protection": 1 }
+        },
+        {
+          "id": "stormwater_fix",
+          "text": "A curbside stormwater intervention that makes a boring street smarter.",
+          "image": { "label": "Bioswale street", "emoji": "🌧️", "palette": ["#4D8C55", "#D5EDC8"] },
+          "points": { "rain_garden_bioswale": 3, "green_roofs": 1 }
+        }
+      ]
+    },
+    {
+      "id": "happy_place",
+      "kicker": "Question 3",
+      "prompt": "Where would you feel happiest?",
+      "answers": [
+        {
+          "id": "quiet_estuary",
+          "text": "An estuary where the water is never in a rush.",
+          "image": { "label": "Estuary", "emoji": "🦀", "palette": ["#2F7A5D", "#9FD7BB"] },
+          "points": { "mangrove_flood_protection": 3, "constructed_wetland": 1 }
+        },
+        {
+          "id": "city_above_city",
+          "text": "On a planted rooftop looking down at everyone else making heat islands.",
+          "image": { "label": "Rooftop city", "emoji": "☁️", "palette": ["#5B8F4F", "#D7EDC7"] },
+          "points": { "green_roofs": 3, "rain_garden_bioswale": 1 }
+        },
+        {
+          "id": "leafy_boulevard",
+          "text": "A broad boulevard with shade, benches, and enough room to think.",
+          "image": { "label": "Boulevard", "emoji": "🍃", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "urban_forest_corridor": 3, "green_roofs": 1 }
+        },
+        {
+          "id": "birdy_marsh",
+          "text": "A marsh full of birds and filtered light.",
+          "image": { "label": "Bird marsh", "emoji": "🪶", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "constructed_wetland": 3, "mangrove_flood_protection": 1 }
+        },
+        {
+          "id": "stormy_beach",
+          "text": "A dramatic beach where the wind is part of the personality test.",
+          "image": { "label": "Dune beach", "emoji": "🐚", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "living_dune_restoration": 3, "urban_forest_corridor": 1 }
+        },
+        {
+          "id": "neighborhood_corner",
+          "text": "A neighborhood street where tiny interventions make daily life better.",
+          "image": { "label": "Neighborhood green", "emoji": "🚲", "palette": ["#4D8C55", "#D5EDC8"] },
+          "points": { "rain_garden_bioswale": 3, "green_roofs": 1 }
+        }
+      ]
+    },
+    {
+      "id": "climate_fear",
+      "kicker": "Question 4",
+      "prompt": "Which environmental catastrophe are you most afraid of?",
+      "answers": [
+        {
+          "id": "storm_surge",
+          "text": "Storm surge chewing through coastlines.",
+          "image": { "label": "Storm surge", "emoji": "🌊", "palette": ["#2F7A5D", "#9FD7BB"] },
+          "points": { "mangrove_flood_protection": 3, "living_dune_restoration": 2 }
+        },
+        {
+          "id": "urban_heat",
+          "text": "Cities getting hotter because no one planned for shade or cooling.",
+          "image": { "label": "Urban heat", "emoji": "☀️", "palette": ["#5B8F4F", "#D7EDC7"] },
+          "points": { "green_roofs": 3, "urban_forest_corridor": 2 }
+        },
+        {
+          "id": "treeless_public_realm",
+          "text": "A future where public space is all glare and no canopy.",
+          "image": { "label": "No trees", "emoji": "🧍", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "urban_forest_corridor": 3, "green_roofs": 1 }
+        },
+        {
+          "id": "dirty_runoff",
+          "text": "Polluted runoff quietly wrecking ecosystems downstream.",
+          "image": { "label": "Polluted runoff", "emoji": "🫧", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "constructed_wetland": 3, "rain_garden_bioswale": 2 }
+        },
+        {
+          "id": "coastal_erosion",
+          "text": "Coastal erosion proving concrete is not automatically wisdom.",
+          "image": { "label": "Eroding coast", "emoji": "🪨", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "living_dune_restoration": 3, "mangrove_flood_protection": 1 }
+        },
+        {
+          "id": "flash_floods",
+          "text": "Flash floods turning ordinary streets into regrettable canals.",
+          "image": { "label": "Street flood", "emoji": "🚰", "palette": ["#4D8C55", "#D5EDC8"] },
+          "points": { "rain_garden_bioswale": 3, "constructed_wetland": 1 }
+        }
+      ]
+    },
+    {
+      "id": "outfit_vibe",
+      "kicker": "Question 5",
+      "prompt": "Pick an outfit texture or material.",
+      "answers": [
+        {
+          "id": "woven_layers",
+          "text": "Layered, tangled, and stronger than it looks.",
+          "image": { "label": "Woven layers", "emoji": "🧵", "palette": ["#2F7A5D", "#9FD7BB"] },
+          "points": { "mangrove_flood_protection": 3, "constructed_wetland": 1 }
+        },
+        {
+          "id": "clean_modern_linen",
+          "text": "Clean lines with one excellent green accent piece.",
+          "image": { "label": "Modern linen", "emoji": "👒", "palette": ["#5B8F4F", "#D7EDC7"] },
+          "points": { "green_roofs": 3, "urban_forest_corridor": 1 }
+        },
+        {
+          "id": "soft_structured_layers",
+          "text": "Tailored, breathable, and prepared to outlive trends.",
+          "image": { "label": "Structured layers", "emoji": "🧥", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "urban_forest_corridor": 3, "living_dune_restoration": 1 }
+        },
+        {
+          "id": "fluid_natural_fabric",
+          "text": "Flowy, reflective, and impossible to rush.",
+          "image": { "label": "Fluid fabric", "emoji": "🫧", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "constructed_wetland": 3, "mangrove_flood_protection": 1 }
+        },
+        {
+          "id": "windswept_neutral",
+          "text": "Textured neutrals that somehow look better after a storm.",
+          "image": { "label": "Windswept", "emoji": "🧣", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "living_dune_restoration": 3, "urban_forest_corridor": 1 }
+        },
+        {
+          "id": "botanical_practical",
+          "text": "Practical shoes, useful pockets, and one cheerful plant print.",
+          "image": { "label": "Practical botanical", "emoji": "👟", "palette": ["#4D8C55", "#D5EDC8"] },
+          "points": { "rain_garden_bioswale": 3, "green_roofs": 1 }
+        }
+      ]
+    },
+    {
+      "id": "group_role",
+      "kicker": "Question 6",
+      "prompt": "What is your role in a chaotic group project?",
+      "answers": [
+        {
+          "id": "quiet_protector",
+          "text": "The quiet protector who prevents disaster before anyone notices.",
+          "image": { "label": "Quiet protector", "emoji": "🛡️", "palette": ["#2F7A5D", "#9FD7BB"] },
+          "points": { "mangrove_flood_protection": 3, "living_dune_restoration": 1 }
+        },
+        {
+          "id": "stylish_fixer",
+          "text": "The person who makes it functional and presentation-ready.",
+          "image": { "label": "Stylish fixer", "emoji": "✨", "palette": ["#5B8F4F", "#D7EDC7"] },
+          "points": { "green_roofs": 3, "rain_garden_bioswale": 1 }
+        },
+        {
+          "id": "long_term_planner",
+          "text": "The one thinking five years ahead while others are still opening the doc.",
+          "image": { "label": "Long-term planner", "emoji": "📈", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "urban_forest_corridor": 3, "green_roofs": 1 }
+        },
+        {
+          "id": "systems_cleaner",
+          "text": "The person who cleans up everyone else’s process problems.",
+          "image": { "label": "Systems cleaner", "emoji": "🧪", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "constructed_wetland": 3, "rain_garden_bioswale": 1 }
+        },
+        {
+          "id": "adaptive_realist",
+          "text": "The realist who knows plans survive by flexing.",
+          "image": { "label": "Adaptive realist", "emoji": "🧭", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "living_dune_restoration": 3, "mangrove_flood_protection": 1 }
+        },
+        {
+          "id": "street_level_problem_solver",
+          "text": "The practical one fixing the part everyone trips over first.",
+          "image": { "label": "Problem solver", "emoji": "🛠️", "palette": ["#4D8C55", "#D5EDC8"] },
+          "points": { "rain_garden_bioswale": 3, "constructed_wetland": 1 }
+        }
+      ]
+    },
+    {
+      "id": "soundtrack",
+      "kicker": "Question 7",
+      "prompt": "Choose a soundtrack for your climate-policy montage.",
+      "answers": [
+        {
+          "id": "deep_bass_tides",
+          "text": "Moody tide sounds and a beat that arrives late but hits hard.",
+          "image": { "label": "Tidal soundtrack", "emoji": "🎧", "palette": ["#2F7A5D", "#9FD7BB"] },
+          "points": { "mangrove_flood_protection": 3, "constructed_wetland": 1 }
+        },
+        {
+          "id": "indie_garden_pop",
+          "text": "Something bright, curated, and extremely rooftop-coded.",
+          "image": { "label": "Indie rooftop", "emoji": "🎶", "palette": ["#5B8F4F", "#D7EDC7"] },
+          "points": { "green_roofs": 3, "rain_garden_bioswale": 1 }
+        },
+        {
+          "id": "cinematic_strings",
+          "text": "Expansive strings for your slow, leafy urban transformation arc.",
+          "image": { "label": "Cinematic canopy", "emoji": "🎻", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "urban_forest_corridor": 3, "living_dune_restoration": 1 }
+        },
+        {
+          "id": "ambient_water",
+          "text": "Ambient water sounds that somehow feel competent.",
+          "image": { "label": "Ambient water", "emoji": "🎼", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "constructed_wetland": 3, "mangrove_flood_protection": 1 }
+        },
+        {
+          "id": "wind_and_drums",
+          "text": "Wind, drums, and dramatic horizon energy.",
+          "image": { "label": "Windy horizon", "emoji": "🥁", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "living_dune_restoration": 3, "urban_forest_corridor": 1 }
+        },
+        {
+          "id": "hopeful_local_band",
+          "text": "Something upbeat that makes neighborhood adaptation feel possible.",
+          "image": { "label": "Neighborhood anthem", "emoji": "🎺", "palette": ["#4D8C55", "#D5EDC8"] },
+          "points": { "rain_garden_bioswale": 3, "green_roofs": 1 }
+        }
+      ]
+    },
+    {
+      "id": "satisfying_intervention",
+      "kicker": "Question 8",
+      "prompt": "Which city intervention feels most satisfying to you?",
+      "answers": [
+        {
+          "id": "shoreline_regains_shape",
+          "text": "A vulnerable shoreline slowly becoming protective again.",
+          "image": { "label": "Recovered shoreline", "emoji": "🪸", "palette": ["#2F7A5D", "#9FD7BB"] },
+          "points": { "mangrove_flood_protection": 3, "living_dune_restoration": 1 }
+        },
+        {
+          "id": "unused_roof_repurposed",
+          "text": "A dead roof becoming a cool green fifth facade.",
+          "image": { "label": "Repurposed roof", "emoji": "🏢", "palette": ["#5B8F4F", "#D7EDC7"] },
+          "points": { "green_roofs": 3, "urban_forest_corridor": 1 }
+        },
+        {
+          "id": "street_gets_canopy",
+          "text": "A harsh corridor getting enough canopy to change behavior.",
+          "image": { "label": "Street canopy", "emoji": "🌲", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "urban_forest_corridor": 3, "green_roofs": 1 }
+        },
+        {
+          "id": "wastewater_becomes_habitat",
+          "text": "A treatment landscape that is both cleaner and more alive.",
+          "image": { "label": "Wetland habitat", "emoji": "🦆", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "constructed_wetland": 3, "rain_garden_bioswale": 1 }
+        },
+        {
+          "id": "dunes_return",
+          "text": "A coast protected by living landforms instead of only hard edges.",
+          "image": { "label": "Restored dunes", "emoji": "🏝️", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "living_dune_restoration": 3, "mangrove_flood_protection": 1 }
+        },
+        {
+          "id": "street_stops_flooding",
+          "text": "A corner that used to flood every year finally working properly.",
+          "image": { "label": "Street fixed", "emoji": "🚧", "palette": ["#4D8C55", "#D5EDC8"] },
+          "points": { "rain_garden_bioswale": 3, "constructed_wetland": 1 }
+        }
+      ]
+    },
+    {
+      "id": "weekend_activity",
+      "kicker": "Question 9",
+      "prompt": "Pick a weekend activity.",
+      "answers": [
+        {
+          "id": "low_tide_walk",
+          "text": "A coastal walk where you keep stopping to inspect root systems.",
+          "image": { "label": "Low tide walk", "emoji": "🦶", "palette": ["#2F7A5D", "#9FD7BB"] },
+          "points": { "mangrove_flood_protection": 3, "constructed_wetland": 1 }
+        },
+        {
+          "id": "rooftop_brunch",
+          "text": "A rooftop brunch with plants that are frankly better dressed than the guests.",
+          "image": { "label": "Rooftop brunch", "emoji": "🥐", "palette": ["#5B8F4F", "#D7EDC7"] },
+          "points": { "green_roofs": 3, "rain_garden_bioswale": 1 }
+        },
+        {
+          "id": "arboretum_wander",
+          "text": "A long tree-filled walk with no urgent destination.",
+          "image": { "label": "Arboretum", "emoji": "🍂", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "urban_forest_corridor": 3, "living_dune_restoration": 1 }
+        },
+        {
+          "id": "birdwatching",
+          "text": "Birdwatching near water and pretending it is not a personality trait.",
+          "image": { "label": "Birdwatching", "emoji": "🔭", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "constructed_wetland": 3, "mangrove_flood_protection": 1 }
+        },
+        {
+          "id": "windy_beach_day",
+          "text": "A windy beach day that would ruin weaker people.",
+          "image": { "label": "Windy beach day", "emoji": "🪁", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "living_dune_restoration": 3, "urban_forest_corridor": 1 }
+        },
+        {
+          "id": "community_garden",
+          "text": "Helping with a community garden and quietly fixing drainage while you are there.",
+          "image": { "label": "Community garden", "emoji": "🪴", "palette": ["#4D8C55", "#D5EDC8"] },
+          "points": { "rain_garden_bioswale": 3, "green_roofs": 1 }
+        }
+      ]
+    },
+    {
+      "id": "legacy",
+      "kicker": "Question 10",
+      "prompt": "How do you want to leave a legacy?",
+      "answers": [
+        {
+          "id": "protect_coasts",
+          "text": "By protecting vulnerable edges before the crisis becomes irreversible.",
+          "image": { "label": "Protect coasts", "emoji": "🫶", "palette": ["#2F7A5D", "#9FD7BB"] },
+          "points": { "mangrove_flood_protection": 3, "living_dune_restoration": 1 }
+        },
+        {
+          "id": "retrofit_city",
+          "text": "By proving even dense cities can become greener and smarter.",
+          "image": { "label": "Retrofit city", "emoji": "🏗️", "palette": ["#5B8F4F", "#D7EDC7"] },
+          "points": { "green_roofs": 3, "rain_garden_bioswale": 1 }
+        },
+        {
+          "id": "grow_canopy",
+          "text": "By creating public spaces that feel better for generations.",
+          "image": { "label": "Grow canopy", "emoji": "🌳", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "urban_forest_corridor": 3, "green_roofs": 1 }
+        },
+        {
+          "id": "clean_and_restore",
+          "text": "By turning waste, runoff, and excess water into healthier systems.",
+          "image": { "label": "Clean and restore", "emoji": "💦", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "constructed_wetland": 3, "rain_garden_bioswale": 1 }
+        },
+        {
+          "id": "restore_dynamic_edges",
+          "text": "By showing that adaptation does not have to mean freezing nature in place.",
+          "image": { "label": "Dynamic edges", "emoji": "🌬️", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "living_dune_restoration": 3, "mangrove_flood_protection": 1 }
+        },
+        {
+          "id": "fix_daily_flooding",
+          "text": "By making ordinary streets less vulnerable and more alive.",
+          "image": { "label": "Fix daily flooding", "emoji": "🚲", "palette": ["#4D8C55", "#D5EDC8"] },
+          "points": { "rain_garden_bioswale": 3, "constructed_wetland": 1 }
+        }
+      ]
+    }
+  ]
+}
