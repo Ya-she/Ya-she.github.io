@@ -99,13 +99,16 @@ function bindEvents() {
 
 async function loadQuizData() {
   try {
-    const response = await fetch("./quiz-data.json", { cache: "no-store" });
+    const response = await fetch("./data/quiz-data.json", { cache: "no-store" });
     if (!response.ok) throw new Error("Quiz data request failed");
     const quizData = await response.json();
     return { quizData, loadedFromExternalJson: true };
   } catch (error) {
     console.error("Failed to load quiz-data.json", error);
-    alert("Could not load quiz-data.json. Make sure all four files are in the same folder.");
+    const message = window.location.protocol === "file:"
+      ? "Could not load data/quiz-data.json. If you opened index.html directly from your computer, your browser is probably blocking local JSON loading. Use a tiny local server or host the folder online. The file paths themselves may still be correct."
+      : "Could not load data/quiz-data.json. Check that index.html, styles.css, the scripts folder, and the data folder were all uploaded together.";
+    alert(message);
     throw error;
   }
 }
@@ -116,7 +119,7 @@ function populateIntro(quizData, loadedFromExternalJson) {
   elements.quizSubtitle.textContent = quizData.meta.subtitle;
   elements.quizIntro.textContent = quizData.meta.intro;
   elements.dataSourcePill.textContent = loadedFromExternalJson
-    ? "Loaded from quiz-data.json"
+    ? "Loaded from data/quiz-data.json"
     : "Using fallback data";
 }
 
