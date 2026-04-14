@@ -2,12 +2,13 @@ const QUIZ_STATE_COOKIE = "nbs_quiz_state";
 const COOKIE_DAYS = 14;
 
 const RESULT_ICONS = {
-  mangrove_flood_protection: "🌊",
-  green_roofs: "🏙️",
-  urban_forest_corridor: "🌳",
-  constructed_wetland: "💧",
-  living_dune_restoration: "🏖️",
-  rain_garden_bioswale: "🌿",
+  nbs: "🌿",
+  nature_as_infrastructure: "🏗️",
+  carbon_offset_biodiversity: "🎟️",
+  ccs: "🛢️",
+  pes: "💸",
+  biodiversity_credits: "🦋",
+  redd_plus: "🌳",
 };
 
 const fallbackTheme = {

@@ -1,93 +1,106 @@
 {
   "meta": {
-    "version": "nbs-quiz-v1",
-    "title": "What Nature-Based Solution Are You?",
-    "subtitle": "BuzzFeed energy, climate-policy flavor.",
-    "intro": "This static-site version keeps the content in one JSON file so you can easily swap in your real questions, answer images, results, and scoring later without touching the website logic.",
-    "resultLabel": "Your personalized NbS"
+    "version": "mbi-quiz-v1",
+    "title": "What Market-Based Instrument Are You?",
+    "subtitle": "A BuzzFeed-style vibe check for the neoliberal valuation of nature.",
+    "intro": "Market-based instruments promise to save the planet by pricing it. Find out which one you are — the all-rounder nobody can define, the techno-fix bachelor, or the shiny offset that looks great until someone checks the receipts. Answers are weighted; ecosystem, infrastructure, and happiest-place questions do the heavy lifting, the rest are vibes.",
+    "resultLabel": "Your market-based instrument"
   },
   "scoring": {
     "method": "highest-score-wins",
     "tieBreaker": [
-      "mangrove_flood_protection",
-      "green_roofs",
-      "urban_forest_corridor",
-      "constructed_wetland",
-      "living_dune_restoration",
-      "rain_garden_bioswale"
+      "nbs",
+      "nature_as_infrastructure",
+      "carbon_offset_biodiversity",
+      "ccs",
+      "pes",
+      "biodiversity_credits",
+      "redd_plus"
     ]
   },
   "results": {
-    "mangrove_flood_protection": {
-      "name": "Mangrove Flood Protection",
-      "subtitle": "Quiet, rooted, and unexpectedly powerful.",
-      "badge": "Coastal guardian",
-      "palette": ["#2F7A5D", "#9FD7BB"],
-      "description": "You absorb shocks, hold the line, and make difficult environments more survivable. You look calm, but you are doing serious system work under the surface.",
-      "whyItFits": [
-        "You are resilient without being flashy.",
-        "You prefer layered protection over one giant fix.",
-        "You thrive where ecology and infrastructure overlap."
-      ]
-    },
-    "green_roofs": {
-      "name": "Green Roofs",
-      "subtitle": "Polished, practical, and a little aspirational.",
-      "badge": "Urban overachiever",
-      "palette": ["#5B8F4F", "#D7EDC7"],
-      "description": "You make hard spaces softer and more useful. You bring biodiversity, cooling, and aesthetic credibility to places that forgot they needed all three.",
-      "whyItFits": [
-        "You like visible wins and clever retrofits.",
-        "You make cities feel more breathable.",
-        "You combine function with a strong visual identity."
-      ]
-    },
-    "urban_forest_corridor": {
-      "name": "Urban Forest Corridor",
-      "subtitle": "Big canopy energy with long-term vision.",
-      "badge": "Shade strategist",
+    "nbs": {
+      "name": "Nature-based Solution",
+      "subtitle": "The all-rounder. Please do not ask for a definition.",
+      "badge": "The Undefinable Darling",
       "palette": ["#3D6F2C", "#B7D698"],
-      "description": "You are generous, connective, and good at thinking beyond a single site. You improve movement, comfort, habitat, and health all at once.",
+      "description": "You are the policy world's favorite umbrella term. You do everything — flood protection, carbon, biodiversity, urban cooling, community wellbeing — which is mostly great, except nobody can agree on what you actually are. You thrive in funding proposals and IUCN side events. You are beloved, slightly vague, and doing your best.",
       "whyItFits": [
-        "You think in networks, not isolated interventions.",
-        "You value longevity and public benefit.",
-        "You make systems cooler in every sense."
+        "You promise co-benefits without specifying whose.",
+        "You are cited in every policy paper and defined in none.",
+        "You are what people mean when they say 'win-win.'"
       ]
     },
-    "constructed_wetland": {
-      "name": "Constructed Wetland",
-      "subtitle": "Low-key elegant and surprisingly effective.",
-      "badge": "Water whisperer",
-      "palette": ["#3D8679", "#BFE4DA"],
-      "description": "You clean up messes while looking deceptively serene. People may underestimate you until they realize you are doing filtration, habitat creation, and climate adaptation at the same time.",
+    "nature_as_infrastructure": {
+      "name": "Nature as Infrastructure",
+      "subtitle": "NbS's hipper, slightly unhinged younger sibling.",
+      "badge": "The Engineer in a Field Jacket",
+      "palette": ["#49715A", "#A9C9B5"],
+      "description": "You took one look at NbS and said 'but what if we quantified it harder?' You reframe ecosystems as service-delivery assets on municipal balance sheets. You are beloved by World Bank reports and confusing at dinner parties. Mangroves are your levees. Wetlands are your stormwater utility. Nature works for you, literally.",
       "whyItFits": [
-        "You turn excess into something useful.",
-        "You are calm in the face of complexity.",
-        "You prefer multifunctionality over single-purpose fixes."
+        "You turn ecosystems into line items.",
+        "You speak fluent procurement and fluent mycelium.",
+        "You are mostly a pitch deck in a trench coat."
       ]
     },
-    "living_dune_restoration": {
-      "name": "Living Dune Restoration",
-      "subtitle": "Windswept, stubborn, and more dynamic than people think.",
-      "badge": "Edge-of-the-map icon",
-      "palette": ["#8E7B46", "#EBDDB6"],
-      "description": "You are adaptive, protective, and a bit untamable. You understand that stability sometimes comes from movement, not rigidity.",
+    "carbon_offset_biodiversity": {
+      "name": "Carbon Offset with Biodiversity Co-benefit",
+      "subtitle": "They say you can do it all. You cannot.",
+      "badge": "The Shiny Toy",
+      "palette": ["#6B8F3E", "#D4E4A8"],
+      "description": "Everyone wants to play with you. You promise carbon neutrality AND charismatic megafauna in one tidy credit. You are featured in airline ads and sustainability reports. The problem is if anyone looks too closely they notice the additionality is vibes and the biodiversity metric is a bird list from 2014. You remain very popular.",
       "whyItFits": [
-        "You do not panic when systems shift.",
-        "You protect coastlines through process, not brute force.",
-        "You make unpredictability look strategic."
+        "You bundle two goods to distract from one problem.",
+        "You photograph extremely well.",
+        "Verification is a personal journey, not a requirement."
       ]
     },
-    "rain_garden_bioswale": {
-      "name": "Rain Garden / Bioswale",
-      "subtitle": "Charming, tactical, and good in a crisis.",
-      "badge": "Stormwater darling",
+    "ccs": {
+      "name": "Carbon Capture & Storage",
+      "subtitle": "The techno-fix bachelor who refuses to go to therapy.",
+      "badge": "The Refused Retrofit",
+      "palette": ["#5A5E6B", "#BFC4CE"],
+      "description": "You are the engineering-school golden child who thinks we can drill our way out of this. You have a PowerPoint and three pilot projects, two of which are delayed. Fossil fuel companies love you. You avoid the words 'demand reduction' the way a cat avoids water. You will, you insist, scale any day now.",
+      "whyItFits": [
+        "You prefer a technical fix to a political one.",
+        "Your pilot phase has a pilot phase.",
+        "You are somehow both the future and 2007."
+      ]
+    },
+    "pes": {
+      "name": "Payments for Ecosystem Services",
+      "subtitle": "Paying nature to show up to work.",
+      "badge": "The HR Department of the Biosphere",
       "palette": ["#4D8C55", "#D5EDC8"],
-      "description": "You handle overflow with grace. You are approachable, adaptable, and better at solving day-to-day urban problems than people first assume.",
+      "description": "You look at a watershed and see a contractor. You believe rural communities will steward landscapes if you wire them the right monthly transfer. Sometimes this works. Sometimes it dispossesses people from commons they already managed for free. You mean well, mostly, and you have very good spreadsheets.",
       "whyItFits": [
-        "You are small-scale but mighty.",
-        "You know local interventions can still shift systems.",
-        "You turn runoff into relief."
+        "You convert stewardship into a service contract.",
+        "You love a pilot in Costa Rica.",
+        "You ask 'what would motivate a landowner?' instead of 'who owns the land?'"
+      ]
+    },
+    "biodiversity_credits": {
+      "name": "Biodiversity Credits",
+      "subtitle": "Carbon offsets' ambitious cousin, already under scrutiny.",
+      "badge": "The Sequel Nobody Asked For",
+      "palette": ["#8E7B46", "#EBDDB6"],
+      "description": "You are new, you are glossy, and the ink on your methodology is still wet. Investors are excited. Indigenous and local communities are asking sharp questions you do not want to answer. You claim to make biodiversity 'investable,' which is either the future of conservation or a category error, depending on who you ask at the conference.",
+      "whyItFits": [
+        "You treat habitat as a tradable unit.",
+        "Your methodology is 'emerging' (unfinished).",
+        "You were launched at COP with a sizzle reel."
+      ]
+    },
+    "redd_plus": {
+      "name": "REDD+",
+      "subtitle": "The aging celebrity with a complicated colonial past.",
+      "badge": "The Veteran",
+      "palette": ["#2F7A5D", "#9FD7BB"],
+      "description": "You have been around since Bali 2007. You were going to end deforestation. Instead you generated academic careers, a vast compliance industry, and several lawsuits about overlapping land claims. You are still here, reformulating yourself for the voluntary market. You carry the entire history of forest carbon in one tired acronym.",
+      "whyItFits": [
+        "You have a longer publication record than most professors.",
+        "You are constantly being 'reformed.'",
+        "You remember when 'permanence' was still a debate, not a disclaimer."
       ]
     }
   },
@@ -95,43 +108,43 @@
     {
       "id": "ecosystem_identity",
       "kicker": "Question 1",
-      "prompt": "Which ecosystem do you identify with most?",
+      "prompt": "Which ecosystem do you identify with?",
       "answers": [
         {
-          "id": "roots_in_tides",
-          "text": "A tidal forest with roots doing secret engineering.",
-          "image": { "label": "Mangrove coast", "emoji": "🌊", "palette": ["#2F7A5D", "#9FD7BB"] },
-          "points": { "mangrove_flood_protection": 3, "constructed_wetland": 1 }
-        },
-        {
-          "id": "meadow_on_concrete",
-          "text": "A rooftop meadow proving gray boxes can improve themselves.",
-          "image": { "label": "Green roof", "emoji": "🏙️", "palette": ["#5B8F4F", "#D7EDC7"] },
-          "points": { "green_roofs": 3, "rain_garden_bioswale": 1 }
-        },
-        {
-          "id": "cool_shady_avenue",
-          "text": "A shady corridor where everyone walks slower on purpose.",
-          "image": { "label": "Urban forest", "emoji": "🌳", "palette": ["#3D6F2C", "#B7D698"] },
-          "points": { "urban_forest_corridor": 3, "green_roofs": 1 }
-        },
-        {
-          "id": "reedy_marsh",
-          "text": "A reedy wetland that looks peaceful and is absolutely doing the most.",
+          "id": "wetland",
+          "text": "Wetland — chaotic, underrated, filtering everyone's mess.",
           "image": { "label": "Wetland", "emoji": "💧", "palette": ["#3D8679", "#BFE4DA"] },
-          "points": { "constructed_wetland": 3, "mangrove_flood_protection": 1 }
+          "points": { "nbs": 3, "nature_as_infrastructure": 2, "pes": 1 }
         },
         {
-          "id": "windy_dunes",
-          "text": "A windswept dune system with strong boundary-setting energy.",
-          "image": { "label": "Living dunes", "emoji": "🏖️", "palette": ["#8E7B46", "#EBDDB6"] },
-          "points": { "living_dune_restoration": 3, "mangrove_flood_protection": 1 }
+          "id": "forest",
+          "text": "Forest — long-lived, charismatic, extremely monetizable.",
+          "image": { "label": "Forest", "emoji": "🌳", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "redd_plus": 3, "carbon_offset_biodiversity": 2, "nbs": 1 }
         },
         {
-          "id": "street_corner_bloom",
-          "text": "A planted curb that turns chaos into drainage and flowers.",
-          "image": { "label": "Rain garden", "emoji": "🌿", "palette": ["#4D8C55", "#D5EDC8"] },
-          "points": { "rain_garden_bioswale": 3, "green_roofs": 1 }
+          "id": "desert",
+          "text": "Desert & semi-arid — austere, overlooked by funders, secretly essential.",
+          "image": { "label": "Desert", "emoji": "🏜️", "palette": ["#B89860", "#F1E1B8"] },
+          "points": { "ccs": 3, "pes": 2, "biodiversity_credits": 1 }
+        },
+        {
+          "id": "mangroves",
+          "text": "Mangroves — the policy world's current favorite.",
+          "image": { "label": "Mangroves", "emoji": "🌊", "palette": ["#2F7A5D", "#9FD7BB"] },
+          "points": { "nature_as_infrastructure": 3, "nbs": 2, "carbon_offset_biodiversity": 1 }
+        },
+        {
+          "id": "grasslands",
+          "text": "Grasslands — quietly storing carbon while everyone ignores you.",
+          "image": { "label": "Grasslands", "emoji": "🌾", "palette": ["#8E9B46", "#D8E2B5"] },
+          "points": { "pes": 3, "carbon_offset_biodiversity": 2, "redd_plus": 1 }
+        },
+        {
+          "id": "ocean",
+          "text": "Ocean — vast, unmeasured, absolutely about to be financialized.",
+          "image": { "label": "Ocean", "emoji": "🌊", "palette": ["#2E6F8E", "#A9CCDD"] },
+          "points": { "biodiversity_credits": 3, "nature_as_infrastructure": 1, "nbs": 1 }
         }
       ]
     },
@@ -141,384 +154,341 @@
       "prompt": "Which infrastructure project is most appealing?",
       "answers": [
         {
-          "id": "coastal_buffer",
-          "text": "A living coastal buffer that makes storm surge regret meeting you.",
-          "image": { "label": "Coastal buffer", "emoji": "🛟", "palette": ["#2F7A5D", "#9FD7BB"] },
-          "points": { "mangrove_flood_protection": 3, "living_dune_restoration": 1 }
+          "id": "big_bridge",
+          "text": "A big bridge — iconic, expensive, photo-ready.",
+          "image": { "label": "Big Bridge", "emoji": "🌉", "palette": ["#5A5E6B", "#BFC4CE"] },
+          "points": { "ccs": 3, "nature_as_infrastructure": 2 }
         },
         {
-          "id": "roof_retreat",
-          "text": "A public roofscape with plants, pollinators, and suspiciously good branding.",
-          "image": { "label": "Roofscape", "emoji": "🌼", "palette": ["#5B8F4F", "#D7EDC7"] },
-          "points": { "green_roofs": 3, "urban_forest_corridor": 1 }
+          "id": "road",
+          "text": "A road — practical, extractive-adjacent, always getting widened.",
+          "image": { "label": "Road", "emoji": "🛣️", "palette": ["#6B6458", "#CFC5B3"] },
+          "points": { "redd_plus": 2, "carbon_offset_biodiversity": 2, "ccs": 1 }
         },
         {
-          "id": "green_streets",
-          "text": "A tree-lined corridor that cools a whole district over time.",
-          "image": { "label": "Green corridor", "emoji": "🚶", "palette": ["#3D6F2C", "#B7D698"] },
-          "points": { "urban_forest_corridor": 3, "rain_garden_bioswale": 1 }
+          "id": "railway",
+          "text": "A railway — efficient, collective, slightly 19th century.",
+          "image": { "label": "Railway", "emoji": "🚆", "palette": ["#49715A", "#A9C9B5"] },
+          "points": { "nbs": 3, "pes": 2 }
         },
         {
-          "id": "water_polisher",
-          "text": "A water treatment landscape that does not need to brag.",
-          "image": { "label": "Treatment wetland", "emoji": "🪷", "palette": ["#3D8679", "#BFE4DA"] },
-          "points": { "constructed_wetland": 3, "rain_garden_bioswale": 1 }
+          "id": "house",
+          "text": "A house — individual, domestic, quietly ideological.",
+          "image": { "label": "House", "emoji": "🏠", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "pes": 3, "nbs": 1, "biodiversity_credits": 1 }
         },
         {
-          "id": "soft_coastline",
-          "text": "A sandy defense that works with wind and waves instead of yelling at them.",
-          "image": { "label": "Soft coastline", "emoji": "🌬️", "palette": ["#8E7B46", "#EBDDB6"] },
-          "points": { "living_dune_restoration": 3, "mangrove_flood_protection": 1 }
+          "id": "canal",
+          "text": "A canal — slow, beautiful, deeply Dutch-engineered energy.",
+          "image": { "label": "Canal", "emoji": "🛶", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "nature_as_infrastructure": 3, "nbs": 2 }
         },
         {
-          "id": "stormwater_fix",
-          "text": "A curbside stormwater intervention that makes a boring street smarter.",
-          "image": { "label": "Bioswale street", "emoji": "🌧️", "palette": ["#4D8C55", "#D5EDC8"] },
-          "points": { "rain_garden_bioswale": 3, "green_roofs": 1 }
+          "id": "harbour",
+          "text": "A harbour — global trade, colonial residue, container chic.",
+          "image": { "label": "Harbour", "emoji": "🚢", "palette": ["#2E6F8E", "#A9CCDD"] },
+          "points": { "biodiversity_credits": 3, "carbon_offset_biodiversity": 2 }
         }
       ]
     },
     {
-      "id": "happy_place",
+      "id": "happiest_place",
       "kicker": "Question 3",
-      "prompt": "Where would you feel happiest?",
+      "prompt": "Where would you feel the happiest?",
       "answers": [
         {
-          "id": "quiet_estuary",
-          "text": "An estuary where the water is never in a rush.",
-          "image": { "label": "Estuary", "emoji": "🦀", "palette": ["#2F7A5D", "#9FD7BB"] },
-          "points": { "mangrove_flood_protection": 3, "constructed_wetland": 1 }
+          "id": "city",
+          "text": "City — dense, legible, full of stakeholders.",
+          "image": { "label": "City", "emoji": "🏙️", "palette": ["#5A5E6B", "#BFC4CE"] },
+          "points": { "nature_as_infrastructure": 3, "ccs": 2 }
         },
         {
-          "id": "city_above_city",
-          "text": "On a planted rooftop looking down at everyone else making heat islands.",
-          "image": { "label": "Rooftop city", "emoji": "☁️", "palette": ["#5B8F4F", "#D7EDC7"] },
-          "points": { "green_roofs": 3, "rain_garden_bioswale": 1 }
+          "id": "beach",
+          "text": "Beach — leisure economy, rising sea, sunscreen diplomacy.",
+          "image": { "label": "Beach", "emoji": "🏖️", "palette": ["#E2C97F", "#F7E9C3"] },
+          "points": { "carbon_offset_biodiversity": 3, "nbs": 1 }
         },
         {
-          "id": "leafy_boulevard",
-          "text": "A broad boulevard with shade, benches, and enough room to think.",
-          "image": { "label": "Boulevard", "emoji": "🍃", "palette": ["#3D6F2C", "#B7D698"] },
-          "points": { "urban_forest_corridor": 3, "green_roofs": 1 }
+          "id": "mountain",
+          "text": "Mountain — lofty, spiritual, excellent for carbon narratives.",
+          "image": { "label": "Mountain", "emoji": "🏔️", "palette": ["#6B7F8E", "#C8D4DE"] },
+          "points": { "redd_plus": 3, "pes": 2, "carbon_offset_biodiversity": 1 }
         },
         {
-          "id": "birdy_marsh",
-          "text": "A marsh full of birds and filtered light.",
-          "image": { "label": "Bird marsh", "emoji": "🪶", "palette": ["#3D8679", "#BFE4DA"] },
-          "points": { "constructed_wetland": 3, "mangrove_flood_protection": 1 }
+          "id": "wetland",
+          "text": "Wetland — squelchy, underestimated, home.",
+          "image": { "label": "Wetland", "emoji": "🪷", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "nbs": 3, "nature_as_infrastructure": 1 }
         },
         {
-          "id": "stormy_beach",
-          "text": "A dramatic beach where the wind is part of the personality test.",
-          "image": { "label": "Dune beach", "emoji": "🐚", "palette": ["#8E7B46", "#EBDDB6"] },
-          "points": { "living_dune_restoration": 3, "urban_forest_corridor": 1 }
+          "id": "palace_in_sky",
+          "text": "A palace in the sky — aspirational, untethered, Davos-coded.",
+          "image": { "label": "Sky palace", "emoji": "🏯", "palette": ["#9A7FB0", "#E0CFEA"] },
+          "points": { "biodiversity_credits": 3, "ccs": 2 }
         },
         {
-          "id": "neighborhood_corner",
-          "text": "A neighborhood street where tiny interventions make daily life better.",
-          "image": { "label": "Neighborhood green", "emoji": "🚲", "palette": ["#4D8C55", "#D5EDC8"] },
-          "points": { "rain_garden_bioswale": 3, "green_roofs": 1 }
+          "id": "hole_dune",
+          "text": "A hole in the ground, Dune-style — ascetic, sand-pilled.",
+          "image": { "label": "Dune hideout", "emoji": "🕳️", "palette": ["#B89860", "#F1E1B8"] },
+          "points": { "ccs": 3, "pes": 1 }
         }
       ]
     },
     {
-      "id": "climate_fear",
+      "id": "top_ecosystem_service",
       "kicker": "Question 4",
-      "prompt": "Which environmental catastrophe are you most afraid of?",
+      "prompt": "What service that nature provides to you would you rank the highest?",
       "answers": [
         {
-          "id": "storm_surge",
-          "text": "Storm surge chewing through coastlines.",
-          "image": { "label": "Storm surge", "emoji": "🌊", "palette": ["#2F7A5D", "#9FD7BB"] },
-          "points": { "mangrove_flood_protection": 3, "living_dune_restoration": 2 }
+          "id": "recreation",
+          "text": "Recreation — hiking, swimming, being outside as content.",
+          "image": { "label": "Recreation", "emoji": "🥾", "palette": ["#5B8F4F", "#D7EDC7"] },
+          "points": { "nature_as_infrastructure": 2, "carbon_offset_biodiversity": 2 }
         },
         {
-          "id": "urban_heat",
-          "text": "Cities getting hotter because no one planned for shade or cooling.",
-          "image": { "label": "Urban heat", "emoji": "☀️", "palette": ["#5B8F4F", "#D7EDC7"] },
-          "points": { "green_roofs": 3, "urban_forest_corridor": 2 }
+          "id": "air_water_filtration",
+          "text": "Air & water filtration — the quiet load-bearing service.",
+          "image": { "label": "Filtration", "emoji": "💨", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "nbs": 3, "nature_as_infrastructure": 2 }
         },
         {
-          "id": "treeless_public_realm",
-          "text": "A future where public space is all glare and no canopy.",
-          "image": { "label": "No trees", "emoji": "🧍", "palette": ["#3D6F2C", "#B7D698"] },
-          "points": { "urban_forest_corridor": 3, "green_roofs": 1 }
+          "id": "iconic_species",
+          "text": "Iconic species — whales, tigers, pandas, donor appeal.",
+          "image": { "label": "Iconic species", "emoji": "🐅", "palette": ["#B5743A", "#E7CDA8"] },
+          "points": { "carbon_offset_biodiversity": 3, "biodiversity_credits": 2 }
         },
         {
-          "id": "dirty_runoff",
-          "text": "Polluted runoff quietly wrecking ecosystems downstream.",
-          "image": { "label": "Polluted runoff", "emoji": "🫧", "palette": ["#3D8679", "#BFE4DA"] },
-          "points": { "constructed_wetland": 3, "rain_garden_bioswale": 2 }
+          "id": "good_vibes",
+          "text": "Good Vibes! — spiritual, unquantifiable, deeply real.",
+          "image": { "label": "Good vibes", "emoji": "✨", "palette": ["#E2A97F", "#F7DCC3"] },
+          "points": { "nbs": 2, "pes": 1 }
         },
         {
-          "id": "coastal_erosion",
-          "text": "Coastal erosion proving concrete is not automatically wisdom.",
-          "image": { "label": "Eroding coast", "emoji": "🪨", "palette": ["#8E7B46", "#EBDDB6"] },
-          "points": { "living_dune_restoration": 3, "mangrove_flood_protection": 1 }
+          "id": "pearls",
+          "text": "Pearls — extractive, glossy, mildly feudal.",
+          "image": { "label": "Pearls", "emoji": "🦪", "palette": ["#C9C2D1", "#EEE9F1"] },
+          "points": { "biodiversity_credits": 3, "ccs": 1 }
         },
         {
-          "id": "flash_floods",
-          "text": "Flash floods turning ordinary streets into regrettable canals.",
-          "image": { "label": "Street flood", "emoji": "🚰", "palette": ["#4D8C55", "#D5EDC8"] },
-          "points": { "rain_garden_bioswale": 3, "constructed_wetland": 1 }
+          "id": "existence_biodiversity",
+          "text": "Existence of biodiversity — intrinsic, unpriced, under threat.",
+          "image": { "label": "Biodiversity", "emoji": "🦋", "palette": ["#6B8F3E", "#D4E4A8"] },
+          "points": { "redd_plus": 3, "pes": 2 }
         }
       ]
     },
     {
-      "id": "outfit_vibe",
+      "id": "environmental_catastrophe",
       "kicker": "Question 5",
-      "prompt": "Pick an outfit texture or material.",
+      "prompt": "What environmental catastrophe are you most afraid of?",
       "answers": [
         {
-          "id": "woven_layers",
-          "text": "Layered, tangled, and stronger than it looks.",
-          "image": { "label": "Woven layers", "emoji": "🧵", "palette": ["#2F7A5D", "#9FD7BB"] },
-          "points": { "mangrove_flood_protection": 3, "constructed_wetland": 1 }
+          "id": "sea_level_rise",
+          "text": "Sea level rise swallowing the coast (and my property value).",
+          "image": { "label": "Sea level rise", "emoji": "🌊", "palette": ["#2E6F8E", "#A9CCDD"] },
+          "points": { "nature_as_infrastructure": 3, "nbs": 1 }
         },
         {
-          "id": "clean_modern_linen",
-          "text": "Clean lines with one excellent green accent piece.",
-          "image": { "label": "Modern linen", "emoji": "👒", "palette": ["#5B8F4F", "#D7EDC7"] },
-          "points": { "green_roofs": 3, "urban_forest_corridor": 1 }
+          "id": "deforestation",
+          "text": "Total deforestation and the loss of the last old-growth.",
+          "image": { "label": "Deforestation", "emoji": "🪓", "palette": ["#6B4A2C", "#D1B793"] },
+          "points": { "redd_plus": 3, "carbon_offset_biodiversity": 2 }
         },
         {
-          "id": "soft_structured_layers",
-          "text": "Tailored, breathable, and prepared to outlive trends.",
-          "image": { "label": "Structured layers", "emoji": "🧥", "palette": ["#3D6F2C", "#B7D698"] },
-          "points": { "urban_forest_corridor": 3, "living_dune_restoration": 1 }
+          "id": "mass_extinction",
+          "text": "The sixth mass extinction, but make it spreadsheet-legible.",
+          "image": { "label": "Extinction", "emoji": "🦖", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "biodiversity_credits": 3, "carbon_offset_biodiversity": 1 }
         },
         {
-          "id": "fluid_natural_fabric",
-          "text": "Flowy, reflective, and impossible to rush.",
-          "image": { "label": "Fluid fabric", "emoji": "🫧", "palette": ["#3D8679", "#BFE4DA"] },
-          "points": { "constructed_wetland": 3, "mangrove_flood_protection": 1 }
+          "id": "runaway_warming",
+          "text": "Runaway warming and tipping points no model can catch.",
+          "image": { "label": "Warming", "emoji": "🔥", "palette": ["#B5432E", "#F0B9A4"] },
+          "points": { "ccs": 3, "redd_plus": 1 }
         },
         {
-          "id": "windswept_neutral",
-          "text": "Textured neutrals that somehow look better after a storm.",
-          "image": { "label": "Windswept", "emoji": "🧣", "palette": ["#8E7B46", "#EBDDB6"] },
-          "points": { "living_dune_restoration": 3, "urban_forest_corridor": 1 }
+          "id": "commons_enclosure",
+          "text": "The enclosure and financialization of what was once common.",
+          "image": { "label": "Enclosure", "emoji": "⛓️", "palette": ["#5A5E6B", "#BFC4CE"] },
+          "points": { "pes": 3, "nbs": 1 }
         },
         {
-          "id": "botanical_practical",
-          "text": "Practical shoes, useful pockets, and one cheerful plant print.",
-          "image": { "label": "Practical botanical", "emoji": "👟", "palette": ["#4D8C55", "#D5EDC8"] },
-          "points": { "rain_garden_bioswale": 3, "green_roofs": 1 }
+          "id": "water_scarcity",
+          "text": "Taps running dry while bottled water futures boom.",
+          "image": { "label": "Water scarcity", "emoji": "🚰", "palette": ["#B89860", "#F1E1B8"] },
+          "points": { "pes": 2, "nature_as_infrastructure": 2 }
         }
       ]
     },
     {
-      "id": "group_role",
+      "id": "killed_by_nature",
       "kicker": "Question 6",
-      "prompt": "What is your role in a chaotic group project?",
+      "prompt": "How would you prefer to be killed by nature?",
       "answers": [
         {
-          "id": "quiet_protector",
-          "text": "The quiet protector who prevents disaster before anyone notices.",
-          "image": { "label": "Quiet protector", "emoji": "🛡️", "palette": ["#2F7A5D", "#9FD7BB"] },
-          "points": { "mangrove_flood_protection": 3, "living_dune_restoration": 1 }
+          "id": "bog_preserved",
+          "text": "Sink in a bog and be preserved forever, Iron Age icon.",
+          "image": { "label": "Bog body", "emoji": "🪵", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "nbs": 3, "pes": 1 }
         },
         {
-          "id": "stylish_fixer",
-          "text": "The person who makes it functional and presentation-ready.",
-          "image": { "label": "Stylish fixer", "emoji": "✨", "palette": ["#5B8F4F", "#D7EDC7"] },
-          "points": { "green_roofs": 3, "rain_garden_bioswale": 1 }
+          "id": "big_wave",
+          "text": "A big wave of water, 2012-style. Dramatic. Cinematic.",
+          "image": { "label": "Big wave", "emoji": "🌊", "palette": ["#2E6F8E", "#A9CCDD"] },
+          "points": { "nature_as_infrastructure": 3, "carbon_offset_biodiversity": 1 }
         },
         {
-          "id": "long_term_planner",
-          "text": "The one thinking five years ahead while others are still opening the doc.",
-          "image": { "label": "Long-term planner", "emoji": "📈", "palette": ["#3D6F2C", "#B7D698"] },
-          "points": { "urban_forest_corridor": 3, "green_roofs": 1 }
+          "id": "avalanche",
+          "text": "An avalanche while you ski a carbon-offset slope.",
+          "image": { "label": "Avalanche", "emoji": "🏔️", "palette": ["#6B7F8E", "#C8D4DE"] },
+          "points": { "carbon_offset_biodiversity": 3, "redd_plus": 1 }
         },
         {
-          "id": "systems_cleaner",
-          "text": "The person who cleans up everyone else’s process problems.",
-          "image": { "label": "Systems cleaner", "emoji": "🧪", "palette": ["#3D8679", "#BFE4DA"] },
-          "points": { "constructed_wetland": 3, "rain_garden_bioswale": 1 }
+          "id": "swallowed_by_earth",
+          "text": "Swallowed by the earth via a sinkhole on a CCS pipeline.",
+          "image": { "label": "Sinkhole", "emoji": "🕳️", "palette": ["#5A5E6B", "#BFC4CE"] },
+          "points": { "ccs": 3, "biodiversity_credits": 1 }
         },
         {
-          "id": "adaptive_realist",
-          "text": "The realist who knows plans survive by flexing.",
-          "image": { "label": "Adaptive realist", "emoji": "🧭", "palette": ["#8E7B46", "#EBDDB6"] },
-          "points": { "living_dune_restoration": 3, "mangrove_flood_protection": 1 }
+          "id": "venomous_creature",
+          "text": "A small, unbothered, extremely venomous creature.",
+          "image": { "label": "Venomous creature", "emoji": "🐍", "palette": ["#6B8F3E", "#D4E4A8"] },
+          "points": { "biodiversity_credits": 3, "carbon_offset_biodiversity": 1 }
         },
         {
-          "id": "street_level_problem_solver",
-          "text": "The practical one fixing the part everyone trips over first.",
-          "image": { "label": "Problem solver", "emoji": "🛠️", "palette": ["#4D8C55", "#D5EDC8"] },
-          "points": { "rain_garden_bioswale": 3, "constructed_wetland": 1 }
+          "id": "ancient_tree_falls",
+          "text": "An ancient tree falls on you. Rude, but narratively satisfying.",
+          "image": { "label": "Falling tree", "emoji": "🌲", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "redd_plus": 3, "nbs": 1 }
         }
       ]
     },
     {
-      "id": "soundtrack",
+      "id": "pick_colour",
       "kicker": "Question 7",
-      "prompt": "Choose a soundtrack for your climate-policy montage.",
+      "prompt": "Pick a colour.",
       "answers": [
         {
-          "id": "deep_bass_tides",
-          "text": "Moody tide sounds and a beat that arrives late but hits hard.",
-          "image": { "label": "Tidal soundtrack", "emoji": "🎧", "palette": ["#2F7A5D", "#9FD7BB"] },
-          "points": { "mangrove_flood_protection": 3, "constructed_wetland": 1 }
+          "id": "moss_green",
+          "text": "Moss green — foundational, quietly competent.",
+          "image": { "label": "Moss", "emoji": "🟢", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "nbs": 2, "redd_plus": 1 }
         },
         {
-          "id": "indie_garden_pop",
-          "text": "Something bright, curated, and extremely rooftop-coded.",
-          "image": { "label": "Indie rooftop", "emoji": "🎶", "palette": ["#5B8F4F", "#D7EDC7"] },
-          "points": { "green_roofs": 3, "rain_garden_bioswale": 1 }
+          "id": "concrete_grey",
+          "text": "Concrete grey — structural, urban, honest.",
+          "image": { "label": "Concrete", "emoji": "⬜", "palette": ["#5A5E6B", "#BFC4CE"] },
+          "points": { "ccs": 3, "nature_as_infrastructure": 1 }
         },
         {
-          "id": "cinematic_strings",
-          "text": "Expansive strings for your slow, leafy urban transformation arc.",
-          "image": { "label": "Cinematic canopy", "emoji": "🎻", "palette": ["#3D6F2C", "#B7D698"] },
-          "points": { "urban_forest_corridor": 3, "living_dune_restoration": 1 }
+          "id": "electric_teal",
+          "text": "Electric teal — pitch-deck chic, conference-lanyard friendly.",
+          "image": { "label": "Teal", "emoji": "🔷", "palette": ["#3D8679", "#BFE4DA"] },
+          "points": { "biodiversity_credits": 3, "nature_as_infrastructure": 2 }
         },
         {
-          "id": "ambient_water",
-          "text": "Ambient water sounds that somehow feel competent.",
-          "image": { "label": "Ambient water", "emoji": "🎼", "palette": ["#3D8679", "#BFE4DA"] },
-          "points": { "constructed_wetland": 3, "mangrove_flood_protection": 1 }
+          "id": "dusty_gold",
+          "text": "Dusty gold — heritage, donor report, 'legacy' energy.",
+          "image": { "label": "Gold", "emoji": "🟡", "palette": ["#B89860", "#F1E1B8"] },
+          "points": { "carbon_offset_biodiversity": 3, "redd_plus": 2 }
         },
         {
-          "id": "wind_and_drums",
-          "text": "Wind, drums, and dramatic horizon energy.",
-          "image": { "label": "Windy horizon", "emoji": "🥁", "palette": ["#8E7B46", "#EBDDB6"] },
-          "points": { "living_dune_restoration": 3, "urban_forest_corridor": 1 }
+          "id": "terracotta",
+          "text": "Terracotta — earthy, co-op, subsidy-eligible.",
+          "image": { "label": "Terracotta", "emoji": "🟠", "palette": ["#B5743A", "#E7CDA8"] },
+          "points": { "pes": 3, "nbs": 1 }
         },
         {
-          "id": "hopeful_local_band",
-          "text": "Something upbeat that makes neighborhood adaptation feel possible.",
-          "image": { "label": "Neighborhood anthem", "emoji": "🎺", "palette": ["#4D8C55", "#D5EDC8"] },
-          "points": { "rain_garden_bioswale": 3, "green_roofs": 1 }
+          "id": "oil_slick_iridescent",
+          "text": "Oil-slick iridescent — pretty, ominous, unaccountable.",
+          "image": { "label": "Iridescent", "emoji": "🫧", "palette": ["#9A7FB0", "#E0CFEA"] },
+          "points": { "ccs": 2, "biodiversity_credits": 2 }
         }
       ]
     },
     {
-      "id": "satisfying_intervention",
+      "id": "outfit_aesthetic",
       "kicker": "Question 8",
-      "prompt": "Which city intervention feels most satisfying to you?",
+      "prompt": "Pick an outfit aesthetic.",
       "answers": [
         {
-          "id": "shoreline_regains_shape",
-          "text": "A vulnerable shoreline slowly becoming protective again.",
-          "image": { "label": "Recovered shoreline", "emoji": "🪸", "palette": ["#2F7A5D", "#9FD7BB"] },
-          "points": { "mangrove_flood_protection": 3, "living_dune_restoration": 1 }
+          "id": "fieldwork_chic",
+          "text": "Fieldwork chic — muddy boots, linen shirt, one expensive hat.",
+          "image": { "label": "Fieldwork", "emoji": "👒", "palette": ["#8E7B46", "#EBDDB6"] },
+          "points": { "nbs": 3, "pes": 2 }
         },
         {
-          "id": "unused_roof_repurposed",
-          "text": "A dead roof becoming a cool green fifth facade.",
-          "image": { "label": "Repurposed roof", "emoji": "🏢", "palette": ["#5B8F4F", "#D7EDC7"] },
-          "points": { "green_roofs": 3, "urban_forest_corridor": 1 }
+          "id": "consultant_casual",
+          "text": "Consultant casual — patagonia vest, lanyard, urgent laptop.",
+          "image": { "label": "Consultant", "emoji": "💼", "palette": ["#49715A", "#A9C9B5"] },
+          "points": { "nature_as_infrastructure": 3, "carbon_offset_biodiversity": 2 }
         },
         {
-          "id": "street_gets_canopy",
-          "text": "A harsh corridor getting enough canopy to change behavior.",
-          "image": { "label": "Street canopy", "emoji": "🌲", "palette": ["#3D6F2C", "#B7D698"] },
-          "points": { "urban_forest_corridor": 3, "green_roofs": 1 }
+          "id": "engineer_highvis",
+          "text": "High-vis and steel toes — you are here to deploy something.",
+          "image": { "label": "High vis", "emoji": "🦺", "palette": ["#E2A93B", "#F7DFA0"] },
+          "points": { "ccs": 3, "nature_as_infrastructure": 1 }
         },
         {
-          "id": "wastewater_becomes_habitat",
-          "text": "A treatment landscape that is both cleaner and more alive.",
-          "image": { "label": "Wetland habitat", "emoji": "🦆", "palette": ["#3D8679", "#BFE4DA"] },
-          "points": { "constructed_wetland": 3, "rain_garden_bioswale": 1 }
+          "id": "cottagecore",
+          "text": "Cottagecore — apron, sourdough, small and quiet stewardship.",
+          "image": { "label": "Cottagecore", "emoji": "🧺", "palette": ["#B5743A", "#E7CDA8"] },
+          "points": { "pes": 3, "nbs": 1 }
         },
         {
-          "id": "dunes_return",
-          "text": "A coast protected by living landforms instead of only hard edges.",
-          "image": { "label": "Restored dunes", "emoji": "🏝️", "palette": ["#8E7B46", "#EBDDB6"] },
-          "points": { "living_dune_restoration": 3, "mangrove_flood_protection": 1 }
+          "id": "cop_delegate_power",
+          "text": "COP delegate power-dress — blazer, silk scarf, passport in hand.",
+          "image": { "label": "COP delegate", "emoji": "🕴️", "palette": ["#5A5E6B", "#BFC4CE"] },
+          "points": { "carbon_offset_biodiversity": 3, "biodiversity_credits": 2, "redd_plus": 1 }
         },
         {
-          "id": "street_stops_flooding",
-          "text": "A corner that used to flood every year finally working properly.",
-          "image": { "label": "Street fixed", "emoji": "🚧", "palette": ["#4D8C55", "#D5EDC8"] },
-          "points": { "rain_garden_bioswale": 3, "constructed_wetland": 1 }
+          "id": "earthy_academic",
+          "text": "Earthy academic — hemp, glasses, unread Latour in tote bag.",
+          "image": { "label": "Academic", "emoji": "👓", "palette": ["#3D6F2C", "#B7D698"] },
+          "points": { "redd_plus": 3, "nbs": 1 }
         }
       ]
     },
     {
-      "id": "weekend_activity",
+      "id": "mode_of_transport",
       "kicker": "Question 9",
-      "prompt": "Pick a weekend activity.",
+      "prompt": "Pick a mode of transport.",
       "answers": [
         {
-          "id": "low_tide_walk",
-          "text": "A coastal walk where you keep stopping to inspect root systems.",
-          "image": { "label": "Low tide walk", "emoji": "🦶", "palette": ["#2F7A5D", "#9FD7BB"] },
-          "points": { "mangrove_flood_protection": 3, "constructed_wetland": 1 }
+          "id": "bicycle",
+          "text": "Bicycle — honest, cheap, politically virtuous.",
+          "image": { "label": "Bicycle", "emoji": "🚲", "palette": ["#5B8F4F", "#D7EDC7"] },
+          "points": { "nbs": 2, "pes": 2 }
         },
         {
-          "id": "rooftop_brunch",
-          "text": "A rooftop brunch with plants that are frankly better dressed than the guests.",
-          "image": { "label": "Rooftop brunch", "emoji": "🥐", "palette": ["#5B8F4F", "#D7EDC7"] },
-          "points": { "green_roofs": 3, "rain_garden_bioswale": 1 }
+          "id": "train",
+          "text": "Train — collective, infrastructural, quietly superior.",
+          "image": { "label": "Train", "emoji": "🚆", "palette": ["#49715A", "#A9C9B5"] },
+          "points": { "nature_as_infrastructure": 3, "nbs": 1 }
         },
         {
-          "id": "arboretum_wander",
-          "text": "A long tree-filled walk with no urgent destination.",
-          "image": { "label": "Arboretum", "emoji": "🍂", "palette": ["#3D6F2C", "#B7D698"] },
-          "points": { "urban_forest_corridor": 3, "living_dune_restoration": 1 }
+          "id": "electric_suv",
+          "text": "Electric SUV — large, tax-credited, morally confusing.",
+          "image": { "label": "Electric SUV", "emoji": "🚙", "palette": ["#5A5E6B", "#BFC4CE"] },
+          "points": { "ccs": 3, "carbon_offset_biodiversity": 1 }
         },
         {
-          "id": "birdwatching",
-          "text": "Birdwatching near water and pretending it is not a personality trait.",
-          "image": { "label": "Birdwatching", "emoji": "🔭", "palette": ["#3D8679", "#BFE4DA"] },
-          "points": { "constructed_wetland": 3, "mangrove_flood_protection": 1 }
+          "id": "private_jet_offset",
+          "text": "Private jet, offset of course.",
+          "image": { "label": "Private jet", "emoji": "✈️", "palette": ["#C9C2D1", "#EEE9F1"] },
+          "points": { "carbon_offset_biodiversity": 3, "biodiversity_credits": 2 }
         },
         {
-          "id": "windy_beach_day",
-          "text": "A windy beach day that would ruin weaker people.",
-          "image": { "label": "Windy beach day", "emoji": "🪁", "palette": ["#8E7B46", "#EBDDB6"] },
-          "points": { "living_dune_restoration": 3, "urban_forest_corridor": 1 }
+          "id": "horse",
+          "text": "A horse — pre-industrial, aristocratic, low-methane-ish.",
+          "image": { "label": "Horse", "emoji": "🐎", "palette": ["#B5743A", "#E7CDA8"] },
+          "points": { "redd_plus": 2, "pes": 2 }
         },
         {
-          "id": "community_garden",
-          "text": "Helping with a community garden and quietly fixing drainage while you are there.",
-          "image": { "label": "Community garden", "emoji": "🪴", "palette": ["#4D8C55", "#D5EDC8"] },
-          "points": { "rain_garden_bioswale": 3, "green_roofs": 1 }
-        }
-      ]
-    },
-    {
-      "id": "legacy",
-      "kicker": "Question 10",
-      "prompt": "How do you want to leave a legacy?",
-      "answers": [
-        {
-          "id": "protect_coasts",
-          "text": "By protecting vulnerable edges before the crisis becomes irreversible.",
-          "image": { "label": "Protect coasts", "emoji": "🫶", "palette": ["#2F7A5D", "#9FD7BB"] },
-          "points": { "mangrove_flood_protection": 3, "living_dune_restoration": 1 }
-        },
-        {
-          "id": "retrofit_city",
-          "text": "By proving even dense cities can become greener and smarter.",
-          "image": { "label": "Retrofit city", "emoji": "🏗️", "palette": ["#5B8F4F", "#D7EDC7"] },
-          "points": { "green_roofs": 3, "rain_garden_bioswale": 1 }
-        },
-        {
-          "id": "grow_canopy",
-          "text": "By creating public spaces that feel better for generations.",
-          "image": { "label": "Grow canopy", "emoji": "🌳", "palette": ["#3D6F2C", "#B7D698"] },
-          "points": { "urban_forest_corridor": 3, "green_roofs": 1 }
-        },
-        {
-          "id": "clean_and_restore",
-          "text": "By turning waste, runoff, and excess water into healthier systems.",
-          "image": { "label": "Clean and restore", "emoji": "💦", "palette": ["#3D8679", "#BFE4DA"] },
-          "points": { "constructed_wetland": 3, "rain_garden_bioswale": 1 }
-        },
-        {
-          "id": "restore_dynamic_edges",
-          "text": "By showing that adaptation does not have to mean freezing nature in place.",
-          "image": { "label": "Dynamic edges", "emoji": "🌬️", "palette": ["#8E7B46", "#EBDDB6"] },
-          "points": { "living_dune_restoration": 3, "mangrove_flood_protection": 1 }
-        },
-        {
-          "id": "fix_daily_flooding",
-          "text": "By making ordinary streets less vulnerable and more alive.",
-          "image": { "label": "Fix daily flooding", "emoji": "🚲", "palette": ["#4D8C55", "#D5EDC8"] },
-          "points": { "rain_garden_bioswale": 3, "constructed_wetland": 1 }
+          "id": "sailing_yacht",
+          "text": "Sailing yacht — blue-economy-coded, very ocean-forum.",
+          "image": { "label": "Sailing yacht", "emoji": "⛵", "palette": ["#2E6F8E", "#A9CCDD"] },
+          "points": { "biodiversity_credits": 3, "nature_as_infrastructure": 1 }
         }
       ]
     }
