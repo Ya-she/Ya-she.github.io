@@ -119,9 +119,7 @@ function populateIntro(quizData, loadedFromExternalJson) {
   elements.quizTitle.textContent = quizData.meta.title;
   elements.quizSubtitle.textContent = quizData.meta.subtitle;
   elements.quizIntro.textContent = quizData.meta.intro;
-  elements.dataSourcePill.textContent = loadedFromExternalJson
-    ? "Loaded from data/quiz-data.json"
-    : "Using fallback data";
+  elements.dataSourcePill.hidden = true;
 }
 
 function restoreSavedState() {
@@ -294,7 +292,7 @@ function renderScoreBreakdown(resultData) {
 
 function updateScoreBreakdownEmpty() {
   elements.scoreBreakdown.classList.add("empty-state");
-  elements.scoreBreakdown.textContent = "Finish the quiz to see how each NbS scored.";
+  elements.scoreBreakdown.textContent = "Finish the quiz to see how each instrument scored.";
 }
 
 function calculateResult(quizData, selectedAnswerIndexes) {
