@@ -3,7 +3,7 @@
     "version": "mbi-quiz-v2",
     "title": "What Market-Based Instrument Are You?",
     "subtitle": "A BuzzFeed-style vibe check for the neoliberal valuation of nature.",
-    "intro": "Market-based instruments promise to save the planet by pricing it. Find out which one you are — the all-rounder nobody can define, the techno-fix bachelor, or the shiny offset that looks great until someone checks the receipts.",
+    "intro": "Market-based instruments promise to save the planet by pricing it. Find out which one you are!",
     "resultLabel": "Your market-based instrument"
   },
   "scoring": {
@@ -113,7 +113,7 @@
         {
           "id": "wetland",
           "text": "Wetland",
-          "image": { "url": "https://images.unsplash.com/photo-1552084117-56a987666449?w=800&q=80&auto=format&fit=crop", "label": "Wetland" },
+          "image": { "url": "https://unsplash.com/photos/the-sun-is-setting-over-a-marshy-area-MYITroNurpg", "label": "Wetland" },
           "points": { "nbs": 3, "nature_as_infrastructure": 2, "pes": 1 }
         },
         {
