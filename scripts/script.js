@@ -1,14 +1,11 @@
 const DATA_URL = "data/quiz-data.json";
-const COOKIE_PREFIX = "mbi_quiz_state";
-const LEGACY_COOKIE_NAME = "nbs_quiz_state";
-const COOKIE_DAYS = 30;
+const LEGACY_COOKIE_NAMES = ["nbs_quiz_state", "mbi_quiz_state", "mbi_quiz_state_mbi-quiz-v2"];
 
 let quizData = null;
 let currentQuestionIndex = 0;
 let selectedAnswers = [];
 let finishedResultKey = null;
 let latestScores = {};
-let restoredProgress = false;
 
 const el = {
   title: document.getElementById("quiz-title"),
@@ -23,7 +20,7 @@ const el = {
   answersGrid: document.getElementById("answers-grid"),
   answerTemplate: document.getElementById("answer-card-template"),
   backButton: document.getElementById("back-button"),
-  clearButton: document.getElementById("clear-button"),
+  restartButton: document.getElementById("clear-button"),
   restoreBanner: document.getElementById("restore-banner"),
   resultHero: document.getElementById("result-hero"),
   resultLabel: document.getElementById("result-label"),
@@ -49,24 +46,20 @@ async function init() {
   try {
     const response = await fetch(DATA_URL, { cache: "no-store" });
     if (!response.ok) throw new Error(`Could not load ${DATA_URL}`);
+
     quizData = await response.json();
 
+    removeOldQuizCookies();
     renderIntro();
     wireEvents();
-
-    restoredProgress = restoreState();
-    setRestoreBanner(restoredProgress);
-
-    if (finishedResultKey) {
-      latestScores = calculateScores();
-      showResult(finishedResultKey, { scroll: false });
-    } else {
-      startQuiz({ scroll: false });
-    }
+    hideRestoreBanner();
+    startQuiz({ scroll: false });
   } catch (error) {
     if (el.title) el.title.textContent = "Could not load quiz";
-    if (el.subtitle) el.subtitle.textContent = "Make sure the data folder and quiz-data.json file are uploaded with this page.";
-    setRestoreBanner(false);
+    if (el.subtitle) {
+      el.subtitle.textContent = "Make sure the data folder and quiz-data.json file are uploaded with this page.";
+    }
+    hideRestoreBanner();
     console.error(error);
   }
 }
@@ -80,9 +73,9 @@ function renderIntro() {
 
 function wireEvents() {
   el.backButton?.addEventListener("click", goBack);
-  el.clearButton?.addEventListener("click", clearAndRestart);
-  el.retakeButton?.addEventListener("click", clearAndRestart);
-  el.clearResultButton?.addEventListener("click", clearAndRestart);
+  el.restartButton?.addEventListener("click", restartQuiz);
+  el.retakeButton?.addEventListener("click", restartQuiz);
+  el.clearResultButton?.addEventListener("click", restartQuiz);
   el.shareButton?.addEventListener("click", shareResult);
 
   el.howToPlayButton?.addEventListener("click", () => {
@@ -90,6 +83,7 @@ function wireEvents() {
       el.howToPlayModal.showModal();
     }
   });
+
   el.closeHowToPlay?.addEventListener("click", () => el.howToPlayModal?.close());
   el.howToPlayModal?.addEventListener("click", (event) => {
     if (event.target === el.howToPlayModal) el.howToPlayModal.close();
@@ -97,22 +91,30 @@ function wireEvents() {
 }
 
 function startQuiz(options = {}) {
+  currentQuestionIndex = 0;
+  selectedAnswers = [];
   finishedResultKey = null;
   latestScores = {};
+
   if (el.resultPanel) el.resultPanel.hidden = true;
   if (el.questionPanel) el.questionPanel.hidden = false;
   if (el.shareFeedback) el.shareFeedback.textContent = "";
+
+  hideRestoreBanner();
   renderQuestion();
 
-  if (options.scroll) {
-    scrollToQuizArea();
-  }
+  if (options.scroll) scrollToQuizArea();
+}
+
+function restartQuiz(options = {}) {
+  removeOldQuizCookies();
+  startQuiz({ scroll: options.scroll ?? true });
 }
 
 function renderQuestion() {
   const question = quizData?.questions?.[currentQuestionIndex];
   if (!question) {
-    clearAndRestart({ scroll: false });
+    startQuiz({ scroll: false });
     return;
   }
 
@@ -148,21 +150,16 @@ function renderQuestion() {
 }
 
 function chooseAnswer(answerId) {
-  setRestoreBanner(false);
-  restoredProgress = false;
   selectedAnswers[currentQuestionIndex] = answerId;
 
   if (currentQuestionIndex < quizData.questions.length - 1) {
     currentQuestionIndex += 1;
-    saveState();
     renderQuestion();
-    // Do not scroll to the top after each answer. This keeps the next answers in view.
     return;
   }
 
   latestScores = calculateScores();
   finishedResultKey = pickWinner(latestScores);
-  saveState();
   showResult(finishedResultKey, { scroll: true });
 }
 
@@ -170,7 +167,6 @@ function goBack() {
   if (currentQuestionIndex === 0) return;
   currentQuestionIndex -= 1;
   finishedResultKey = null;
-  saveState();
   renderQuestion();
 }
 
@@ -181,6 +177,7 @@ function calculateScores() {
     const question = quizData.questions[index];
     const answer = question?.answers.find((item) => item.id === answerId);
     if (!answer?.points) return;
+
     Object.entries(answer.points).forEach(([key, value]) => {
       scores[key] = (scores[key] || 0) + Number(value || 0);
     });
@@ -192,6 +189,7 @@ function calculateScores() {
 function pickWinner(scores) {
   const resultKeys = Object.keys(quizData.results || {});
   const tieBreaker = quizData.scoring?.tieBreaker || resultKeys;
+
   return resultKeys.sort((a, b) => {
     const scoreDifference = (scores[b] || 0) - (scores[a] || 0);
     if (scoreDifference !== 0) return scoreDifference;
@@ -202,7 +200,7 @@ function pickWinner(scores) {
 function showResult(resultKey, options = {}) {
   const result = quizData.results?.[resultKey];
   if (!result) {
-    clearAndRestart({ scroll: false });
+    startQuiz({ scroll: false });
     return;
   }
 
@@ -231,16 +229,16 @@ function showResult(resultKey, options = {}) {
 
   renderScoreBreakdown();
 
-  if (options.scroll) {
-    scrollToQuizArea();
-  }
+  if (options.scroll) scrollToQuizArea();
 }
 
 function renderScoreBreakdown() {
   if (!el.scoreBreakdown) return;
+
   const scores = latestScores && Object.keys(latestScores).length ? latestScores : calculateScores();
   const maxScore = Math.max(1, ...Object.values(scores));
   const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+
   el.scoreBreakdown.innerHTML = "";
 
   sorted.forEach(([key, score]) => {
@@ -252,6 +250,7 @@ function renderScoreBreakdown() {
 
     const bar = document.createElement("div");
     bar.className = "score-bar";
+
     const fill = document.createElement("div");
     fill.className = "score-bar-fill";
     fill.style.width = `${(score / maxScore) * 100}%`;
@@ -267,6 +266,7 @@ function renderScoreBreakdown() {
 
 async function shareResult() {
   if (!finishedResultKey) return;
+
   const result = quizData.results[finishedResultKey];
   const text = `I got ${result.name} on What MBI Are You?`;
   const url = window.location.href.split("#")[0];
@@ -278,10 +278,13 @@ async function shareResult() {
       if (el.shareFeedback) el.shareFeedback.textContent = "Shared.";
       return;
     }
+
     await navigator.clipboard.writeText(`${text}\n${url}`);
     if (el.shareFeedback) el.shareFeedback.textContent = "Result copied to clipboard.";
   } catch (error) {
-    if (el.shareFeedback) el.shareFeedback.textContent = "Could not share automatically. You can copy the page link manually.";
+    if (el.shareFeedback) {
+      el.shareFeedback.textContent = "Could not share automatically. You can copy the page link manually.";
+    }
   }
 }
 
@@ -297,98 +300,8 @@ function iconFor(key) {
   }[key] || "🌍";
 }
 
-function cookieName() {
-  const version = quizData?.meta?.version || "v1";
-  return `${COOKIE_PREFIX}_${version}`;
-}
-
-function saveState() {
-  if (!quizData) return;
-
-  const state = {
-    version: quizData.meta?.version || "v1",
-    currentQuestionIndex,
-    selectedAnswers,
-    finishedResultKey,
-  };
-  setCookie(cookieName(), JSON.stringify(state), COOKIE_DAYS);
-}
-
-function restoreState() {
-  const raw = getCookie(cookieName());
-  if (!raw) {
-    deleteCookie(LEGACY_COOKIE_NAME);
-    return false;
-  }
-
-  try {
-    const savedState = JSON.parse(raw);
-    const expectedVersion = quizData.meta?.version || "v1";
-
-    if (savedState.version !== expectedVersion) {
-      deleteCookie(cookieName());
-      return false;
-    }
-
-    const questionCount = quizData.questions.length;
-    const restoredAnswers = Array.isArray(savedState.selectedAnswers)
-      ? savedState.selectedAnswers.slice(0, questionCount)
-      : [];
-
-    const validAnswers = restoredAnswers.map((answerId, questionIndex) => {
-      const question = quizData.questions[questionIndex];
-      return question?.answers.some((answer) => answer.id === answerId) ? answerId : undefined;
-    });
-
-    const hasAnsweredAnything = validAnswers.some((answerId) => answerId !== undefined);
-    const restoredResultKey = quizData.results?.[savedState.finishedResultKey]
-      ? savedState.finishedResultKey
-      : null;
-
-    // Empty cookies should not trigger the restored banner or leave the page in a half-loaded state.
-    if (!hasAnsweredAnything && !restoredResultKey) {
-      deleteCookie(cookieName());
-      deleteCookie(LEGACY_COOKIE_NAME);
-      return false;
-    }
-
-    selectedAnswers = validAnswers;
-    finishedResultKey = restoredResultKey;
-
-    if (finishedResultKey) {
-      currentQuestionIndex = questionCount - 1;
-    } else {
-      const firstUnansweredIndex = validAnswers.findIndex((answerId) => answerId === undefined);
-      currentQuestionIndex = firstUnansweredIndex === -1
-        ? Math.max(0, questionCount - 1)
-        : firstUnansweredIndex;
-    }
-
-    currentQuestionIndex = Math.max(0, Math.min(currentQuestionIndex, questionCount - 1));
-    deleteCookie(LEGACY_COOKIE_NAME);
-    return true;
-  } catch (error) {
-    console.warn("Saved quiz progress was invalid and has been cleared.", error);
-    deleteCookie(cookieName());
-    deleteCookie(LEGACY_COOKIE_NAME);
-    return false;
-  }
-}
-
-function clearAndRestart(options = {}) {
-  deleteCookie(cookieName());
-  deleteCookie(LEGACY_COOKIE_NAME);
-  selectedAnswers = [];
-  currentQuestionIndex = 0;
-  finishedResultKey = null;
-  latestScores = {};
-  restoredProgress = false;
-  setRestoreBanner(false);
-  startQuiz({ scroll: options.scroll ?? true });
-}
-
-function setRestoreBanner(show) {
-  if (el.restoreBanner) el.restoreBanner.hidden = !show;
+function hideRestoreBanner() {
+  if (el.restoreBanner) el.restoreBanner.hidden = true;
 }
 
 function scrollToQuizArea() {
@@ -396,21 +309,9 @@ function scrollToQuizArea() {
   target?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function setCookie(name, value, days) {
-  const date = new Date();
-  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-  document.cookie = `${name}=${encodeURIComponent(value)};expires=${date.toUTCString()};path=/;SameSite=Lax`;
-}
-
-function getCookie(name) {
-  const prefix = `${name}=`;
-  const cookie = document.cookie
-    .split(";")
-    .map((item) => item.trim())
-    .find((item) => item.startsWith(prefix));
-
-  if (!cookie) return "";
-  return decodeURIComponent(cookie.slice(prefix.length));
+function removeOldQuizCookies() {
+  const versionedCookie = quizData?.meta?.version ? `mbi_quiz_state_${quizData.meta.version}` : null;
+  [...LEGACY_COOKIE_NAMES, versionedCookie].filter(Boolean).forEach(deleteCookie);
 }
 
 function deleteCookie(name) {
