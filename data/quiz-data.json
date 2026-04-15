@@ -141,8 +141,7 @@
           "points": {
             "nbs": 3,
             "nature_as_infrastructure": 2,
-            "pes": 1,
-            "redd_plus": 1
+            "pes": 1
           }
         },
         {
@@ -155,7 +154,7 @@
           "points": {
             "redd_plus": 3,
             "carbon_offset_biodiversity": 2,
-            "ccs": 1
+            "nbs": 1
           }
         },
         {
@@ -167,7 +166,7 @@
           },
           "points": {
             "ccs": 3,
-            "pes": 1,
+            "pes": 2,
             "biodiversity_credits": 1
           }
         },
@@ -194,7 +193,7 @@
           "points": {
             "pes": 3,
             "carbon_offset_biodiversity": 2,
-            "redd_plus": 2
+            "redd_plus": 1
           }
         },
         {
@@ -205,7 +204,7 @@
             "label": "Ocean"
           },
           "points": {
-            "biodiversity_credits": 2,
+            "biodiversity_credits": 3,
             "nature_as_infrastructure": 1,
             "nbs": 1
           }
@@ -225,8 +224,8 @@
             "label": "Bridge"
           },
           "points": {
-            "ccs": 2,
-            "nature_as_infrastructure": 3
+            "ccs": 3,
+            "nature_as_infrastructure": 2
           }
         },
         {
@@ -263,6 +262,7 @@
           },
           "points": {
             "pes": 3,
+            "nbs": 1,
             "biodiversity_credits": 1
           }
         },
@@ -286,7 +286,7 @@
             "label": "Harbour"
           },
           "points": {
-            "biodiversity_credits": 2,
+            "biodiversity_credits": 3,
             "carbon_offset_biodiversity": 2
           }
         }
@@ -305,8 +305,8 @@
             "label": "City"
           },
           "points": {
-            "nature_as_infrastructure": 2,
-            "ccs": 3
+            "nature_as_infrastructure": 3,
+            "ccs": 2
           }
         },
         {
@@ -317,7 +317,8 @@
             "label": "Beach"
           },
           "points": {
-            "carbon_offset_biodiversity": 3
+            "carbon_offset_biodiversity": 3,
+            "nbs": 1
           }
         },
         {
@@ -329,7 +330,8 @@
           },
           "points": {
             "redd_plus": 3,
-            "pes": 2
+            "pes": 2,
+            "carbon_offset_biodiversity": 1
           }
         },
         {
@@ -340,7 +342,8 @@
             "label": "Swamp"
           },
           "points": {
-            "nbs": 3
+            "nbs": 3,
+            "nature_as_infrastructure": 1
           }
         },
         {
@@ -351,8 +354,8 @@
             "label": "Sky palace"
           },
           "points": {
-            "biodiversity_credits": 2,
-            "ccs": 3
+            "biodiversity_credits": 3,
+            "ccs": 2
           }
         },
         {
@@ -407,8 +410,7 @@
           },
           "points": {
             "carbon_offset_biodiversity": 3,
-            "biodiversity_credits": 2,
-            "redd_plus": 1
+            "biodiversity_credits": 2
           }
         },
         {
@@ -443,9 +445,8 @@
             "label": "Biodiversity"
           },
           "points": {
-            "redd_plus": 2,
-            "pes": 2,
-            "ccs": 1
+            "redd_plus": 3,
+            "pes": 2
           }
         }
       ]
@@ -463,7 +464,8 @@
             "label": "Sea level rise"
           },
           "points": {
-            "nature_as_infrastructure": 2
+            "nature_as_infrastructure": 3,
+            "nbs": 1
           }
         },
         {
@@ -486,7 +488,8 @@
             "label": "Extinction"
           },
           "points": {
-            "biodiversity_credits": 3
+            "biodiversity_credits": 3,
+            "carbon_offset_biodiversity": 1
           }
         },
         {
@@ -498,7 +501,7 @@
           },
           "points": {
             "ccs": 3,
-            "redd_plus": 2
+            "redd_plus": 1
           }
         },
         {
@@ -510,8 +513,7 @@
           },
           "points": {
             "pes": 3,
-            "nbs": 1,
-            "biodiversity_credits": 1
+            "nbs": 1
           }
         },
         {
@@ -542,7 +544,7 @@
           },
           "points": {
             "nbs": 3,
-            "pes": 2
+            "pes": 1
           }
         },
         {
@@ -566,7 +568,7 @@
           },
           "points": {
             "carbon_offset_biodiversity": 3,
-            "redd_plus": 2
+            "redd_plus": 1
           }
         },
         {
@@ -578,7 +580,7 @@
           },
           "points": {
             "ccs": 3,
-            "biodiversity_credits": 2
+            "biodiversity_credits": 1
           }
         },
         {
@@ -621,7 +623,7 @@
           },
           "points": {
             "nbs": 2,
-            "redd_plus": 2
+            "redd_plus": 1
           }
         },
         {
@@ -632,7 +634,8 @@
             "label": "Concrete"
           },
           "points": {
-            "ccs": 3
+            "ccs": 3,
+            "nature_as_infrastructure": 1
           }
         },
         {
@@ -679,7 +682,7 @@
             "label": "Iridescent"
           },
           "points": {
-            "ccs": 3,
+            "ccs": 2,
             "biodiversity_credits": 2
           }
         }
@@ -722,7 +725,7 @@
             "label": "High vis"
           },
           "points": {
-            "ccs": 2,
+            "ccs": 3,
             "nature_as_infrastructure": 1
           }
         },
@@ -746,9 +749,9 @@
             "label": "COP delegate"
           },
           "points": {
-            "carbon_offset_biodiversity": 2,
+            "carbon_offset_biodiversity": 3,
             "biodiversity_credits": 2,
-            "redd_plus": 2
+            "redd_plus": 1
           }
         },
         {
@@ -815,7 +818,7 @@
           },
           "points": {
             "carbon_offset_biodiversity": 3,
-            "biodiversity_credits": 3
+            "biodiversity_credits": 2
           }
         },
         {
