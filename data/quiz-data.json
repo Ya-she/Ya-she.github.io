@@ -1,9 +1,9 @@
 {
   "meta": {
-    "version": "mbi-quiz-v2",
+    "version": "mbi-quiz-v3",
     "title": "What Market-Based Instrument Are You?",
     "subtitle": "A BuzzFeed-style vibe check for the neoliberal valuation of nature.",
-    "intro": "Market-based instruments promise to save the planet by pricing it. Find out which one you are!",
+    "intro": "Market-based instruments promise to save the planet by pricing it. Find out which one you are — the all-rounder nobody can define, the techno-fix bachelor, or the shiny offset that looks great until someone checks the receipts.",
     "resultLabel": "Your market-based instrument"
   },
   "scoring": {
@@ -23,7 +23,10 @@
       "name": "Nature-based Solution",
       "subtitle": "The all-rounder. Please do not ask for a definition.",
       "badge": "The Undefinable Darling",
-      "palette": ["#3D6F2C", "#B7D698"],
+      "palette": [
+        "#3D6F2C",
+        "#B7D698"
+      ],
       "description": "You are the policy world's favorite umbrella term. You do everything — flood protection, carbon, biodiversity, urban cooling, community wellbeing — which is mostly great, except nobody can agree on what you actually are. You thrive in funding proposals and IUCN side events. You are beloved, slightly vague, and doing your best.",
       "whyItFits": [
         "You promise co-benefits without specifying whose.",
@@ -35,7 +38,10 @@
       "name": "Nature as Infrastructure",
       "subtitle": "NbS's hipper, slightly unhinged younger sibling.",
       "badge": "The Engineer in a Field Jacket",
-      "palette": ["#49715A", "#A9C9B5"],
+      "palette": [
+        "#49715A",
+        "#A9C9B5"
+      ],
       "description": "You took one look at NbS and said 'but what if we quantified it harder?' You reframe ecosystems as service-delivery assets on municipal balance sheets. You are beloved by World Bank reports and confusing at dinner parties. Mangroves are your levees. Wetlands are your stormwater utility. Nature works for you, literally.",
       "whyItFits": [
         "You turn ecosystems into line items.",
@@ -47,7 +53,10 @@
       "name": "Carbon Offset with Biodiversity Co-benefit",
       "subtitle": "They say you can do it all. You cannot.",
       "badge": "The Shiny Toy",
-      "palette": ["#6B8F3E", "#D4E4A8"],
+      "palette": [
+        "#6B8F3E",
+        "#D4E4A8"
+      ],
       "description": "Everyone wants to play with you. You promise carbon neutrality AND charismatic megafauna in one tidy credit. You are featured in airline ads and sustainability reports. The problem is if anyone looks too closely they notice the additionality is vibes and the biodiversity metric is a bird list from 2014. You remain very popular.",
       "whyItFits": [
         "You bundle two goods to distract from one problem.",
@@ -59,7 +68,10 @@
       "name": "Carbon Capture & Storage",
       "subtitle": "The techno-fix bachelor who refuses to go to therapy.",
       "badge": "The Refused Retrofit",
-      "palette": ["#5A5E6B", "#BFC4CE"],
+      "palette": [
+        "#5A5E6B",
+        "#BFC4CE"
+      ],
       "description": "You are the engineering-school golden child who thinks we can drill our way out of this. You have a PowerPoint and three pilot projects, two of which are delayed. Fossil fuel companies love you. You avoid the words 'demand reduction' the way a cat avoids water. You will, you insist, scale any day now.",
       "whyItFits": [
         "You prefer a technical fix to a political one.",
@@ -71,7 +83,10 @@
       "name": "Payments for Ecosystem Services",
       "subtitle": "Paying nature to show up to work.",
       "badge": "The HR Department of the Biosphere",
-      "palette": ["#4D8C55", "#D5EDC8"],
+      "palette": [
+        "#4D8C55",
+        "#D5EDC8"
+      ],
       "description": "You look at a watershed and see a contractor. You believe rural communities will steward landscapes if you wire them the right monthly transfer. Sometimes this works. Sometimes it dispossesses people from commons they already managed for free. You mean well, mostly, and you have very good spreadsheets.",
       "whyItFits": [
         "You convert stewardship into a service contract.",
@@ -83,7 +98,10 @@
       "name": "Biodiversity Credits",
       "subtitle": "Carbon offsets' ambitious cousin, already under scrutiny.",
       "badge": "The Sequel Nobody Asked For",
-      "palette": ["#8E7B46", "#EBDDB6"],
+      "palette": [
+        "#8E7B46",
+        "#EBDDB6"
+      ],
       "description": "You are new, you are glossy, and the ink on your methodology is still wet. Investors are excited. Indigenous and local communities are asking sharp questions you do not want to answer. You claim to make biodiversity 'investable,' which is either the future of conservation or a category error, depending on who you ask at the conference.",
       "whyItFits": [
         "You treat habitat as a tradable unit.",
@@ -95,7 +113,10 @@
       "name": "REDD+",
       "subtitle": "The aging celebrity with a complicated colonial past.",
       "badge": "The Veteran",
-      "palette": ["#2F7A5D", "#9FD7BB"],
+      "palette": [
+        "#2F7A5D",
+        "#9FD7BB"
+      ],
       "description": "You have been around since Bali 2007. You were going to end deforestation. Instead you generated academic careers, a vast compliance industry, and several lawsuits about overlapping land claims. You are still here, reformulating yourself for the voluntary market. You carry the entire history of forest carbon in one tired acronym.",
       "whyItFits": [
         "You have a longer publication record than most professors.",
@@ -113,38 +134,80 @@
         {
           "id": "wetland",
           "text": "Wetland",
-          "image": { "url": "https://unsplash.com/photos/the-sun-is-setting-over-a-marshy-area-MYITroNurpg", "label": "Wetland" },
-          "points": { "nbs": 3, "nature_as_infrastructure": 2, "pes": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1552084117-56a987666449?w=800&q=80&auto=format&fit=crop",
+            "label": "Wetland"
+          },
+          "points": {
+            "nbs": 3,
+            "nature_as_infrastructure": 2,
+            "pes": 1
+          }
         },
         {
           "id": "forest",
           "text": "Forest",
-          "image": { "url": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80&auto=format&fit=crop", "label": "Forest" },
-          "points": { "redd_plus": 3, "carbon_offset_biodiversity": 2, "nbs": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80&auto=format&fit=crop",
+            "label": "Forest"
+          },
+          "points": {
+            "redd_plus": 3,
+            "carbon_offset_biodiversity": 2,
+            "nbs": 1
+          }
         },
         {
           "id": "desert",
           "text": "Desert",
-          "image": { "url": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80&auto=format&fit=crop", "label": "Desert" },
-          "points": { "ccs": 3, "pes": 2, "biodiversity_credits": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80&auto=format&fit=crop",
+            "label": "Desert"
+          },
+          "points": {
+            "ccs": 3,
+            "pes": 2,
+            "biodiversity_credits": 1
+          }
         },
         {
           "id": "mangroves",
           "text": "Mangroves",
-          "image": { "url": "https://images.unsplash.com/photo-1566024287286-457247b70310?w=800&q=80&auto=format&fit=crop", "label": "Mangroves" },
-          "points": { "nature_as_infrastructure": 3, "nbs": 2, "carbon_offset_biodiversity": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1603179333467-2368f9fc16a9?q=80&w=792&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Mangroves"
+          },
+          "points": {
+            "nature_as_infrastructure": 3,
+            "nbs": 2,
+            "carbon_offset_biodiversity": 1
+          }
         },
         {
           "id": "grasslands",
           "text": "Grasslands",
-          "image": { "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80&auto=format&fit=crop", "label": "Grasslands" },
-          "points": { "pes": 3, "carbon_offset_biodiversity": 2, "redd_plus": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80&auto=format&fit=crop",
+            "label": "Grasslands"
+          },
+          "points": {
+            "pes": 3,
+            "carbon_offset_biodiversity": 2,
+            "redd_plus": 1
+          }
         },
         {
           "id": "ocean",
           "text": "Ocean",
-          "image": { "url": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&q=80&auto=format&fit=crop", "label": "Ocean" },
-          "points": { "biodiversity_credits": 3, "nature_as_infrastructure": 1, "nbs": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&q=80&auto=format&fit=crop",
+            "label": "Ocean"
+          },
+          "points": {
+            "biodiversity_credits": 3,
+            "nature_as_infrastructure": 1,
+            "nbs": 1
+          }
         }
       ]
     },
@@ -156,38 +219,76 @@
         {
           "id": "big_bridge",
           "text": "A big bridge",
-          "image": { "url": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80&auto=format&fit=crop", "label": "Bridge" },
-          "points": { "ccs": 3, "nature_as_infrastructure": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=800&q=80&auto=format&fit=crop",
+            "label": "Bridge"
+          },
+          "points": {
+            "ccs": 3,
+            "nature_as_infrastructure": 2
+          }
         },
         {
           "id": "road",
           "text": "A road",
-          "image": { "url": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80&auto=format&fit=crop", "label": "Road" },
-          "points": { "redd_plus": 2, "carbon_offset_biodiversity": 2, "ccs": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80&auto=format&fit=crop",
+            "label": "Road"
+          },
+          "points": {
+            "redd_plus": 2,
+            "carbon_offset_biodiversity": 2,
+            "ccs": 1
+          }
         },
         {
           "id": "railway",
           "text": "A railway",
-          "image": { "url": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80&auto=format&fit=crop", "label": "Railway" },
-          "points": { "nbs": 3, "pes": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80&auto=format&fit=crop",
+            "label": "Railway"
+          },
+          "points": {
+            "nbs": 3,
+            "pes": 2
+          }
         },
         {
           "id": "house",
           "text": "A house",
-          "image": { "url": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80&auto=format&fit=crop", "label": "House" },
-          "points": { "pes": 3, "nbs": 1, "biodiversity_credits": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80&auto=format&fit=crop",
+            "label": "House"
+          },
+          "points": {
+            "pes": 3,
+            "nbs": 1,
+            "biodiversity_credits": 1
+          }
         },
         {
           "id": "canal",
           "text": "A canal",
-          "image": { "url": "https://images.unsplash.com/photo-1534351590666-13e3e96c5017?w=800&q=80&auto=format&fit=crop", "label": "Canal" },
-          "points": { "nature_as_infrastructure": 3, "nbs": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1468428936365-099c2f70e495?q=80&w=2060&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Canal"
+          },
+          "points": {
+            "nature_as_infrastructure": 3,
+            "nbs": 2
+          }
         },
         {
           "id": "harbour",
           "text": "A harbour",
-          "image": { "url": "https://images.unsplash.com/photo-1493946740644-2d8a1f1a6aff?w=800&q=80&auto=format&fit=crop", "label": "Harbour" },
-          "points": { "biodiversity_credits": 3, "carbon_offset_biodiversity": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1590322275125-ed9388155f1e?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Harbour"
+          },
+          "points": {
+            "biodiversity_credits": 3,
+            "carbon_offset_biodiversity": 2
+          }
         }
       ]
     },
@@ -199,38 +300,75 @@
         {
           "id": "city",
           "text": "City",
-          "image": { "url": "https://images.unsplash.com/photo-1496564203457-11bb12075d90?w=800&q=80&auto=format&fit=crop", "label": "City" },
-          "points": { "nature_as_infrastructure": 3, "ccs": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "City"
+          },
+          "points": {
+            "nature_as_infrastructure": 3,
+            "ccs": 2
+          }
         },
         {
           "id": "beach",
           "text": "Beach",
-          "image": { "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80&auto=format&fit=crop", "label": "Beach" },
-          "points": { "carbon_offset_biodiversity": 3, "nbs": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80&auto=format&fit=crop",
+            "label": "Beach"
+          },
+          "points": {
+            "carbon_offset_biodiversity": 3,
+            "nbs": 1
+          }
         },
         {
           "id": "mountain",
           "text": "Mountain",
-          "image": { "url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80&auto=format&fit=crop", "label": "Mountain" },
-          "points": { "redd_plus": 3, "pes": 2, "carbon_offset_biodiversity": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80&auto=format&fit=crop",
+            "label": "Mountain"
+          },
+          "points": {
+            "redd_plus": 3,
+            "pes": 2,
+            "carbon_offset_biodiversity": 1
+          }
         },
         {
           "id": "wetland",
           "text": "Swamp",
-          "image": { "url": "https://images.unsplash.com/photo-1552084117-56a987666449?w=800&q=80&auto=format&fit=crop", "label": "Wetland" },
-          "points": { "nbs": 3, "nature_as_infrastructure": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1609883475317-8465cb538ef3?q=80&w=826&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Swamp"
+          },
+          "points": {
+            "nbs": 3,
+            "nature_as_infrastructure": 1
+          }
         },
         {
           "id": "palace_in_sky",
           "text": "A palace in the sky",
-          "image": { "url": "https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=800&q=80&auto=format&fit=crop", "label": "Sky palace" },
-          "points": { "biodiversity_credits": 3, "ccs": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/vector-1741080125287-0fb1a1007792?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Sky palace"
+          },
+          "points": {
+            "biodiversity_credits": 3,
+            "ccs": 2
+          }
         },
         {
           "id": "hole_dune",
           "text": "A hole in the ground",
-          "image": { "url": "https://images.unsplash.com/photo-1547234935-80c7145ec969?w=800&q=80&auto=format&fit=crop", "label": "Dune hideout" },
-          "points": { "ccs": 3, "pes": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1547234935-80c7145ec969?w=800&q=80&auto=format&fit=crop",
+            "label": "Dune hideout"
+          },
+          "points": {
+            "ccs": 3,
+            "pes": 1
+          }
         }
       ]
     },
@@ -242,38 +380,74 @@
         {
           "id": "recreation",
           "text": "Recreation",
-          "image": { "url": "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80&auto=format&fit=crop", "label": "Recreation" },
-          "points": { "nature_as_infrastructure": 2, "carbon_offset_biodiversity": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&q=80&auto=format&fit=crop",
+            "label": "Recreation"
+          },
+          "points": {
+            "nature_as_infrastructure": 2,
+            "carbon_offset_biodiversity": 2
+          }
         },
         {
           "id": "air_water_filtration",
           "text": "Air & water filtration",
-          "image": { "url": "https://images.unsplash.com/photo-1527489377706-5bf97e608852?w=800&q=80&auto=format&fit=crop", "label": "Filtration" },
-          "points": { "nbs": 3, "nature_as_infrastructure": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1527489377706-5bf97e608852?w=800&q=80&auto=format&fit=crop",
+            "label": "Filtration"
+          },
+          "points": {
+            "nbs": 3,
+            "nature_as_infrastructure": 2
+          }
         },
         {
           "id": "iconic_species",
           "text": "Iconic species",
-          "image": { "url": "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=800&q=80&auto=format&fit=crop", "label": "Iconic species" },
-          "points": { "carbon_offset_biodiversity": 3, "biodiversity_credits": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=800&q=80&auto=format&fit=crop",
+            "label": "Iconic species"
+          },
+          "points": {
+            "carbon_offset_biodiversity": 3,
+            "biodiversity_credits": 2
+          }
         },
         {
           "id": "good_vibes",
           "text": "Good vibes",
-          "image": { "url": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800&q=80&auto=format&fit=crop", "label": "Good vibes" },
-          "points": { "nbs": 2, "pes": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800&q=80&auto=format&fit=crop",
+            "label": "Good vibes"
+          },
+          "points": {
+            "nbs": 2,
+            "pes": 1
+          }
         },
         {
           "id": "pearls",
           "text": "Pearls",
-          "image": { "url": "https://images.unsplash.com/photo-1535632066927-ec6def4fb116?w=800&q=80&auto=format&fit=crop", "label": "Pearls" },
-          "points": { "biodiversity_credits": 3, "ccs": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1675964042601-9e4c3ad4d590?q=80&w=1734&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Pearls"
+          },
+          "points": {
+            "biodiversity_credits": 3,
+            "ccs": 1
+          }
         },
         {
           "id": "existence_biodiversity",
           "text": "Existence of biodiversity",
-          "image": { "url": "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=800&q=80&auto=format&fit=crop", "label": "Biodiversity" },
-          "points": { "redd_plus": 3, "pes": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1444464666168-49d633b86797?w=800&q=80&auto=format&fit=crop",
+            "label": "Biodiversity"
+          },
+          "points": {
+            "redd_plus": 3,
+            "pes": 2
+          }
         }
       ]
     },
@@ -285,38 +459,74 @@
         {
           "id": "sea_level_rise",
           "text": "Sea level rise",
-          "image": { "url": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&q=80&auto=format&fit=crop", "label": "Sea level rise" },
-          "points": { "nature_as_infrastructure": 3, "nbs": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&q=80&auto=format&fit=crop",
+            "label": "Sea level rise"
+          },
+          "points": {
+            "nature_as_infrastructure": 3,
+            "nbs": 1
+          }
         },
         {
           "id": "deforestation",
           "text": "Deforestation",
-          "image": { "url": "https://images.unsplash.com/photo-1516214104703-d870798883c5?w=800&q=80&auto=format&fit=crop", "label": "Deforestation" },
-          "points": { "redd_plus": 3, "carbon_offset_biodiversity": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1516214104703-d870798883c5?w=800&q=80&auto=format&fit=crop",
+            "label": "Deforestation"
+          },
+          "points": {
+            "redd_plus": 3,
+            "carbon_offset_biodiversity": 2
+          }
         },
         {
           "id": "mass_extinction",
           "text": "Mass extinction",
-          "image": { "url": "https://images.unsplash.com/photo-1578326626553-39f72c545b07?w=800&q=80&auto=format&fit=crop", "label": "Extinction" },
-          "points": { "biodiversity_credits": 3, "carbon_offset_biodiversity": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1578326626553-39f72c545b07?w=800&q=80&auto=format&fit=crop",
+            "label": "Extinction"
+          },
+          "points": {
+            "biodiversity_credits": 3,
+            "carbon_offset_biodiversity": 1
+          }
         },
         {
           "id": "runaway_warming",
           "text": "Runaway warming",
-          "image": { "url": "https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=800&q=80&auto=format&fit=crop", "label": "Warming" },
-          "points": { "ccs": 3, "redd_plus": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=800&q=80&auto=format&fit=crop",
+            "label": "Warming"
+          },
+          "points": {
+            "ccs": 3,
+            "redd_plus": 1
+          }
         },
         {
           "id": "commons_enclosure",
           "text": "Enclosure of the commons",
-          "image": { "url": "https://images.unsplash.com/photo-1528372444986-7c2aef20d02f?w=800&q=80&auto=format&fit=crop", "label": "Enclosure" },
-          "points": { "pes": 3, "nbs": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1508263073532-98ed924de82d?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Enclosure"
+          },
+          "points": {
+            "pes": 3,
+            "nbs": 1
+          }
         },
         {
           "id": "water_scarcity",
           "text": "Water scarcity",
-          "image": { "url": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=800&q=80&auto=format&fit=crop", "label": "Water scarcity" },
-          "points": { "pes": 2, "nature_as_infrastructure": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=800&q=80&auto=format&fit=crop",
+            "label": "Water scarcity"
+          },
+          "points": {
+            "pes": 2,
+            "nature_as_infrastructure": 2
+          }
         }
       ]
     },
@@ -328,38 +538,74 @@
         {
           "id": "bog_preserved",
           "text": "Sink in a bog",
-          "image": { "url": "https://images.unsplash.com/photo-1528740561666-dc2479dc08ab?w=800&q=80&auto=format&fit=crop", "label": "Bog body" },
-          "points": { "nbs": 3, "pes": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1629236349601-d848e28409d0?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Bog body"
+          },
+          "points": {
+            "nbs": 3,
+            "pes": 1
+          }
         },
         {
           "id": "big_wave",
           "text": "A big wave",
-          "image": { "url": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&q=80&auto=format&fit=crop", "label": "Big wave" },
-          "points": { "nature_as_infrastructure": 3, "carbon_offset_biodiversity": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1610581726652-6cf6a5f09632?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Big wave"
+          },
+          "points": {
+            "nature_as_infrastructure": 3,
+            "carbon_offset_biodiversity": 1
+          }
         },
         {
           "id": "avalanche",
           "text": "An avalanche",
-          "image": { "url": "https://images.unsplash.com/photo-1551524559-8af4e6624178?w=800&q=80&auto=format&fit=crop", "label": "Avalanche" },
-          "points": { "carbon_offset_biodiversity": 3, "redd_plus": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1551524559-8af4e6624178?w=800&q=80&auto=format&fit=crop",
+            "label": "Avalanche"
+          },
+          "points": {
+            "carbon_offset_biodiversity": 3,
+            "redd_plus": 1
+          }
         },
         {
           "id": "swallowed_by_earth",
           "text": "Swallowed by the earth",
-          "image": { "url": "https://images.unsplash.com/photo-1517260911058-0fcfd733702f?w=800&q=80&auto=format&fit=crop", "label": "Sinkhole" },
-          "points": { "ccs": 3, "biodiversity_credits": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1517260911058-0fcfd733702f?w=800&q=80&auto=format&fit=crop",
+            "label": "Sinkhole"
+          },
+          "points": {
+            "ccs": 3,
+            "biodiversity_credits": 1
+          }
         },
         {
           "id": "venomous_creature",
           "text": "A venomous creature",
-          "image": { "url": "https://images.unsplash.com/photo-1557431518-25466d35f281?w=800&q=80&auto=format&fit=crop", "label": "Venomous creature" },
-          "points": { "biodiversity_credits": 3, "carbon_offset_biodiversity": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1638855370496-1ec25682adbe?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Venomous creature"
+          },
+          "points": {
+            "biodiversity_credits": 3,
+            "carbon_offset_biodiversity": 1
+          }
         },
         {
           "id": "ancient_tree_falls",
           "text": "A falling tree",
-          "image": { "url": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80&auto=format&fit=crop", "label": "Falling tree" },
-          "points": { "redd_plus": 3, "nbs": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=800&q=80&auto=format&fit=crop",
+            "label": "Falling tree"
+          },
+          "points": {
+            "redd_plus": 3,
+            "nbs": 1
+          }
         }
       ]
     },
@@ -371,38 +617,74 @@
         {
           "id": "moss_green",
           "text": "Moss green",
-          "image": { "url": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&q=80&auto=format&fit=crop", "label": "Moss" },
-          "points": { "nbs": 2, "redd_plus": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1708022772151-26030f4a4ba4?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Moss"
+          },
+          "points": {
+            "nbs": 2,
+            "redd_plus": 1
+          }
         },
         {
           "id": "concrete_grey",
           "text": "Concrete grey",
-          "image": { "url": "https://images.unsplash.com/photo-1520637836862-4d197d17c55a?w=800&q=80&auto=format&fit=crop", "label": "Concrete" },
-          "points": { "ccs": 3, "nature_as_infrastructure": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1670343085796-89e0ccb62ce2?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Concrete"
+          },
+          "points": {
+            "ccs": 3,
+            "nature_as_infrastructure": 1
+          }
         },
         {
           "id": "electric_teal",
           "text": "Electric teal",
-          "image": { "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80&auto=format&fit=crop", "label": "Teal" },
-          "points": { "biodiversity_credits": 3, "nature_as_infrastructure": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1763927898413-4e91b5196d19?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Teal"
+          },
+          "points": {
+            "biodiversity_credits": 3,
+            "nature_as_infrastructure": 2
+          }
         },
         {
           "id": "dusty_gold",
           "text": "Dusty gold",
-          "image": { "url": "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=800&q=80&auto=format&fit=crop", "label": "Gold" },
-          "points": { "carbon_offset_biodiversity": 3, "redd_plus": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1775534792598-1077300cc02a?q=80&w=1746&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Gold"
+          },
+          "points": {
+            "carbon_offset_biodiversity": 3,
+            "redd_plus": 2
+          }
         },
         {
           "id": "terracotta",
           "text": "Terracotta",
-          "image": { "url": "https://images.unsplash.com/photo-1533123328-d9ca4b49e45d?w=800&q=80&auto=format&fit=crop", "label": "Terracotta" },
-          "points": { "pes": 3, "nbs": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1468531390554-9f62f9767a87?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Terracotta"
+          },
+          "points": {
+            "pes": 3,
+            "nbs": 1
+          }
         },
         {
           "id": "oil_slick_iridescent",
           "text": "Oil-slick iridescent",
-          "image": { "url": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop", "label": "Iridescent" },
-          "points": { "ccs": 2, "biodiversity_credits": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1607419145932-ed1fc8c034d8?q=80&w=654&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Iridescent"
+          },
+          "points": {
+            "ccs": 2,
+            "biodiversity_credits": 2
+          }
         }
       ]
     },
@@ -414,38 +696,75 @@
         {
           "id": "fieldwork_chic",
           "text": "Fieldwork chic",
-          "image": { "url": "https://images.unsplash.com/photo-1551489186-cf8726f514f8?w=800&q=80&auto=format&fit=crop", "label": "Fieldwork" },
-          "points": { "nbs": 3, "pes": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1775563623212-b521c22609a4?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Fieldwork"
+          },
+          "points": {
+            "nbs": 3,
+            "pes": 2
+          }
         },
         {
           "id": "consultant_casual",
           "text": "Consultant casual",
-          "image": { "url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80&auto=format&fit=crop", "label": "Consultant" },
-          "points": { "nature_as_infrastructure": 3, "carbon_offset_biodiversity": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1593029886543-9e4044629cfc?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Consultant"
+          },
+          "points": {
+            "nature_as_infrastructure": 3,
+            "carbon_offset_biodiversity": 2
+          }
         },
         {
           "id": "engineer_highvis",
           "text": "High-vis and steel toes",
-          "image": { "url": "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=800&q=80&auto=format&fit=crop", "label": "High vis" },
-          "points": { "ccs": 3, "nature_as_infrastructure": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1613325267798-05214c4d65f1?q=80&w=524&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "High vis"
+          },
+          "points": {
+            "ccs": 3,
+            "nature_as_infrastructure": 1
+          }
         },
         {
           "id": "cottagecore",
           "text": "Cottagecore",
-          "image": { "url": "https://images.unsplash.com/photo-1528543606781-2f6e6857f318?w=800&q=80&auto=format&fit=crop", "label": "Cottagecore" },
-          "points": { "pes": 3, "nbs": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1735790312603-d944d7e2371f?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Cottagecore"
+          },
+          "points": {
+            "pes": 3,
+            "nbs": 1
+          }
         },
         {
           "id": "cop_delegate_power",
           "text": "COP delegate power-dress",
-          "image": { "url": "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=800&q=80&auto=format&fit=crop", "label": "COP delegate" },
-          "points": { "carbon_offset_biodiversity": 3, "biodiversity_credits": 2, "redd_plus": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "COP delegate"
+          },
+          "points": {
+            "carbon_offset_biodiversity": 3,
+            "biodiversity_credits": 2,
+            "redd_plus": 1
+          }
         },
         {
           "id": "earthy_academic",
           "text": "Earthy academic",
-          "image": { "url": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&q=80&auto=format&fit=crop", "label": "Academic" },
-          "points": { "redd_plus": 3, "nbs": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1578747522731-9e5a179b02f7?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Academic"
+          },
+          "points": {
+            "redd_plus": 3,
+            "nbs": 1
+          }
         }
       ]
     },
@@ -457,38 +776,74 @@
         {
           "id": "bicycle",
           "text": "Bicycle",
-          "image": { "url": "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&q=80&auto=format&fit=crop", "label": "Bicycle" },
-          "points": { "nbs": 2, "pes": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=800&q=80&auto=format&fit=crop",
+            "label": "Bicycle"
+          },
+          "points": {
+            "nbs": 2,
+            "pes": 2
+          }
         },
         {
           "id": "train",
           "text": "Train",
-          "image": { "url": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80&auto=format&fit=crop", "label": "Train" },
-          "points": { "nature_as_infrastructure": 3, "nbs": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80&auto=format&fit=crop",
+            "label": "Train"
+          },
+          "points": {
+            "nature_as_infrastructure": 3,
+            "nbs": 1
+          }
         },
         {
           "id": "electric_suv",
           "text": "Electric SUV",
-          "image": { "url": "https://images.unsplash.com/photo-1593941707882-a5bac6861d75?w=800&q=80&auto=format&fit=crop", "label": "Electric SUV" },
-          "points": { "ccs": 3, "carbon_offset_biodiversity": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1740261118563-fa240f65384f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Electric SUV"
+          },
+          "points": {
+            "ccs": 3,
+            "carbon_offset_biodiversity": 1
+          }
         },
         {
           "id": "private_jet_offset",
           "text": "Private jet",
-          "image": { "url": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80&auto=format&fit=crop", "label": "Private jet" },
-          "points": { "carbon_offset_biodiversity": 3, "biodiversity_credits": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80&auto=format&fit=crop",
+            "label": "Private jet"
+          },
+          "points": {
+            "carbon_offset_biodiversity": 3,
+            "biodiversity_credits": 2
+          }
         },
         {
           "id": "horse",
           "text": "Horse",
-          "image": { "url": "https://images.unsplash.com/photo-1553284966-19b8815c7817?w=800&q=80&auto=format&fit=crop", "label": "Horse" },
-          "points": { "redd_plus": 2, "pes": 2 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1553284966-19b8815c7817?w=800&q=80&auto=format&fit=crop",
+            "label": "Horse"
+          },
+          "points": {
+            "redd_plus": 2,
+            "pes": 2
+          }
         },
         {
           "id": "sailing_yacht",
           "text": "Sailing yacht",
-          "image": { "url": "https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&q=80&auto=format&fit=crop", "label": "Sailing yacht" },
-          "points": { "biodiversity_credits": 3, "nature_as_infrastructure": 1 }
+          "image": {
+            "url": "https://images.unsplash.com/photo-1540946485063-a40da27545f8?w=800&q=80&auto=format&fit=crop",
+            "label": "Sailing yacht"
+          },
+          "points": {
+            "biodiversity_credits": 3,
+            "nature_as_infrastructure": 1
+          }
         }
       ]
     }
