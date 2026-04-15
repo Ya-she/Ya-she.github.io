@@ -1,17 +1,38 @@
-const DATA_URL = "data/quiz-data.json";
-const COOKIE_PREFIX = "mbi_quiz_state";
-const COOKIE_DAYS = 30;
+const QUIZ_STATE_COOKIE = "nbs_quiz_state";
+const COOKIE_DAYS = 14;
 
-let quizData = null;
-let currentQuestionIndex = 0;
-let selectedAnswers = [];
-let finishedResultKey = null;
-let latestScores = {};
+const RESULT_ICONS = {
+  nbs: "🌿",
+  nature_as_infrastructure: "🏗️",
+  carbon_offset_biodiversity: "🎟️",
+  ccs: "🛢️",
+  pes: "💸",
+  biodiversity_credits: "🦋",
+  redd_plus: "🌳",
+};
 
-const el = {
-  title: document.getElementById("quiz-title"),
-  subtitle: document.getElementById("quiz-subtitle"),
-  intro: document.getElementById("quiz-intro"),
+const fallbackTheme = {
+  sage: "#63945B",
+  sageLight: "#ABD4A7",
+};
+
+const state = {
+  quizData: null,
+  hasStarted: false,
+  showResult: false,
+  currentQuestionIndex: 0,
+  selectedAnswerIndexes: [],
+  restoredFromCookie: false,
+};
+
+const elements = {
+  quizTitle: document.getElementById("quiz-title"),
+  quizSubtitle: document.getElementById("quiz-subtitle"),
+  quizIntro: document.getElementById("quiz-intro"),
+  dataSourcePill: document.getElementById("data-source-pill"),
+  startButton: document.getElementById("start-button"),
+  clearButton: document.getElementById("clear-button"),
+  restoreBanner: document.getElementById("restore-banner"),
   questionPanel: document.getElementById("question-panel"),
   resultPanel: document.getElementById("result-panel"),
   questionKicker: document.getElementById("question-kicker"),
@@ -19,13 +40,10 @@ const el = {
   progressText: document.getElementById("progress-text"),
   progressFill: document.getElementById("progress-fill"),
   answersGrid: document.getElementById("answers-grid"),
-  answerTemplate: document.getElementById("answer-card-template"),
   backButton: document.getElementById("back-button"),
-  clearButton: document.getElementById("clear-button"),
-  restoreBanner: document.getElementById("restore-banner"),
-  resultHero: document.getElementById("result-hero"),
   resultLabel: document.getElementById("result-label"),
   resultIcon: document.getElementById("result-icon"),
+  resultHero: document.getElementById("result-hero"),
   resultTitle: document.getElementById("result-title"),
   resultSubtitle: document.getElementById("result-subtitle"),
   resultDescription: document.getElementById("result-description"),
@@ -34,296 +52,374 @@ const el = {
   scoreBreakdown: document.getElementById("score-breakdown"),
   retakeButton: document.getElementById("retake-button"),
   clearResultButton: document.getElementById("clear-result-button"),
-  shareButton: document.getElementById("share-button"),
-  shareFeedback: document.getElementById("share-feedback"),
-  howToPlayButton: document.getElementById("how-to-play-button"),
-  howToPlayModal: document.getElementById("how-to-play-modal"),
-  closeHowToPlay: document.getElementById("close-how-to-play"),
+  answerCardTemplate: document.getElementById("answer-card-template"),
 };
 
 init();
 
 async function init() {
+  bindEvents();
+  const { quizData, loadedFromExternalJson } = await loadQuizData();
+  state.quizData = quizData;
+  populateIntro(quizData, loadedFromExternalJson);
+  restoreSavedState();
+
+  if (!state.showResult) {
+    state.hasStarted = true;
+  }
+
+  render();
+}
+
+function bindEvents() {
+  elements.startButton.addEventListener("click", () => {
+    state.hasStarted = true;
+    state.showResult = false;
+    state.currentQuestionIndex = 0;
+    state.selectedAnswerIndexes = [];
+    state.restoredFromCookie = false;
+    persistState();
+    render();
+  });
+
+  elements.clearButton.addEventListener("click", clearAllProgress);
+  elements.clearResultButton.addEventListener("click", clearAllProgress);
+
+  elements.backButton.addEventListener("click", () => {
+    if (state.currentQuestionIndex <= 0) return;
+    state.currentQuestionIndex -= 1;
+    persistState();
+    render();
+  });
+
+  elements.retakeButton.addEventListener("click", () => {
+    state.hasStarted = true;
+    state.showResult = false;
+    state.currentQuestionIndex = 0;
+    state.selectedAnswerIndexes = [];
+    state.restoredFromCookie = false;
+    persistState();
+    render();
+  });
+}
+
+async function loadQuizData() {
   try {
-    const response = await fetch(DATA_URL, { cache: "no-store" });
-    if (!response.ok) throw new Error(`Could not load ${DATA_URL}`);
-    quizData = await response.json();
-    renderIntro();
-    wireEvents();
-
-    const restored = restoreState();
-    if (restored) el.restoreBanner.hidden = false;
-
-    if (finishedResultKey) {
-      latestScores = calculateScores();
-      showResult(finishedResultKey);
-    } else {
-      startQuiz();
-    }
+    const response = await fetch("./data/quiz-data.json", { cache: "no-store" });
+    if (!response.ok) throw new Error("Quiz data request failed");
+    const quizData = await response.json();
+    return { quizData, loadedFromExternalJson: true };
   } catch (error) {
-    el.title.textContent = "Could not load quiz";
-    el.subtitle.textContent = "Make sure the data folder and quiz-data.json file are uploaded with this page.";
-    console.error(error);
+    console.error("Failed to load quiz-data.json", error);
+    const message = window.location.protocol === "file:"
+      ? "Could not load data/quiz-data.json. If you opened index.html directly from your computer, your browser is probably blocking local JSON loading. Use a tiny local server or host the folder online. The file paths themselves may still be correct."
+      : "Could not load data/quiz-data.json. Check that index.html, styles.css, the scripts folder, and the data folder were all uploaded together.";
+    alert(message);
+    throw error;
   }
 }
 
-function renderIntro() {
-  el.title.textContent = quizData.meta?.title || "What Market-Based Instrument Are You?";
-  el.subtitle.textContent = quizData.meta?.subtitle || "";
-  el.intro.textContent = quizData.meta?.intro || "";
+function populateIntro(quizData, loadedFromExternalJson) {
+  document.title = quizData.meta.title;
+  elements.quizTitle.textContent = quizData.meta.title;
+  elements.quizSubtitle.textContent = quizData.meta.subtitle;
+  elements.quizIntro.textContent = quizData.meta.intro;
+  elements.dataSourcePill.hidden = true;
 }
 
-function wireEvents() {
-  el.backButton.addEventListener("click", goBack);
-  el.clearButton.addEventListener("click", clearAndRestart);
-  el.retakeButton.addEventListener("click", clearAndRestart);
-  el.clearResultButton.addEventListener("click", clearAndRestart);
-  el.shareButton.addEventListener("click", shareResult);
+function restoreSavedState() {
+  const rawValue = getCookie(QUIZ_STATE_COOKIE);
+  if (!rawValue) return;
 
-  el.howToPlayButton.addEventListener("click", () => {
-    if (typeof el.howToPlayModal.showModal === "function") el.howToPlayModal.showModal();
-  });
-  el.closeHowToPlay.addEventListener("click", () => el.howToPlayModal.close());
-  el.howToPlayModal.addEventListener("click", (event) => {
-    if (event.target === el.howToPlayModal) el.howToPlayModal.close();
-  });
+  try {
+    const saved = JSON.parse(rawValue);
+    if (saved.version !== state.quizData.meta.version) return;
+
+    const questionCount = state.quizData.questions.length;
+    const maxQuestionIndex = Math.max(questionCount - 1, 0);
+
+    state.selectedAnswerIndexes = Array.isArray(saved.selectedAnswerIndexes)
+      ? saved.selectedAnswerIndexes.slice(0, questionCount)
+      : [];
+    state.currentQuestionIndex = clamp(
+      Number.isInteger(saved.currentQuestionIndex) ? saved.currentQuestionIndex : 0,
+      0,
+      maxQuestionIndex
+    );
+    state.hasStarted = Boolean(saved.hasStarted || state.selectedAnswerIndexes.length > 0 || saved.showResult);
+    state.showResult = Boolean(saved.showResult);
+    state.restoredFromCookie =
+      state.selectedAnswerIndexes.length > 0 || state.showResult;
+  } catch (error) {
+    console.warn("Saved quiz state could not be parsed and will be ignored.", error);
+  }
 }
 
-function startQuiz() {
-  finishedResultKey = null;
-  el.resultPanel.hidden = true;
-  el.questionPanel.hidden = false;
-  renderQuestion();
-}
+function render() {
+  const hasData = Boolean(state.quizData);
+  if (!hasData) return;
 
-function renderQuestion() {
-  const question = quizData.questions[currentQuestionIndex];
-  const total = quizData.questions.length;
-  el.questionKicker.textContent = question.kicker || `Question ${currentQuestionIndex + 1}`;
-  el.questionTitle.textContent = question.prompt;
-  el.progressText.textContent = `${currentQuestionIndex + 1} / ${total}`;
-  el.progressFill.style.width = `${((currentQuestionIndex + 1) / total) * 100}%`;
-  el.backButton.disabled = currentQuestionIndex === 0;
-  el.answersGrid.innerHTML = "";
+  elements.restoreBanner.hidden = !state.restoredFromCookie;
 
-  question.answers.forEach((answer) => {
-    const node = el.answerTemplate.content.firstElementChild.cloneNode(true);
-    const image = node.querySelector(".answer-image");
-    node.querySelector(".answer-text").textContent = answer.text;
-    image.src = answer.image?.url || "";
-    image.alt = answer.image?.label || answer.text;
-    image.loading = "lazy";
-    node.addEventListener("click", () => chooseAnswer(answer.id));
-    el.answersGrid.appendChild(node);
-  });
-}
-
-function chooseAnswer(answerId) {
-  selectedAnswers[currentQuestionIndex] = answerId;
-
-  if (currentQuestionIndex < quizData.questions.length - 1) {
-    currentQuestionIndex += 1;
-    saveState();
-    renderQuestion();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  if (!state.hasStarted) {
+    elements.questionPanel.hidden = true;
+    elements.resultPanel.hidden = true;
+    elements.startButton.textContent = state.restoredFromCookie ? "Restart quiz fresh" : "Start quiz";
+    updateScoreBreakdownEmpty();
     return;
   }
 
-  latestScores = calculateScores();
-  finishedResultKey = pickWinner(latestScores);
-  saveState();
-  showResult(finishedResultKey);
-}
+  elements.startButton.textContent = "Restart quiz fresh";
 
-function goBack() {
-  if (currentQuestionIndex === 0) return;
-  currentQuestionIndex -= 1;
-  finishedResultKey = null;
-  saveState();
+  if (state.showResult) {
+    renderResult();
+    elements.questionPanel.hidden = true;
+    elements.resultPanel.hidden = false;
+    return;
+  }
+
   renderQuestion();
+  elements.questionPanel.hidden = false;
+  elements.resultPanel.hidden = true;
 }
 
-function calculateScores() {
-  const scores = Object.fromEntries(Object.keys(quizData.results).map((key) => [key, 0]));
+function renderQuestion() {
+  const question = state.quizData.questions[state.currentQuestionIndex];
+  const answeredCount = state.selectedAnswerIndexes.filter((value) => value !== undefined).length;
+  const progressValue = questionCount() === 0 ? 0 : (answeredCount / questionCount()) * 100;
 
-  selectedAnswers.forEach((answerId, index) => {
-    const question = quizData.questions[index];
-    const answer = question?.answers.find((item) => item.id === answerId);
-    if (!answer?.points) return;
-    Object.entries(answer.points).forEach(([key, value]) => {
-      scores[key] = (scores[key] || 0) + Number(value || 0);
+  elements.questionKicker.textContent = question.kicker || `Question ${state.currentQuestionIndex + 1}`;
+  elements.questionTitle.textContent = question.prompt;
+  elements.progressText.textContent = `${Math.min(state.currentQuestionIndex + 1, questionCount())} / ${questionCount()}`;
+  elements.progressFill.style.width = `${progressValue}%`;
+  elements.backButton.disabled = state.currentQuestionIndex === 0;
+  elements.answersGrid.replaceChildren();
+
+  question.answers.forEach((answer, answerIndex) => {
+    const fragment = elements.answerCardTemplate.content.cloneNode(true);
+    const button = fragment.querySelector(".answer-card");
+    const image = fragment.querySelector(".answer-image");
+    const text = fragment.querySelector(".answer-text");
+
+    image.src = getAnswerImage(answer);
+    image.alt = answer.image?.label || answer.text;
+    text.textContent = answer.text;
+
+    if (state.selectedAnswerIndexes[state.currentQuestionIndex] === answerIndex) {
+      button.classList.add("is-selected");
+    }
+
+    button.addEventListener("click", () => {
+      selectAnswer(answerIndex);
     });
+
+    elements.answersGrid.appendChild(fragment);
   });
 
-  return scores;
+  updateScoreBreakdownEmpty();
 }
 
-function pickWinner(scores) {
-  const tieBreaker = quizData.scoring?.tieBreaker || Object.keys(quizData.results);
-  return Object.keys(quizData.results).sort((a, b) => {
-    const scoreDifference = (scores[b] || 0) - (scores[a] || 0);
-    if (scoreDifference !== 0) return scoreDifference;
-    return tieBreaker.indexOf(a) - tieBreaker.indexOf(b);
-  })[0];
-}
+function renderResult() {
+  const resultData = calculateResult(state.quizData, state.selectedAnswerIndexes);
+  const winningResultId = resultData.winner;
+  const winningResult = state.quizData.results[winningResultId];
 
-function showResult(resultKey) {
-  const result = quizData.results[resultKey];
-  if (!result) return clearAndRestart();
+  elements.resultLabel.textContent = state.quizData.meta.resultLabel;
+  elements.resultIcon.textContent = RESULT_ICONS[winningResultId] || "✨";
+  elements.resultTitle.textContent = winningResult.name;
+  elements.resultSubtitle.textContent = winningResult.subtitle;
+  elements.resultDescription.textContent = winningResult.description;
+  elements.resultBadge.textContent = winningResult.badge;
 
-  el.questionPanel.hidden = true;
-  el.resultPanel.hidden = false;
-  el.shareFeedback.textContent = "";
+  const palette = Array.isArray(winningResult.palette) ? winningResult.palette : [fallbackTheme.sage, fallbackTheme.sageLight];
+  elements.resultHero.style.background = `linear-gradient(135deg, ${palette[0]} 0%, ${palette[1]} 100%)`;
 
-  const [startColor, endColor] = result.palette || ["#dfeccf", "#fffaf0"];
-  el.resultHero.style.background = `linear-gradient(135deg, ${startColor}, ${endColor})`;
-  el.resultLabel.textContent = quizData.meta?.resultLabel || "Your result";
-  el.resultIcon.textContent = iconFor(resultKey);
-  el.resultTitle.textContent = result.name;
-  el.resultSubtitle.textContent = result.subtitle || "";
-  el.resultDescription.textContent = result.description || "";
-  el.resultBadge.textContent = result.badge || result.name;
-
-  el.fitList.innerHTML = "";
-  (result.whyItFits || []).forEach((item) => {
+  elements.fitList.replaceChildren();
+  winningResult.whyItFits.forEach((item) => {
     const div = document.createElement("div");
     div.className = "fit-item";
     div.textContent = item;
-    el.fitList.appendChild(div);
+    elements.fitList.appendChild(div);
   });
 
-  renderScoreBreakdown();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  renderScoreBreakdown(resultData);
 }
 
-function renderScoreBreakdown() {
-  const scores = latestScores && Object.keys(latestScores).length ? latestScores : calculateScores();
-  const maxScore = Math.max(1, ...Object.values(scores));
-  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-  el.scoreBreakdown.innerHTML = "";
+function selectAnswer(answerIndex) {
+  state.restoredFromCookie = false;
+  state.selectedAnswerIndexes[state.currentQuestionIndex] = answerIndex;
 
-  sorted.forEach(([key, score]) => {
+  if (state.currentQuestionIndex >= questionCount() - 1) {
+    state.showResult = true;
+  } else {
+    state.currentQuestionIndex += 1;
+  }
+
+  persistState();
+  render();
+}
+
+function renderScoreBreakdown(resultData) {
+  elements.scoreBreakdown.classList.remove("empty-state");
+  elements.scoreBreakdown.replaceChildren();
+
+  const highestScore = Math.max(...resultData.ranked.map(([, score]) => score), 1);
+
+  resultData.ranked.forEach(([resultId, score]) => {
+    const result = state.quizData.results[resultId];
     const row = document.createElement("div");
     row.className = "score-row";
 
-    const label = document.createElement("span");
-    label.textContent = quizData.results[key]?.name || key;
+    const top = document.createElement("div");
+    top.className = "score-row-top";
 
-    const bar = document.createElement("div");
-    bar.className = "score-bar";
-    const fill = document.createElement("div");
-    fill.className = "score-bar-fill";
-    fill.style.width = `${(score / maxScore) * 100}%`;
-    bar.appendChild(fill);
+    const name = document.createElement("span");
+    name.className = "score-name";
+    name.textContent = result.name;
 
     const value = document.createElement("span");
-    value.textContent = score;
+    value.className = "score-value";
+    value.textContent = `${score} pts`;
 
-    row.append(label, bar, value);
-    el.scoreBreakdown.appendChild(row);
+    top.append(name, value);
+
+    const track = document.createElement("div");
+    track.className = "score-track";
+
+    const fill = document.createElement("div");
+    fill.className = "score-fill";
+    fill.style.width = `${(score / highestScore) * 100}%`;
+    fill.style.background = result.palette?.[0] || fallbackTheme.sage;
+
+    track.appendChild(fill);
+    row.append(top, track);
+    elements.scoreBreakdown.appendChild(row);
   });
 }
 
-async function shareResult() {
-  if (!finishedResultKey) return;
-  const result = quizData.results[finishedResultKey];
-  const text = `I got ${result.name} on What MBI Are You?`;
-  const url = window.location.href.split("#")[0];
-  const shareData = { title: quizData.meta?.title || "What MBI Are You?", text, url };
-
-  try {
-    if (navigator.share) {
-      await navigator.share(shareData);
-      el.shareFeedback.textContent = "Shared.";
-      return;
-    }
-    await navigator.clipboard.writeText(`${text}\n${url}`);
-    el.shareFeedback.textContent = "Result copied to clipboard.";
-  } catch (error) {
-    el.shareFeedback.textContent = "Could not share automatically. You can copy the page link manually.";
-  }
+function updateScoreBreakdownEmpty() {
+  elements.scoreBreakdown.classList.add("empty-state");
+  elements.scoreBreakdown.textContent = "Finish the quiz to see how each instrument scored.";
 }
 
-function iconFor(key) {
+function calculateResult(quizData, selectedAnswerIndexes) {
+  const scores = {};
+  Object.keys(quizData.results).forEach((resultId) => {
+    scores[resultId] = 0;
+  });
+
+  quizData.questions.forEach((question, questionIndex) => {
+    const answerIndex = selectedAnswerIndexes[questionIndex];
+    if (answerIndex === undefined) return;
+    const answer = question.answers[answerIndex];
+    Object.entries(answer.points || {}).forEach(([resultId, points]) => {
+      scores[resultId] += Number(points) || 0;
+    });
+  });
+
+  const ranked = Object.entries(scores).sort((a, b) => {
+    if (b[1] !== a[1]) return b[1] - a[1];
+    return quizData.scoring.tieBreaker.indexOf(a[0]) - quizData.scoring.tieBreaker.indexOf(b[0]);
+  });
+
   return {
-    nbs: "🌿",
-    nature_as_infrastructure: "🌉",
-    carbon_offset_biodiversity: "🦜",
-    ccs: "🪨",
-    pes: "💸",
-    biodiversity_credits: "🧬",
-    redd_plus: "🌲",
-  }[key] || "🌍";
-}
-
-function cookieName() {
-  const version = quizData?.meta?.version || "v1";
-  return `${COOKIE_PREFIX}_${version}`;
-}
-
-function saveState() {
-  const state = {
-    version: quizData.meta?.version || "v1",
-    currentQuestionIndex,
-    selectedAnswers,
-    finishedResultKey,
+    winner: ranked[0][0],
+    scores,
+    ranked,
   };
-  setCookie(cookieName(), JSON.stringify(state), COOKIE_DAYS);
 }
 
-function restoreState() {
-  const raw = getCookie(cookieName());
-  if (!raw) return false;
-  try {
-    const state = JSON.parse(raw);
-    if (state.version !== (quizData.meta?.version || "v1")) return false;
-    selectedAnswers = Array.isArray(state.selectedAnswers) ? state.selectedAnswers : [];
-    currentQuestionIndex = Number.isInteger(state.currentQuestionIndex) ? state.currentQuestionIndex : 0;
-    currentQuestionIndex = Math.max(0, Math.min(currentQuestionIndex, quizData.questions.length - 1));
-    finishedResultKey = state.finishedResultKey || null;
-    return true;
-  } catch {
-    return false;
+function persistState() {
+  if (!state.quizData) return;
+
+  if (!state.hasStarted && state.selectedAnswerIndexes.length === 0 && !state.showResult) {
+    deleteCookie(QUIZ_STATE_COOKIE);
+    return;
   }
+
+  const resultId = state.showResult
+    ? calculateResult(state.quizData, state.selectedAnswerIndexes).winner
+    : undefined;
+
+  const payload = {
+    version: state.quizData.meta.version,
+    currentQuestionIndex: state.currentQuestionIndex,
+    selectedAnswerIndexes: state.selectedAnswerIndexes,
+    hasStarted: state.hasStarted,
+    showResult: state.showResult,
+    resultId,
+    timestamp: new Date().toISOString(),
+  };
+
+  setCookie(QUIZ_STATE_COOKIE, JSON.stringify(payload), COOKIE_DAYS);
 }
 
-function clearAndRestart() {
-  deleteCookie(cookieName());
-  selectedAnswers = [];
-  currentQuestionIndex = 0;
-  finishedResultKey = null;
-  latestScores = {};
-  el.restoreBanner.hidden = true;
-  startQuiz();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+function clearAllProgress() {
+  state.hasStarted = true;
+  state.showResult = false;
+  state.currentQuestionIndex = 0;
+  state.selectedAnswerIndexes = [];
+  state.restoredFromCookie = false;
+  deleteCookie(QUIZ_STATE_COOKIE);
+  render();
 }
 
-function setCookie(name, value, days) {
-  const date = new Date();
-  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-  document.cookie = `${name}=${encodeURIComponent(value)};expires=${date.toUTCString()};path=/;SameSite=Lax`;
+function setCookie(name, value, days = COOKIE_DAYS) {
+  const maxAge = days * 24 * 60 * 60;
+  document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)}; max-age=${maxAge}; path=/; SameSite=Lax`;
 }
 
 function getCookie(name) {
-  return document.cookie
-    .split(";")
-    .map((cookie) => cookie.trim())
-    .find((cookie) => cookie.startsWith(`${name}=`))
-    ?.split("=")
-    .slice(1)
-    .join("=")
-    ? decodeURIComponent(
-        document.cookie
-          .split(";")
-          .map((cookie) => cookie.trim())
-          .find((cookie) => cookie.startsWith(`${name}=`))
-          .split("=")
-          .slice(1)
-          .join("=")
-      )
-    : "";
+  const prefix = `${encodeURIComponent(name)}=`;
+  const match = document.cookie.split("; ").find((row) => row.startsWith(prefix));
+  return match ? decodeURIComponent(match.slice(prefix.length)) : null;
 }
 
 function deleteCookie(name) {
-  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax`;
+  document.cookie = `${encodeURIComponent(name)}=; Max-Age=0; path=/; SameSite=Lax`;
+}
+
+function getAnswerImage(answer) {
+  if (answer.image?.url) return answer.image.url;
+  return makePlaceholder(
+    answer.image?.label || answer.text,
+    answer.image?.emoji || "🌿",
+    answer.image?.palette || [fallbackTheme.sage, fallbackTheme.sageLight]
+  );
+}
+
+function makePlaceholder(label, emoji = "🌿", palette = [fallbackTheme.sage, fallbackTheme.sageLight]) {
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="${palette[0]}" />
+          <stop offset="100%" stop-color="${palette[1]}" />
+        </linearGradient>
+      </defs>
+      <rect width="800" height="520" fill="url(#g)" rx="32" />
+      <circle cx="680" cy="100" r="70" fill="rgba(255,255,255,0.12)" />
+      <circle cx="130" cy="420" r="120" fill="rgba(255,255,255,0.08)" />
+      <text x="50%" y="42%" text-anchor="middle" dominant-baseline="middle" font-size="80">${emoji}</text>
+      <text x="50%" y="68%" text-anchor="middle" dominant-baseline="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">${escapeXml(label)}</text>
+    </svg>
+  `;
+  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+}
+
+function escapeXml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&apos;");
+}
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function questionCount() {
+  return state.quizData?.questions?.length || 0;
 }
