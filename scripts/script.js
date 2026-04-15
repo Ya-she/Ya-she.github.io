@@ -267,25 +267,57 @@ function renderScoreBreakdown() {
 async function shareResult() {
   if (!finishedResultKey) return;
 
-  const result = quizData.results[finishedResultKey];
-  const text = `I got ${result.name} on What MBI Are You?`;
-  const url = window.location.href.split("#")[0];
-  const shareData = { title: quizData.meta?.title || "What MBI Are You?", text, url };
+  const shareText = buildShareText();
 
   try {
-    if (navigator.share) {
-      await navigator.share(shareData);
-      if (el.shareFeedback) el.shareFeedback.textContent = "Shared.";
-      return;
-    }
-
-    await navigator.clipboard.writeText(`${text}\n${url}`);
+    await navigator.clipboard.writeText(shareText);
     if (el.shareFeedback) el.shareFeedback.textContent = "Result copied to clipboard.";
   } catch (error) {
     if (el.shareFeedback) {
-      el.shareFeedback.textContent = "Could not share automatically. You can copy the page link manually.";
+      el.shareFeedback.textContent = "Could not copy automatically. Please copy your result manually.";
     }
   }
+}
+
+function buildShareText() {
+  const result = quizData.results[finishedResultKey];
+  const scores = latestScores && Object.keys(latestScores).length ? latestScores : calculateScores();
+  const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const highestScore = Math.max(1, ...sortedScores.map(([, score]) => score));
+  const resultLabel = quizData.meta?.resultLabel || "Your market-based instrument";
+  const url = "https://ya-she.github.io";
+
+  const whyThisFits = (result.whyItFits || [])
+    .map((item) => `• ${item}`)
+    .join("\n");
+
+  const scoreBreakdown = sortedScores
+    .map(([key, score]) => {
+      const name = quizData.results[key]?.name || key;
+      const percent = Math.round((score / highestScore) * 100);
+      return `${scoreBar(percent)} ${name}: ${score} pts (${percent}%)`;
+    })
+    .join("\n");
+
+  return [
+    "What MBI Are You?",
+    "",
+    `${resultLabel}: ${result.name}`,
+    `Your badge: ${result.badge || result.name}`,
+    "",
+    "Why this fits:",
+    whyThisFits,
+    "",
+    "Score breakdown:",
+    scoreBreakdown,
+    "",
+    url,
+  ].join("\n");
+}
+
+function scoreBar(percent) {
+  const filledBlocks = Math.round(percent / 10);
+  return "🟩".repeat(filledBlocks) + "⬜".repeat(10 - filledBlocks);
 }
 
 function iconFor(key) {
