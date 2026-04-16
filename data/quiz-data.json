@@ -14,7 +14,7 @@
       "carbon_offset_biodiversity",
       "ccs",
       "pes",
-      "biodiversity_credits",
+      "voluntary_market_biodiversity_credits",
       "redd_plus"
     ]
   },
@@ -94,8 +94,8 @@
         "You ask 'what would motivate a landowner?' instead of 'who owns the land?'"
       ]
     },
-    "biodiversity_credits": {
-      "name": "Biodiversity Credits",
+    "voluntary_market_biodiversity_credits": {
+      "name": "Voluntary Market Biodiversity Credits",
       "subtitle": "Carbon offsets' ambitious cousin, already under scrutiny.",
       "badge": "The Sequel Nobody Asked For",
       "palette": [
@@ -167,7 +167,7 @@
           "points": {
             "ccs": 3,
             "pes": 2,
-            "biodiversity_credits": 1
+            "voluntary_market_biodiversity_credits": 1
           }
         },
         {
@@ -204,7 +204,7 @@
             "label": "Ocean"
           },
           "points": {
-            "biodiversity_credits": 3,
+            "voluntary_market_biodiversity_credits": 3,
             "nature_as_infrastructure": 1,
             "nbs": 1
           }
@@ -263,7 +263,7 @@
           "points": {
             "pes": 3,
             "nbs": 1,
-            "biodiversity_credits": 1
+            "voluntary_market_biodiversity_credits": 1
           }
         },
         {
@@ -286,7 +286,7 @@
             "label": "Harbour"
           },
           "points": {
-            "biodiversity_credits": 3,
+            "voluntary_market_biodiversity_credits": 3,
             "carbon_offset_biodiversity": 2
           }
         }
@@ -354,7 +354,7 @@
             "label": "Sky palace"
           },
           "points": {
-            "biodiversity_credits": 3,
+            "voluntary_market_biodiversity_credits": 3,
             "ccs": 2
           }
         },
@@ -410,7 +410,7 @@
           },
           "points": {
             "carbon_offset_biodiversity": 3,
-            "biodiversity_credits": 2
+            "voluntary_market_biodiversity_credits": 2
           }
         },
         {
@@ -433,7 +433,7 @@
             "label": "Pearls"
           },
           "points": {
-            "biodiversity_credits": 3,
+            "voluntary_market_biodiversity_credits": 3,
             "ccs": 1
           }
         },
@@ -488,7 +488,7 @@
             "label": "Extinction"
           },
           "points": {
-            "biodiversity_credits": 3,
+            "voluntary_market_biodiversity_credits": 3,
             "carbon_offset_biodiversity": 1
           }
         },
@@ -580,7 +580,7 @@
           },
           "points": {
             "ccs": 3,
-            "biodiversity_credits": 1
+            "oluntary_market_biodiversity_credits": 1
           }
         },
         {
@@ -591,7 +591,7 @@
             "label": "Venomous creature"
           },
           "points": {
-            "biodiversity_credits": 3,
+            "voluntary_market_biodiversity_credits": 3,
             "carbon_offset_biodiversity": 1
           }
         },
@@ -646,7 +646,7 @@
             "label": "Teal"
           },
           "points": {
-            "biodiversity_credits": 3,
+            "voluntary_market_biodiversity_credits": 3,
             "nature_as_infrastructure": 2
           }
         },
@@ -683,7 +683,7 @@
           },
           "points": {
             "ccs": 2,
-            "biodiversity_credits": 2
+            "voluntary_market_biodiversity_credits": 2
           }
         }
       ]
@@ -750,7 +750,7 @@
           },
           "points": {
             "carbon_offset_biodiversity": 3,
-            "biodiversity_credits": 2,
+            "voluntary_market_biodiversity_credits": 2,
             "redd_plus": 1
           }
         },
@@ -818,7 +818,7 @@
           },
           "points": {
             "carbon_offset_biodiversity": 3,
-            "biodiversity_credits": 2
+            "voluntary_market_biodiversity_credits": 2
           }
         },
         {
@@ -841,7 +841,7 @@
             "label": "Sailing yacht"
           },
           "points": {
-            "biodiversity_credits": 3,
+            "voluntary_market_biodiversity_credits": 3,
             "nature_as_infrastructure": 1
           }
         }
