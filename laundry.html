@@ -26,7 +26,351 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    
+    <style>
+      :root {
+        --bg: #f3f1e7;
+        --panel: #fbfaf5;
+        --panel-2: #f7f4ea;
+        --text: #1f3327;
+        --muted: #5a6b60;
+        --line: #d8dcc8;
+        --accent: #cfdabf;
+        --accent-strong: #54753a;
+        --accent-dark: #28412f;
+        --shadow: 0 18px 50px rgba(47, 64, 40, 0.12);
+        --radius-xl: 28px;
+        --radius-lg: 22px;
+        --radius-md: 16px;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(125, 153, 98, 0.18), transparent 26%),
+          linear-gradient(180deg, #f1f2ea 0%, #ecefe3 100%);
+        min-height: 100vh;
+      }
+
+      .quiz-wrap {
+        width: min(920px, calc(100% - 32px));
+        margin: 24px auto 40px;
+      }
+
+      #quiz-screen,
+      #result-screen {
+        background: rgba(255, 255, 255, 0.38);
+        border: 1px solid rgba(216, 220, 200, 0.9);
+        border-radius: calc(var(--radius-xl) + 6px);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(3px);
+        padding: 18px;
+      }
+
+      .header,
+      .result-header {
+        background: var(--panel);
+        border-radius: var(--radius-xl);
+        padding: 28px 28px 30px;
+        box-shadow: 0 10px 30px rgba(35, 49, 30, 0.08);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header::before,
+      .result-header::before {
+        content: '';
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 10px;
+        background: linear-gradient(90deg, var(--accent-strong), #4a5367);
+      }
+
+      .header-tag,
+      .result-tag,
+      .trait-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--accent);
+        color: #244124;
+        border-radius: 999px;
+        padding: 10px 16px;
+        font-weight: 800;
+        font-size: 0.92rem;
+        line-height: 1;
+      }
+
+      h1,
+      .result-name {
+        margin: 22px 0 14px;
+        font-size: clamp(2.2rem, 6vw, 4.3rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+        font-weight: 800;
+        color: var(--text);
+      }
+
+      .header-sub,
+      .result-desc,
+      .q-text,
+      .progress-label,
+      .score-label,
+      .site-footer {
+        color: var(--muted);
+      }
+
+      .header-sub,
+      .result-desc {
+        font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+        line-height: 1.55;
+        max-width: 48rem;
+      }
+
+      .progress-bar-wrap {
+        margin: 18px 2px 10px;
+        height: 12px;
+        background: rgba(207, 218, 191, 0.65);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .progress-bar,
+      .score-fill {
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--accent-strong), #748e57);
+        transition: width 0.25s ease;
+      }
+
+      .progress-label {
+        font-size: 0.96rem;
+        font-weight: 700;
+        margin: 0 4px 18px;
+      }
+
+      .q-card,
+      .result-body,
+      .score-section {
+        background: var(--panel);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        box-shadow: 0 10px 26px rgba(35, 49, 30, 0.06);
+      }
+
+      .q-number,
+      .score-title {
+        font-size: 0.92rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 800;
+        color: #486041;
+        margin-bottom: 10px;
+      }
+
+      .q-text {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        line-height: 1.18;
+        color: var(--text);
+        font-weight: 800;
+        margin-bottom: 18px;
+      }
+
+      .options,
+      .img-options,
+      .result-traits {
+        display: grid;
+        gap: 12px;
+      }
+
+      .opt-btn,
+      .img-opt,
+      .share-btn,
+      .retake-btn {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--panel-2);
+        color: var(--text);
+        padding: 16px 18px;
+        font: inherit;
+        text-align: left;
+        transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+      }
+
+      .opt-btn,
+      .img-opt {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-weight: 700;
+      }
+
+      .opt-btn:hover,
+      .img-opt:hover,
+      .share-btn:hover,
+      .retake-btn:hover {
+        transform: translateY(-1px);
+        border-color: #b5c3a2;
+        background: #fdfcf8;
+        box-shadow: 0 12px 24px rgba(39, 54, 34, 0.08);
+      }
+
+      .opt-letter {
+        width: 2rem;
+        height: 2rem;
+        display: inline-grid;
+        place-items: center;
+        flex: 0 0 2rem;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #234023;
+        font-weight: 800;
+      }
+
+      .hidden { display: none !important; }
+
+      .result-wrap {
+        display: grid;
+        gap: 18px;
+      }
+
+      .result-emoji,
+      .big-emoji {
+        font-size: clamp(3rem, 7vw, 5rem);
+        line-height: 1;
+        margin-top: 16px;
+      }
+
+      .result-body {
+        display: grid;
+        gap: 18px;
+      }
+
+      .result-traits {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .trait-pill {
+        justify-content: center;
+        padding: 12px 14px;
+        font-size: 0.95rem;
+      }
+
+      .score-section {
+        display: grid;
+        gap: 12px;
+      }
+
+      .score-row {
+        display: grid;
+        gap: 8px;
+      }
+
+      .score-label {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+
+      .score-track {
+        height: 12px;
+        border-radius: 999px;
+        background: rgba(207, 218, 191, 0.7);
+        overflow: hidden;
+      }
+
+      .share-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .share-btn,
+      .retake-btn {
+        width: auto;
+        min-width: 170px;
+        text-align: center;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .share-copy {
+        background: linear-gradient(90deg, #28412f, #36533a);
+        color: white;
+        border-color: transparent;
+      }
+
+      .share-copy:hover {
+        background: linear-gradient(90deg, #223529, #2d4630);
+      }
+
+      .img-options {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      }
+
+      .img-opt {
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        min-height: 132px;
+      }
+
+      .img-label {
+        font-weight: 800;
+        color: var(--text);
+      }
+
+      .site-footer {
+        text-align: center;
+        font-size: 0.95rem;
+        margin-top: 16px;
+        padding: 4px 8px;
+      }
+
+      .site-footer a {
+        color: #28412f;
+        font-weight: 700;
+      }
+
+      @media (max-width: 640px) {
+        .quiz-wrap {
+          width: min(100% - 20px, 920px);
+          margin-top: 12px;
+          margin-bottom: 24px;
+        }
+
+        #quiz-screen,
+        #result-screen {
+          padding: 12px;
+          border-radius: 24px;
+        }
+
+        .header,
+        .result-header,
+        .q-card,
+        .result-body,
+        .score-section {
+          padding: 20px;
+        }
+
+        .share-row {
+          flex-direction: column;
+        }
+
+        .share-btn,
+        .retake-btn {
+          width: 100%;
+        }
+      }
+    </style>
+
   </head>
   <body id="artifacts-component-root-html">
   <div class="quiz-wrap">
