@@ -327,6 +327,51 @@
         color: var(--text);
       }
 
+      .photo-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 12px;
+      }
+
+      .photo-opt {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--panel-2);
+        color: var(--text);
+        padding: 0;
+        font: inherit;
+        text-align: left;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+      }
+
+      .photo-opt:hover {
+        transform: translateY(-1px);
+        border-color: #b5c3a2;
+        box-shadow: 0 12px 24px rgba(39, 54, 34, 0.08);
+      }
+
+      .photo-opt.selected {
+        border-color: var(--accent-strong);
+        box-shadow: 0 0 0 3px var(--accent-strong);
+      }
+
+      .photo-opt img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        display: block;
+      }
+
+      .photo-opt .photo-label {
+        padding: 12px 14px;
+        font-weight: 800;
+        font-size: 0.95rem;
+        color: var(--text);
+      }
+
       .site-footer {
         text-align: center;
         font-size: 0.95rem;
@@ -379,7 +424,7 @@
     <div class="header">
       <div class="header-tag">Personality Quiz</div>
       <h1>What's Your Laundry Personality?</h1>
-      <div class="header-sub">10 questions. Possibly life-changing. Definitely accurate.</div>
+      <div class="header-sub">12 questions. Possibly life-changing. Definitely accurate.</div>
     </div>
     <div class="progress-bar-wrap"><div class="progress-bar" id="prog-bar" style="width:0%"></div></div>
     <div class="progress-label" id="prog-label">Question 1 of 10</div>
@@ -427,36 +472,38 @@
   const questions = [
     {
       q: "It's laundry day. How do you sort your clothes?",
-      type: "list",
+      type: "img",
       opts: [
-        { txt: "I have a colour-coded 6-bin system with labels", scores: { F: 3 } },
-        { txt: "Darks, lights, colours — the classic trio", scores: { A: 2, F: 1 } },
-        { txt: "Everything in. What's the worst that could happen?", scores: { C: 3, H: 1 } },
-        { txt: "Sort? I just sniff and decide", scores: { C: 2, I: 1 } },
-        { txt: "I don't — I hand wash everything individually", scores: { D: 3 } }
+        { txt: "I have a colour-coded 6-bin system", img: "https://images.unsplash.com/photo-1692576855758-318a1fa8ff6d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 3 } },
+        { txt: "The classic trio: darks, lights, colours", img: "https://images.unsplash.com/photo-1550422399-51746f75d61b?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { A: 2, F: 1 } },
+        { txt: "Everything in. What's the worst that could happen?", img: "https://images.unsplash.com/photo-1582735689283-7b70dbe630ea?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 3, H: 1 } },
+        { txt: "Sort? I just sniff and decide", img: "https://images.unsplash.com/photo-1759997725398-462604656f13?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, I: 1 } },
+        { txt: "I hand wash everything individually", img: "https://images.unsplash.com/photo-1582452595604-a8cc65ba5660?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { D: 3 } },
+        { txt: "I sort by colour AND textile, obviously", img: "https://images.unsplash.com/photo-1645088834234-82bc076d8774?q=80&w=522&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 3, A: 1 } }
       ]
     },
     {
       q: "You spot a care label. What do you do?",
-      type: "list",
+      type: "img",
       opts: [
-        { txt: "Read it twice, Google the symbols, and proceed with extreme caution", scores: { A: 3 } },
-        { txt: "Glance at it and do whatever I was going to do anyway", scores: { H: 2, C: 1 } },
-        { txt: "I cut all labels out. They're scratchy and annoying.", scores: { J: 3 } },
-        { txt: "Follow it religiously — it's the law", scores: { F: 2, L: 1 } },
-        { txt: "Labels are for people who don't trust their instincts", scores: { C: 2, H: 1 } }
+        { txt: "Read it twice, Google the symbols, proceed with caution", img: "https://images.unsplash.com/photo-1649738701436-62ec0fc9f455?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { A: 3 } },
+        { txt: "Study the label, but I know better anyway", img: "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZG9pbmclMjBsYXVuZHJ5fGVufDB8fDB8fHwy", scores: { J: 2, H: 1 } },
+        { txt: "Glance at it and do whatever I was going to do anyway", img: "https://images.unsplash.com/photo-1627764843344-24b9c306e61b?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { H: 2, C: 1 } },
+        { txt: "I cut all labels out. They're scratchy and annoying.", img: "https://images.unsplash.com/photo-1655105742471-cca7195b12da?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { J: 3 } },
+        { txt: "Follow it religiously — it's the law", img: "https://images.unsplash.com/photo-1718128306989-a5bd41566cde?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 2, L: 1 } },
+        { txt: "I wash everything at 40°C so this is irrelevant", img: "https://images.unsplash.com/photo-1639580133969-48cbbce72e1f?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, L: 1 } }
       ]
     },
     {
-      q: "Pick a colour. (Yes this matters. Science.)",
-      type: "grid",
+      q: "Pick a colour.",
+      type: "img",
       opts: [
-        { txt: "Hot Red", emoji: "🔴", scores: { C: 2, H: 1 } },
-        { txt: "Ice Blue", emoji: "🔵", scores: { L: 2, F: 1 } },
-        { txt: "Chaotic Pink", emoji: "🩷", scores: { E: 2, C: 1 } },
-        { txt: "Sensible Grey", emoji: "🩶", scores: { I: 2, J: 1 } },
-        { txt: "Earthy Green", emoji: "🟢", scores: { G: 3 } },
-        { txt: "Midnight Black", emoji: "⚫", scores: { K: 2, A: 1 } }
+        { txt: "Bubble Bath Pink", img: "https://images.unsplash.com/photo-1582794543462-0d7922e50cf5?q=80&w=654&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { E: 2, C: 1 } },
+        { txt: "White Wash Vanilla", img: "https://images.unsplash.com/photo-1580596090683-f4711170117b?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { A: 2, F: 1 } },
+        { txt: "Greenwash Moss", img: "https://images.unsplash.com/photo-1676731058927-28b7325c0241?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { G: 3 } },
+        { txt: "Lovey Wash Red", img: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, H: 1 } },
+        { txt: "Detergent Blue", img: "https://images.unsplash.com/photo-1568145675395-66a2eda0c6d7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { L: 2, F: 1 } },
+        { txt: "Midnight Spin Black", img: "https://images.unsplash.com/photo-1622793139910-e261be0b30a4?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { K: 2, I: 1 } }
       ]
     },
     {
@@ -464,45 +511,47 @@
       type: "list",
       opts: [
         { txt: "I don't know. This has never happened to me.", scores: { F: 3, A: 1 } },
+        { txt: "A red sock does not bother me. My skills are superior.", scores: { B: 2, J: 1 } },
         { txt: "Embrace the pink. Pink is great actually.", scores: { C: 3 } },
         { txt: "Cry. Briefly. Then Google emergency solutions.", scores: { A: 2, E: 1 } },
         { txt: "This is why I hand wash everything separately", scores: { D: 3 } },
-        { txt: "...I hand wash everything so it was me, I'm the red sock", scores: { D: 2, E: 1 } }
+        { txt: "Give up and go to bed, I fucked up.", scores: { I: 3 } }
       ]
     },
     {
-      q: "It's 11pm. You suddenly remember you need clean clothes tomorrow. What do you do?",
-      type: "list",
+      q: "It's 1am. You suddenly remember you need clean clothes tomorrow. What do you do?",
+      type: "img",
       opts: [
-        { txt: "Put a load on immediately — this is how every wash starts", scores: { K: 3 } },
-        { txt: "Sniff test everything and find something acceptable", scores: { E: 2, I: 1 } },
-        { txt: "This is tomorrow's problem. Or a shopping problem.", scores: { I: 3 } },
-        { txt: "My clothes are always clean. This scenario doesn't apply.", scores: { F: 2, B: 1 } },
-        { txt: "Hand wash just the essentials in the sink", scores: { D: 3 } }
+        { txt: "Put a load on immediately", img: "https://images.unsplash.com/photo-1607523751675-a5c894ceb6bc?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { K: 3 } },
+        { txt: "Quick wash + gentle heater drying session", img: "https://images.unsplash.com/photo-1649105057951-e3006c21a664?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 2, K: 1 } },
+        { txt: "Sniff test everything and find something acceptable", img: "https://images.unsplash.com/photo-1753161025126-34c0d643a468?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { E: 2, I: 1 } },
+        { txt: "This is tomorrow's problem. Or a shopping problem.", img: "https://images.unsplash.com/photo-1541480601022-2308c0f02487?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { I: 3 } },
+        { txt: "My clothes are always clean. This doesn't apply.", img: "https://images.unsplash.com/photo-1567113463300-102a7eb3cb26?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 2, B: 1 } },
+        { txt: "Hand wash just the essentials in the sink", img: "https://images.unsplash.com/photo-1775642545871-ba7503fec638?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { D: 3 } }
       ]
     },
     {
       q: "Pick the outfit you'd most like to wash",
-      type: "grid",
+      type: "img",
       opts: [
-        { txt: "Vintage silk blouse", emoji: "👘", scores: { A: 3, D: 1 } },
-        { txt: "A massive pile of gym kit", emoji: "🧢", scores: { C: 2, L: 1 } },
-        { txt: "Crumpled work shirts", emoji: "👔", scores: { B: 3 } },
-        { txt: "Jeans that haven't been washed in 6 months", emoji: "👖", scores: { I: 2, E: 1 } },
-        { txt: "Chunky wool jumper", emoji: "🧶", scores: { D: 2, A: 1 } },
-        { txt: "Everything in the basket in one go", emoji: "🧺", scores: { C: 3, J: 1 } }
+        { txt: "Vintage silk blouse from 1950", img: "https://images.unsplash.com/photo-1597533456455-39defa5bf390?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { A: 3, D: 1 } },
+        { txt: "A massive pile of stanky gym kit", img: "https://images.unsplash.com/photo-1698586252650-f0d15ff0c8da?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, L: 1 } },
+        { txt: "A coat with fur, leather and wool", img: "https://images.unsplash.com/photo-1704915049575-13b62dc7e812?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { H: 3, J: 1 } },
+        { txt: "Jeans from the clerb with suspicious stains", img: "https://images.unsplash.com/photo-1490551537373-f7a2d1f6fa82?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { K: 2, E: 1 } },
+        { txt: "Chunky wool jumper caked with mud", img: "https://images.unsplash.com/photo-1757234531806-daf38c07641a?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { D: 2, A: 1 } },
+        { txt: "Period stained undies, pants + sheets, all different materials", img: "https://images.unsplash.com/photo-1596418968852-b608095b6e2c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 3, G: 1 } }
       ]
     },
     {
       q: "Which laundry detergent are you reaching for?",
-      type: "grid",
+      type: "img",
       opts: [
-        { txt: "Ecover or Method", emoji: "🌱", scores: { G: 3 } },
-        { txt: "Homemade from soap nuts", emoji: "🌰", scores: { G: 3, D: 1 } },
-        { txt: "Whatever's on offer", emoji: "🛒", scores: { C: 2, I: 1 } },
-        { txt: "Specific one for each fabric type", emoji: "🧪", scores: { F: 3, A: 1 } },
-        { txt: "Whatever my mum uses. No questions.", scores: { I: 2, E: 1 } },
-        { txt: "Bold 3-in-1 pods — fast, simple, done", scores: { C: 2, K: 1 } }
+        { txt: "The newest eco-bougie one from ekoplaza", img: "https://images.unsplash.com/photo-1624372635310-01d078c05dd9?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { G: 3 } },
+        { txt: "Homemade from soap nuts obviously", img: "https://images.unsplash.com/photo-1612399200889-bc4208f0167c?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { G: 3, D: 1 } },
+        { txt: "Whatever's on offer, I am always broke", img: "https://images.unsplash.com/photo-1649005011845-ef225c89da86?q=80&w=1162&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, I: 1 } },
+        { txt: "A specific one for each fabric and colour type", img: "https://images.unsplash.com/photo-1635369306367-9d891c6c1a7c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 3, A: 1 } },
+        { txt: "Whatever my mum uses. I will die on that hill.", img: "https://images.unsplash.com/photo-1757087824089-bdb33ecc3439?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { I: 2, E: 1 } },
+        { txt: "3-in-1 pods — fast, simple, done", img: "https://images.unsplash.com/photo-1517441275572-cba86fee9357?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, K: 1 } }
       ]
     },
     {
@@ -510,9 +559,10 @@
       type: "list",
       opts: [
         { txt: "Cold for everything. Always. It's better for the planet.", scores: { L: 3 } },
-        { txt: "Whatever the label says", scores: { A: 3, F: 1 } },
+        { txt: "Whatever the label says — to the degree", scores: { A: 3, F: 1 } },
         { txt: "60°C. Everything. Always.", scores: { C: 3 } },
-        { txt: "30°C as a default, 40°C if I'm feeling rebellious", scores: { G: 2, F: 1 } },
+        { txt: "30°C as a default, 40°C if I'm feeling rebellious or tired", scores: { G: 2, F: 1 } },
+        { txt: "I go by vibes and feels only. Fucks cannot be found.", scores: { J: 2, C: 1 } },
         { txt: "I hand wash in cold water with a specific soap", scores: { D: 3 } }
       ]
     },
@@ -521,23 +571,47 @@
       type: "list",
       opts: [
         { txt: "Immediately. I set a timer.", scores: { F: 3, B: 1 } },
-        { txt: "Within the hour, probably", scores: { A: 2, G: 1 } },
-        { txt: "A few hours later when I remember", scores: { E: 2, K: 1 } },
+        { txt: "Within the hour, probably, if I'm not distracted", scores: { A: 2, G: 1 } },
+        { txt: "A few hours later when I remember, if I do", scores: { E: 2, K: 1 } },
         { txt: "Tomorrow morning when I need them", scores: { K: 3, E: 1 } },
         { txt: "I rewash them because I forgot. Again.", scores: { E: 3 } },
         { txt: "What machine? I've been hand washing.", scores: { D: 3 } }
       ]
     },
     {
-      q: "Finally: what is your relationship with ironing?",
+      q: "Pick a laundromat.",
+      type: "img",
+      opts: [
+        { txt: " ", img: "https://images.unsplash.com/photo-1730068276499-5225cb4f25a8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 2, A: 1 } },
+        { txt: " ", img: "https://images.unsplash.com/photo-1652664767434-9cf9447d499a?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, K: 1 } },
+        { txt: " ", img: "https://images.unsplash.com/photo-1536520872842-24a7ef829afc?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { G: 2, L: 1 } },
+        { txt: " ", img: "https://images.unsplash.com/photo-1514390539068-b9a370c31575?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { E: 2, I: 1 } },
+        { txt: " ", img: "https://images.unsplash.com/photo-1532916697008-5bc24f95592a?q=80&w=1580&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { B: 2, H: 1 } },
+        { txt: " ", img: "https://images.unsplash.com/photo-1744168915792-024b5af160b1?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { K: 2, D: 1 } }
+      ]
+    },
+    {
+      q: "How do you air your dirty laundry?",
       type: "list",
       opts: [
-        { txt: "I iron everything. Including socks. I enjoy it.", scores: { B: 3 } },
-        { txt: "Shirts only, when I absolutely have to", scores: { F: 1, A: 1 } },
-        { txt: "I shake things out and hang them up. Close enough.", scores: { G: 2, L: 1 } },
-        { txt: "I send stuff to the dry cleaner to avoid ironing", scores: { A: 2, I: 1 } },
-        { txt: "Ironing is a myth perpetuated by Big Iron", scores: { C: 2, J: 1 } },
-        { txt: "I haven't ironed since 2017 and I'm thriving", scores: { I: 3 } }
+        { txt: "My entire flat is my drying rack", scores: { E: 2, C: 1 } },
+        { txt: "Every sock gets an individual cloth peg", scores: { F: 3, B: 1 } },
+        { txt: "My wool is holy and has its own drying ceremony", scores: { D: 3, A: 1 } },
+        { txt: "I toss it in the dryer, I'm tired, okay?", scores: { I: 2, K: 1 } },
+        { txt: "On a drying rack. Sorted by type. Heavier items on the outside, delicates in the middle.", scores: { F: 2, G: 1 } },
+        { txt: "Loudly, on social media, in real time, with screenshots.", scores: { C: 2, H: 1 } }
+      ]
+    },
+    {
+      q: "What is your relationship with ironing?",
+      type: "img",
+      opts: [
+        { txt: "I iron everything. Including socks.", img: "https://images.unsplash.com/photo-1740684589228-54b6fba08985?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { B: 3 } },
+        { txt: "Shirts only, when I absolutely have to", img: "https://images.unsplash.com/photo-1714321960831-c8753b534400?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 1, A: 1 } },
+        { txt: "Shake things out and hang them up. Close enough.", img: "https://images.unsplash.com/photo-1558171813-4c088753af8f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { G: 2, L: 1 } },
+        { txt: "I send stuff to the dry cleaner to avoid ironing", img: "https://images.unsplash.com/photo-1609356773325-9c4b7e82e621?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { A: 2, I: 1 } },
+        { txt: "Ironing is a myth perpetuated by Big Iron", img: "https://images.unsplash.com/photo-1758279744970-b32360a5e907?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, J: 1 } },
+        { txt: "I slide my shirt on my iron machine while I drink my coffee", img: "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { B: 2, F: 1 } }
       ]
     }
   ];
@@ -556,7 +630,16 @@
     let html = `<div class="q-number">Question ${current + 1}</div>
       <div class="q-text">${q.q}</div>`;
 
-    if (q.type === 'grid') {
+    if (q.type === 'img') {
+      html += `<div class="photo-options">`;
+      q.opts.forEach((o, i) => {
+        html += `<div class="photo-opt" onclick="pick(${i})">
+          <img src="${o.img}" alt="${o.txt}" loading="lazy" />
+          <div class="photo-label">${o.txt}</div>
+        </div>`;
+      });
+      html += `</div>`;
+    } else if (q.type === 'grid') {
       html += `<div class="img-options">`;
       q.opts.forEach((o, i) => {
         html += `<div class="img-opt" onclick="pick(${i})">
@@ -585,7 +668,7 @@
     const chosen = q.opts[idx];
 
     // highlight
-    const btns = document.querySelectorAll('.opt-btn, .img-opt');
+    const btns = document.querySelectorAll('.opt-btn, .img-opt, .photo-opt');
     if (btns[idx]) btns[idx].classList.add('selected');
 
     // add scores
