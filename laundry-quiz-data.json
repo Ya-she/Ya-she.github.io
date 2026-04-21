@@ -1,0 +1,996 @@
+{
+  "meta": {
+    "version": "laundry-quiz-v1",
+    "title": "What's Your Laundry Personality?",
+    "subtitle": "12 questions. Possibly life-changing. Definitely accurate.",
+    "intro": "A playful quiz to reveal your deepest laundry instincts.",
+    "resultLabel": "Your laundry personality"
+  },
+  "scoring": {
+    "method": "highest-score-wins",
+    "tieBreaker": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L"
+    ]
+  },
+  "results": {
+    "A": {
+      "name": "The Wannabe Dry Cleaner",
+      "emoji": "🧴",
+      "description": "You treat your laundry like it's going to The Louvre. Every care label is a sacred text. You have Googled 'can I hand wash cashmere' no fewer than 47 times. Your washing machine is for other people. You're not other people.",
+      "traits": [
+        "Label Scholar",
+        "Fabric Whisperer",
+        "Overthinking Champion"
+      ]
+    },
+    "B": {
+      "name": "The Iron Hero",
+      "emoji": "👔",
+      "description": "You iron your socks. You iron your tea towels. You once ironed a paper bag 'just to see.' You find ironing deeply meditative and you have opinions about steam pressure that no one asked for and yet you will share them.",
+      "traits": [
+        "Steam Enthusiast",
+        "Crease Assassin",
+        "Secretly Loves Chores"
+      ]
+    },
+    "C": {
+      "name": "The Chaotic Hero",
+      "emoji": "🌀",
+      "description": "Everything goes in. One setting. One prayer. The reds, the whites, the wool jumper, the shoes — in they go. Somehow nothing has been ruined. You call this strategy. Everyone else calls it recklessness. You call them cowards.",
+      "traits": [
+        "Zero Regrets",
+        "60°C Loyalist",
+        "Chaos Gremlin"
+      ]
+    },
+    "D": {
+      "name": "The Hand-Wash Try-Hard",
+      "emoji": "🫧",
+      "description": "You have a dedicated basin. A special soap from a small French village. You believe machines are barbaric and your clothes agree. You know what 'gentle agitation' means and you use it in normal conversation.",
+      "traits": [
+        "Basin Devotee",
+        "Anti-Machine",
+        "Delicate Soul"
+      ]
+    },
+    "E": {
+      "name": "The ADHD Procrastinator",
+      "emoji": "🧠",
+      "description": "The laundry has been in the machine since Tuesday. You rewashed it three times because you forgot. You own 60 pairs of socks as a coping mechanism and you are still — somehow — out of clean socks.",
+      "traits": [
+        "Rewash Queen",
+        "Sock Hoarder",
+        "Tuesday is Relative"
+      ]
+    },
+    "F": {
+      "name": "The Laundry Scientist",
+      "emoji": "📋",
+      "description": "You have a colour-coded sorting system. A specific detergent for each fabric type. A laminated washing schedule. A spreadsheet. You don't just do laundry — you optimise it. Everyone in your house is both grateful and slightly scared.",
+      "traits": [
+        "Spreadsheet Brain",
+        "Sorting Genius",
+        "Scarily Organised"
+      ]
+    },
+    "G": {
+      "name": "The Eco Warrior",
+      "emoji": "🌿",
+      "description": "20 degrees only. Always. You make your own detergent from nuts and good intentions. You line-dry in January. You have a look — a very specific look — for people who use a tumble dryer. They know the look.",
+      "traits": [
+        "Cold Water Only",
+        "Nut Soap Creator",
+        "Silent Judge"
+      ]
+    },
+    "H": {
+      "name": "The Dry Clean Only Denier",
+      "emoji": "💸",
+      "description": "You see 'dry clean only' and think: challenge accepted. You have ruined 11 jumpers. You remain completely confident. 'It's fine,' you say, holding a shrunken cashmere that now fits a chihuahua. 'It's fine.'",
+      "traits": [
+        "Label Rebel",
+        "11 Jumpers Down",
+        "Eternal Optimist"
+      ]
+    },
+    "I": {
+      "name": "The Surrenderer",
+      "emoji": "🏳️",
+      "description": "You have not done laundry since 2019. You send it to a service, a parent, a partner, or you just buy new clothes when things get bad enough. Laundry is someone else's problem. You have made peace with this.",
+      "traits": [
+        "Delegation Expert",
+        "New Clothes Strategist",
+        "Zero Regrets"
+      ]
+    },
+    "J": {
+      "name": "The Label Ignorer",
+      "emoji": "🕵️",
+      "description": "You cut out every care label because they're 'scratchy and annoying.' You now have no idea what anything is made of. Is this wool? Polyester? Mystery fabric from a mystery land? Doesn't matter. In it goes.",
+      "traits": [
+        "Label Executioner",
+        "Mystery Fabric Fan",
+        "Living Dangerously"
+      ]
+    },
+    "K": {
+      "name": "The Midnight Launcher",
+      "emoji": "🌙",
+      "description": "It is 11pm. Somehow, again, you are only now starting laundry. You don't know how this keeps happening. The machine will finish at 1am. This is fine. This is a normal life. You'll deal with it tomorrow. Or Thursday.",
+      "traits": [
+        "Night Owl Washer",
+        "11pm Every Time",
+        "Tomorrow's Problem"
+      ]
+    },
+    "L": {
+      "name": "The Cold Water Cultist",
+      "emoji": "🧊",
+      "description": "Cold water for EVERYTHING. Your whites are grey and your colours are faded but your carbon footprint is thriving. You will explain the benefits of cold washing to anyone within earshot, solicited or not. The planet thanks you. Your shirts less so.",
+      "traits": [
+        "Cold Water Evangelist",
+        "Climate Champion",
+        "Grey Whites Haver"
+      ]
+    }
+  },
+  "questions": [
+    {
+      "id": "q1_it_s_laundry_day_how_do_you_sort_your_cl",
+      "kicker": "Question 1",
+      "prompt": "It's laundry day. How do you sort your clothes?",
+      "display": "img",
+      "answers": [
+        {
+          "id": "q1_i_have_a_colour_coded_6_bin_system",
+          "text": "I have a colour-coded 6-bin system",
+          "points": {
+            "F": 3
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1692576855758-318a1fa8ff6d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "I have a colour-coded 6-bin system"
+          }
+        },
+        {
+          "id": "q1_the_classic_trio_darks_lights_colours",
+          "text": "The classic trio: darks, lights, colours",
+          "points": {
+            "A": 2,
+            "F": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1550422399-51746f75d61b?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "The classic trio: darks, lights, colours"
+          }
+        },
+        {
+          "id": "q1_everything_in_what_s_the_worst_that_coul",
+          "text": "Everything in. What's the worst that could happen?",
+          "points": {
+            "C": 3,
+            "H": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1582735689283-7b70dbe630ea?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Everything in. What's the worst that could happen?"
+          }
+        },
+        {
+          "id": "q1_sort_i_just_sniff_and_decide",
+          "text": "Sort? I just sniff and decide",
+          "points": {
+            "C": 2,
+            "I": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1759997725398-462604656f13?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Sort? I just sniff and decide"
+          }
+        },
+        {
+          "id": "q1_i_hand_wash_everything_individually",
+          "text": "I hand wash everything individually",
+          "points": {
+            "D": 3
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1582452595604-a8cc65ba5660?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "I hand wash everything individually"
+          }
+        },
+        {
+          "id": "q1_i_sort_by_colour_and_textile_obviously",
+          "text": "I sort by colour AND textile, obviously",
+          "points": {
+            "F": 3,
+            "A": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1645088834234-82bc076d8774?q=80&w=522&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "I sort by colour AND textile, obviously"
+          }
+        }
+      ]
+    },
+    {
+      "id": "q2_you_spot_a_care_label_what_do_you_do",
+      "kicker": "Question 2",
+      "prompt": "You spot a care label. What do you do?",
+      "display": "img",
+      "answers": [
+        {
+          "id": "q2_read_it_twice_google_the_symbols_proceed",
+          "text": "Read it twice, Google the symbols, proceed with caution",
+          "points": {
+            "A": 3
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1649738701436-62ec0fc9f455?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Read it twice, Google the symbols, proceed with caution"
+          }
+        },
+        {
+          "id": "q2_study_the_label_but_i_know_better_anyway",
+          "text": "Study the label, but I know better anyway",
+          "points": {
+            "J": 2,
+            "H": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZG9pbmclMjBsYXVuZHJ5fGVufDB8fDB8fHwy",
+            "label": "Study the label, but I know better anyway"
+          }
+        },
+        {
+          "id": "q2_glance_at_it_and_do_whatever_i_was_going",
+          "text": "Glance at it and do whatever I was going to do anyway",
+          "points": {
+            "H": 2,
+            "C": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1627764843344-24b9c306e61b?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Glance at it and do whatever I was going to do anyway"
+          }
+        },
+        {
+          "id": "q2_i_cut_all_labels_out_they_re_scratchy_an",
+          "text": "I cut all labels out. They're scratchy and annoying.",
+          "points": {
+            "J": 3
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1655105742471-cca7195b12da?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "I cut all labels out. They're scratchy and annoying."
+          }
+        },
+        {
+          "id": "q2_follow_it_religiously_it_s_the_law",
+          "text": "Follow it religiously — it's the law",
+          "points": {
+            "F": 2,
+            "L": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1718128306989-a5bd41566cde?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Follow it religiously — it's the law"
+          }
+        },
+        {
+          "id": "q2_i_wash_everything_at_40_c_so_this_is_irr",
+          "text": "I wash everything at 40°C so this is irrelevant",
+          "points": {
+            "C": 2,
+            "L": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1639580133969-48cbbce72e1f?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "I wash everything at 40°C so this is irrelevant"
+          }
+        }
+      ]
+    },
+    {
+      "id": "q3_pick_a_colour",
+      "kicker": "Question 3",
+      "prompt": "Pick a colour.",
+      "display": "img",
+      "answers": [
+        {
+          "id": "q3_bubble_bath_pink",
+          "text": "Bubble Bath Pink",
+          "points": {
+            "E": 2,
+            "C": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1582794543462-0d7922e50cf5?q=80&w=654&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Bubble Bath Pink"
+          }
+        },
+        {
+          "id": "q3_white_wash_vanilla",
+          "text": "White Wash Vanilla",
+          "points": {
+            "A": 2,
+            "F": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1580596090683-f4711170117b?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "White Wash Vanilla"
+          }
+        },
+        {
+          "id": "q3_greenwash_moss",
+          "text": "Greenwash Moss",
+          "points": {
+            "G": 3
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1676731058927-28b7325c0241?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Greenwash Moss"
+          }
+        },
+        {
+          "id": "q3_lovey_wash_red",
+          "text": "Lovey Wash Red",
+          "points": {
+            "C": 2,
+            "H": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1559181567-c3190ca9959b?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Lovey Wash Red"
+          }
+        },
+        {
+          "id": "q3_detergent_blue",
+          "text": "Detergent Blue",
+          "points": {
+            "L": 2,
+            "F": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1568145675395-66a2eda0c6d7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Detergent Blue"
+          }
+        },
+        {
+          "id": "q3_midnight_spin_black",
+          "text": "Midnight Spin Black",
+          "points": {
+            "K": 2,
+            "I": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1622793139910-e261be0b30a4?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Midnight Spin Black"
+          }
+        }
+      ]
+    },
+    {
+      "id": "q4_a_red_sock_ends_up_in_your_white_wash_yo",
+      "kicker": "Question 4",
+      "prompt": "A red sock ends up in your white wash. Your reaction?",
+      "display": "list",
+      "answers": [
+        {
+          "id": "q4_i_don_t_know_this_has_never_happened_to_",
+          "text": "I don't know. This has never happened to me.",
+          "points": {
+            "F": 3,
+            "A": 1
+          }
+        },
+        {
+          "id": "q4_a_red_sock_does_not_bother_me_my_skills_",
+          "text": "A red sock does not bother me. My skills are superior.",
+          "points": {
+            "B": 2,
+            "J": 1
+          }
+        },
+        {
+          "id": "q4_embrace_the_pink_pink_is_great_actually",
+          "text": "Embrace the pink. Pink is great actually.",
+          "points": {
+            "C": 3
+          }
+        },
+        {
+          "id": "q4_cry_briefly_then_google_emergency_soluti",
+          "text": "Cry. Briefly. Then Google emergency solutions.",
+          "points": {
+            "A": 2,
+            "E": 1
+          }
+        },
+        {
+          "id": "q4_this_is_why_i_hand_wash_everything_separ",
+          "text": "This is why I hand wash everything separately",
+          "points": {
+            "D": 3
+          }
+        },
+        {
+          "id": "q4_give_up_and_go_to_bed_i_fucked_up",
+          "text": "Give up and go to bed, I fucked up.",
+          "points": {
+            "I": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q5_it_s_1am_you_suddenly_remember_you_need_",
+      "kicker": "Question 5",
+      "prompt": "It's 1am. You suddenly remember you need clean clothes tomorrow. What do you do?",
+      "display": "img",
+      "answers": [
+        {
+          "id": "q5_put_a_load_on_immediately",
+          "text": "Put a load on immediately",
+          "points": {
+            "K": 3
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1607523751675-a5c894ceb6bc?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Put a load on immediately"
+          }
+        },
+        {
+          "id": "q5_quick_wash_gentle_heater_drying_session",
+          "text": "Quick wash + gentle heater drying session",
+          "points": {
+            "F": 2,
+            "K": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1649105057951-e3006c21a664?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Quick wash + gentle heater drying session"
+          }
+        },
+        {
+          "id": "q5_sniff_test_everything_and_find_something",
+          "text": "Sniff test everything and find something acceptable",
+          "points": {
+            "E": 2,
+            "I": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1753161025126-34c0d643a468?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Sniff test everything and find something acceptable"
+          }
+        },
+        {
+          "id": "q5_this_is_tomorrow_s_problem_or_a_shopping",
+          "text": "This is tomorrow's problem. Or a shopping problem.",
+          "points": {
+            "I": 3
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1541480601022-2308c0f02487?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "This is tomorrow's problem. Or a shopping problem."
+          }
+        },
+        {
+          "id": "q5_my_clothes_are_always_clean_this_doesn_t",
+          "text": "My clothes are always clean. This doesn't apply.",
+          "points": {
+            "F": 2,
+            "B": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1567113463300-102a7eb3cb26?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "My clothes are always clean. This doesn't apply."
+          }
+        },
+        {
+          "id": "q5_hand_wash_just_the_essentials_in_the_sin",
+          "text": "Hand wash just the essentials in the sink",
+          "points": {
+            "D": 3
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1775642545871-ba7503fec638?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Hand wash just the essentials in the sink"
+          }
+        }
+      ]
+    },
+    {
+      "id": "q6_pick_the_outfit_you_d_most_like_to_wash",
+      "kicker": "Question 6",
+      "prompt": "Pick the outfit you'd most like to wash",
+      "display": "img",
+      "answers": [
+        {
+          "id": "q6_vintage_silk_blouse_from_1950",
+          "text": "Vintage silk blouse from 1950",
+          "points": {
+            "A": 3,
+            "D": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1597533456455-39defa5bf390?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Vintage silk blouse from 1950"
+          }
+        },
+        {
+          "id": "q6_a_massive_pile_of_stanky_gym_kit",
+          "text": "A massive pile of stanky gym kit",
+          "points": {
+            "C": 2,
+            "L": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1698586252650-f0d15ff0c8da?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "A massive pile of stanky gym kit"
+          }
+        },
+        {
+          "id": "q6_a_coat_with_fur_leather_and_wool",
+          "text": "A coat with fur, leather and wool",
+          "points": {
+            "H": 3,
+            "J": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1704915049575-13b62dc7e812?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "A coat with fur, leather and wool"
+          }
+        },
+        {
+          "id": "q6_jeans_from_the_clerb_with_suspicious_sta",
+          "text": "Jeans from the clerb with suspicious stains",
+          "points": {
+            "K": 2,
+            "E": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1490551537373-f7a2d1f6fa82?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Jeans from the clerb with suspicious stains"
+          }
+        },
+        {
+          "id": "q6_chunky_wool_jumper_caked_with_mud",
+          "text": "Chunky wool jumper caked with mud",
+          "points": {
+            "D": 2,
+            "A": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1757234531806-daf38c07641a?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Chunky wool jumper caked with mud"
+          }
+        },
+        {
+          "id": "q6_period_stained_undies_pants_sheets_all_d",
+          "text": "Period stained undies, pants + sheets, all different materials",
+          "points": {
+            "C": 3,
+            "G": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1596418968852-b608095b6e2c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Period stained undies, pants + sheets, all different materials"
+          }
+        }
+      ]
+    },
+    {
+      "id": "q7_which_laundry_detergent_are_you_reaching",
+      "kicker": "Question 7",
+      "prompt": "Which laundry detergent are you reaching for?",
+      "display": "img",
+      "answers": [
+        {
+          "id": "q7_the_newest_eco_bougie_one_from_ekoplaza",
+          "text": "The newest eco-bougie one from ekoplaza",
+          "points": {
+            "G": 3
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1624372635310-01d078c05dd9?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "The newest eco-bougie one from ekoplaza"
+          }
+        },
+        {
+          "id": "q7_homemade_from_soap_nuts_obviously",
+          "text": "Homemade from soap nuts obviously",
+          "points": {
+            "G": 3,
+            "D": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1612399200889-bc4208f0167c?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Homemade from soap nuts obviously"
+          }
+        },
+        {
+          "id": "q7_whatever_s_on_offer_i_am_always_broke",
+          "text": "Whatever's on offer, I am always broke",
+          "points": {
+            "C": 2,
+            "I": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1649005011845-ef225c89da86?q=80&w=1162&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Whatever's on offer, I am always broke"
+          }
+        },
+        {
+          "id": "q7_a_specific_one_for_each_fabric_and_colou",
+          "text": "A specific one for each fabric and colour type",
+          "points": {
+            "F": 3,
+            "A": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1635369306367-9d891c6c1a7c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "A specific one for each fabric and colour type"
+          }
+        },
+        {
+          "id": "q7_whatever_my_mum_uses_i_will_die_on_that_",
+          "text": "Whatever my mum uses. I will die on that hill.",
+          "points": {
+            "I": 2,
+            "E": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1757087824089-bdb33ecc3439?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Whatever my mum uses. I will die on that hill."
+          }
+        },
+        {
+          "id": "q7_3_in_1_pods_fast_simple_done",
+          "text": "3-in-1 pods — fast, simple, done",
+          "points": {
+            "C": 2,
+            "K": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1517441275572-cba86fee9357?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "3-in-1 pods — fast, simple, done"
+          }
+        }
+      ]
+    },
+    {
+      "id": "q8_what_temperature_do_you_wash_at",
+      "kicker": "Question 8",
+      "prompt": "What temperature do you wash at?",
+      "display": "list",
+      "answers": [
+        {
+          "id": "q8_cold_for_everything_always_it_s_better_f",
+          "text": "Cold for everything. Always. It's better for the planet.",
+          "points": {
+            "L": 3
+          }
+        },
+        {
+          "id": "q8_whatever_the_label_says_to_the_degree",
+          "text": "Whatever the label says — to the degree",
+          "points": {
+            "A": 3,
+            "F": 1
+          }
+        },
+        {
+          "id": "q8_60_c_everything_always",
+          "text": "60°C. Everything. Always.",
+          "points": {
+            "C": 3
+          }
+        },
+        {
+          "id": "q8_30_c_as_a_default_40_c_if_i_m_feeling_re",
+          "text": "30°C as a default, 40°C if I'm feeling rebellious or tired",
+          "points": {
+            "G": 2,
+            "F": 1
+          }
+        },
+        {
+          "id": "q8_i_go_by_vibes_and_feels_only_fucks_canno",
+          "text": "I go by vibes and feels only. Fucks cannot be found.",
+          "points": {
+            "J": 2,
+            "C": 1
+          }
+        },
+        {
+          "id": "q8_i_hand_wash_in_cold_water_with_a_specifi",
+          "text": "I hand wash in cold water with a specific soap",
+          "points": {
+            "D": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q9_your_clothes_are_done_when_do_you_take_t",
+      "kicker": "Question 9",
+      "prompt": "Your clothes are done. When do you take them out?",
+      "display": "list",
+      "answers": [
+        {
+          "id": "q9_immediately_i_set_a_timer",
+          "text": "Immediately. I set a timer.",
+          "points": {
+            "F": 3,
+            "B": 1
+          }
+        },
+        {
+          "id": "q9_within_the_hour_probably_if_i_m_not_dist",
+          "text": "Within the hour, probably, if I'm not distracted",
+          "points": {
+            "A": 2,
+            "G": 1
+          }
+        },
+        {
+          "id": "q9_a_few_hours_later_when_i_remember_if_i_d",
+          "text": "A few hours later when I remember, if I do",
+          "points": {
+            "E": 2,
+            "K": 1
+          }
+        },
+        {
+          "id": "q9_tomorrow_morning_when_i_need_them",
+          "text": "Tomorrow morning when I need them",
+          "points": {
+            "K": 3,
+            "E": 1
+          }
+        },
+        {
+          "id": "q9_i_rewash_them_because_i_forgot_again",
+          "text": "I rewash them because I forgot. Again.",
+          "points": {
+            "E": 3
+          }
+        },
+        {
+          "id": "q9_what_machine_i_ve_been_hand_washing",
+          "text": "What machine? I've been hand washing.",
+          "points": {
+            "D": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "q10_pick_a_laundromat",
+      "kicker": "Question 10",
+      "prompt": "Pick a laundromat.",
+      "display": "img",
+      "answers": [
+        {
+          "id": "q10_item",
+          "text": " ",
+          "points": {
+            "F": 2,
+            "A": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1730068276499-5225cb4f25a8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": " "
+          }
+        },
+        {
+          "id": "q10_item",
+          "text": " ",
+          "points": {
+            "C": 2,
+            "K": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1652664767434-9cf9447d499a?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": " "
+          }
+        },
+        {
+          "id": "q10_item",
+          "text": " ",
+          "points": {
+            "G": 2,
+            "L": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1536520872842-24a7ef829afc?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": " "
+          }
+        },
+        {
+          "id": "q10_item",
+          "text": " ",
+          "points": {
+            "E": 2,
+            "I": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1514390539068-b9a370c31575?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": " "
+          }
+        },
+        {
+          "id": "q10_item",
+          "text": " ",
+          "points": {
+            "B": 2,
+            "H": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1532916697008-5bc24f95592a?q=80&w=1580&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": " "
+          }
+        },
+        {
+          "id": "q10_item",
+          "text": " ",
+          "points": {
+            "K": 2,
+            "D": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1744168915792-024b5af160b1?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": " "
+          }
+        }
+      ]
+    },
+    {
+      "id": "q11_how_do_you_air_your_dirty_laundry",
+      "kicker": "Question 11",
+      "prompt": "How do you air your dirty laundry?",
+      "display": "list",
+      "answers": [
+        {
+          "id": "q11_my_entire_flat_is_my_drying_rack",
+          "text": "My entire flat is my drying rack",
+          "points": {
+            "E": 2,
+            "C": 1
+          }
+        },
+        {
+          "id": "q11_every_sock_gets_an_individual_cloth_peg",
+          "text": "Every sock gets an individual cloth peg",
+          "points": {
+            "F": 3,
+            "B": 1
+          }
+        },
+        {
+          "id": "q11_my_wool_is_holy_and_has_its_own_drying_c",
+          "text": "My wool is holy and has its own drying ceremony",
+          "points": {
+            "D": 3,
+            "A": 1
+          }
+        },
+        {
+          "id": "q11_i_toss_it_in_the_dryer_i_m_tired_okay",
+          "text": "I toss it in the dryer, I'm tired, okay?",
+          "points": {
+            "I": 2,
+            "K": 1
+          }
+        },
+        {
+          "id": "q11_on_a_drying_rack_sorted_by_type_heavier_",
+          "text": "On a drying rack. Sorted by type. Heavier items on the outside, delicates in the middle.",
+          "points": {
+            "F": 2,
+            "G": 1
+          }
+        },
+        {
+          "id": "q11_loudly_on_social_media_in_real_time_with",
+          "text": "Loudly, on social media, in real time, with screenshots.",
+          "points": {
+            "C": 2,
+            "H": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "q12_what_is_your_relationship_with_ironing",
+      "kicker": "Question 12",
+      "prompt": "What is your relationship with ironing?",
+      "display": "img",
+      "answers": [
+        {
+          "id": "q12_i_iron_everything_including_socks",
+          "text": "I iron everything. Including socks.",
+          "points": {
+            "B": 3
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1740684589228-54b6fba08985?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "I iron everything. Including socks."
+          }
+        },
+        {
+          "id": "q12_shirts_only_when_i_absolutely_have_to",
+          "text": "Shirts only, when I absolutely have to",
+          "points": {
+            "F": 1,
+            "A": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1714321960831-c8753b534400?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Shirts only, when I absolutely have to"
+          }
+        },
+        {
+          "id": "q12_shake_things_out_and_hang_them_up_close_",
+          "text": "Shake things out and hang them up. Close enough.",
+          "points": {
+            "G": 2,
+            "L": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1558171813-4c088753af8f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Shake things out and hang them up. Close enough."
+          }
+        },
+        {
+          "id": "q12_i_send_stuff_to_the_dry_cleaner_to_avoid",
+          "text": "I send stuff to the dry cleaner to avoid ironing",
+          "points": {
+            "A": 2,
+            "I": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1609356773325-9c4b7e82e621?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "I send stuff to the dry cleaner to avoid ironing"
+          }
+        },
+        {
+          "id": "q12_ironing_is_a_myth_perpetuated_by_big_iro",
+          "text": "Ironing is a myth perpetuated by Big Iron",
+          "points": {
+            "C": 2,
+            "J": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1758279744970-b32360a5e907?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "Ironing is a myth perpetuated by Big Iron"
+          }
+        },
+        {
+          "id": "q12_i_slide_my_shirt_on_my_iron_machine_whil",
+          "text": "I slide my shirt on my iron machine while I drink my coffee",
+          "points": {
+            "B": 2,
+            "F": 1
+          },
+          "image": {
+            "url": "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            "label": "I slide my shirt on my iron machine while I drink my coffee"
+          }
+        }
+      ]
+    }
+  ]
+}

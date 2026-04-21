@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta property="og:title" content="What Market-Based Instrument Are You?" />
-    <meta property="og:description" content="A BuzzFeed-style vibe check for the neoliberal valuation of nature." />
+    <meta property="og:title" content="What's Your Laundry Personality?" />
+    <meta property="og:description" content="A playful quiz to find out what kind of laundry energy you bring." />
     <meta property="og:type" content="website" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -14,11 +14,11 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    
+
     <title>What's Your Laundry Personality?</title>
     <meta
       name="description"
-      content="A playful quiz to find out which market-based environmental policy instrument matches your personality."
+      content="A playful laundry personality quiz."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,648 +26,359 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    
-    <style>
-      :root {
-        --bg: #f3f1e7;
-        --panel: #fbfaf5;
-        --panel-2: #f7f4ea;
-        --text: #1f3327;
-        --muted: #5a6b60;
-        --line: #d8dcc8;
-        --accent: #cfdabf;
-        --accent-strong: #54753a;
-        --accent-dark: #28412f;
-        --shadow: 0 18px 50px rgba(47, 64, 40, 0.12);
-        --radius-xl: 28px;
-        --radius-lg: 22px;
-        --radius-md: 16px;
-      }
-
-      * { box-sizing: border-box; }
-
-      body {
-        margin: 0;
-        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        color: var(--text);
-        background:
-          radial-gradient(circle at top left, rgba(125, 153, 98, 0.18), transparent 26%),
-          linear-gradient(180deg, #f1f2ea 0%, #ecefe3 100%);
-        min-height: 100vh;
-      }
-
-      .quiz-wrap {
-        width: min(920px, calc(100% - 32px));
-        margin: 24px auto 40px;
-      }
-
-      #quiz-screen,
-      #result-screen {
-        background: rgba(255, 255, 255, 0.38);
-        border: 1px solid rgba(216, 220, 200, 0.9);
-        border-radius: calc(var(--radius-xl) + 6px);
-        box-shadow: var(--shadow);
-        backdrop-filter: blur(3px);
-        padding: 18px;
-      }
-
-      .header,
-      .result-header {
-        background: var(--panel);
-        border-radius: var(--radius-xl);
-        padding: 28px 28px 30px;
-        box-shadow: 0 10px 30px rgba(35, 49, 30, 0.08);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .header::before,
-      .result-header::before {
-        content: '';
-        position: absolute;
-        inset: 0 0 auto 0;
-        height: 10px;
-        background: linear-gradient(90deg, var(--accent-strong), #4a5367);
-      }
-
-      .header-tag,
-      .result-tag,
-      .trait-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: var(--accent);
-        color: #244124;
-        border-radius: 999px;
-        padding: 10px 16px;
-        font-weight: 800;
-        font-size: 0.92rem;
-        line-height: 1;
-      }
-
-      h1,
-      .result-name {
-        margin: 22px 0 14px;
-        font-size: clamp(2.2rem, 6vw, 4.3rem);
-        line-height: 0.95;
-        letter-spacing: -0.05em;
-        font-weight: 800;
-        color: var(--text);
-      }
-
-      .header-sub,
-      .result-desc,
-      .q-text,
-      .progress-label,
-      .score-label,
-      .site-footer {
-        color: var(--muted);
-      }
-
-      .header-sub,
-      .result-desc {
-        font-size: clamp(1.05rem, 2.2vw, 1.4rem);
-        line-height: 1.55;
-        max-width: 48rem;
-      }
-
-      .progress-bar-wrap {
-        margin: 18px 2px 10px;
-        height: 12px;
-        background: rgba(207, 218, 191, 0.65);
-        border-radius: 999px;
-        overflow: hidden;
-      }
-
-      .progress-bar,
-      .score-fill {
-        height: 100%;
-        border-radius: inherit;
-        background: linear-gradient(90deg, var(--accent-strong), #748e57);
-        transition: width 0.25s ease;
-      }
-
-      .progress-label {
-        font-size: 0.96rem;
-        font-weight: 700;
-        margin: 0 4px 18px;
-      }
-
-      .q-card,
-      .result-body,
-      .score-section {
-        background: var(--panel);
-        border-radius: var(--radius-lg);
-        padding: 24px;
-        box-shadow: 0 10px 26px rgba(35, 49, 30, 0.06);
-      }
-
-      .q-number,
-      .score-title {
-        font-size: 0.92rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-weight: 800;
-        color: #486041;
-        margin-bottom: 10px;
-      }
-
-      .q-text {
-        font-size: clamp(1.4rem, 3vw, 2rem);
-        line-height: 1.18;
-        color: var(--text);
-        font-weight: 800;
-        margin-bottom: 18px;
-      }
-
-      .options,
-      .img-options,
-      .result-traits {
-        display: grid;
-        gap: 12px;
-      }
-
-      .opt-btn,
-      .img-opt,
-      .share-btn,
-      .retake-btn {
-        width: 100%;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: var(--panel-2);
-        color: var(--text);
-        padding: 16px 18px;
-        font: inherit;
-        text-align: left;
-        transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease, background 0.16s ease;
-      }
-
-      .opt-btn,
-      .img-opt {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        font-weight: 700;
-      }
-
-      .opt-btn:hover,
-      .img-opt:hover,
-      .share-btn:hover,
-      .retake-btn:hover {
-        transform: translateY(-1px);
-        border-color: #b5c3a2;
-        background: #fdfcf8;
-        box-shadow: 0 12px 24px rgba(39, 54, 34, 0.08);
-      }
-
-      .opt-letter {
-        width: 2rem;
-        height: 2rem;
-        display: inline-grid;
-        place-items: center;
-        flex: 0 0 2rem;
-        border-radius: 999px;
-        background: var(--accent);
-        color: #234023;
-        font-weight: 800;
-      }
-
-      .hidden { display: none !important; }
-
-      .result-wrap {
-        display: grid;
-        gap: 18px;
-      }
-
-      .result-emoji,
-      .big-emoji {
-        font-size: clamp(3rem, 7vw, 5rem);
-        line-height: 1;
-        margin-top: 16px;
-      }
-
-      .result-body {
-        display: grid;
-        gap: 18px;
-      }
-
-      .result-traits {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      }
-
-      .trait-pill {
-        justify-content: center;
-        padding: 12px 14px;
-        font-size: 0.95rem;
-      }
-
-      .score-section {
-        display: grid;
-        gap: 12px;
-      }
-
-      .score-row {
-        display: grid;
-        gap: 8px;
-      }
-
-      .score-label {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        font-size: 0.95rem;
-        font-weight: 700;
-      }
-
-      .score-track {
-        height: 12px;
-        border-radius: 999px;
-        background: rgba(207, 218, 191, 0.7);
-        overflow: hidden;
-      }
-
-      .share-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-      }
-
-      .share-btn,
-      .retake-btn {
-        width: auto;
-        min-width: 170px;
-        text-align: center;
-        font-weight: 800;
-        cursor: pointer;
-      }
-
-      .share-copy {
-        background: linear-gradient(90deg, #28412f, #36533a);
-        color: white;
-        border-color: transparent;
-      }
-
-      .share-copy:hover {
-        background: linear-gradient(90deg, #223529, #2d4630);
-      }
-
-      .img-options {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      }
-
-      .img-opt {
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-        min-height: 132px;
-      }
-
-      .img-label {
-        font-weight: 800;
-        color: var(--text);
-      }
-
-      .photo-options {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 12px;
-      }
-
-      .photo-opt {
-        width: 100%;
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        background: var(--panel-2);
-        color: var(--text);
-        padding: 0;
-        font: inherit;
-        text-align: left;
-        overflow: hidden;
-        cursor: pointer;
-        transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
-      }
-
-      .photo-opt:hover {
-        transform: translateY(-1px);
-        border-color: #b5c3a2;
-        box-shadow: 0 12px 24px rgba(39, 54, 34, 0.08);
-      }
-
-      .photo-opt.selected {
-        border-color: var(--accent-strong);
-        box-shadow: 0 0 0 3px var(--accent-strong);
-      }
-
-      .photo-opt img {
-        width: 100%;
-        aspect-ratio: 4/3;
-        object-fit: cover;
-        display: block;
-      }
-
-      .photo-opt .photo-label {
-        padding: 12px 14px;
-        font-weight: 800;
-        font-size: 0.95rem;
-        color: var(--text);
-      }
-
-      .site-footer {
-        text-align: center;
-        font-size: 0.95rem;
-        margin-top: 16px;
-        padding: 4px 8px;
-      }
-
-      .site-footer a {
-        color: #28412f;
-        font-weight: 700;
-      }
-
-      @media (max-width: 640px) {
-        .quiz-wrap {
-          width: min(100% - 20px, 920px);
-          margin-top: 12px;
-          margin-bottom: 24px;
-        }
-
-        #quiz-screen,
-        #result-screen {
-          padding: 12px;
-          border-radius: 24px;
-        }
-
-        .header,
-        .result-header,
-        .q-card,
-        .result-body,
-        .score-section {
-          padding: 20px;
-        }
-
-        .share-row {
-          flex-direction: column;
-        }
-
-        .share-btn,
-        .retake-btn {
-          width: 100%;
-        }
-      }
-    </style>
-
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body id="artifacts-component-root-html">
-  <div class="quiz-wrap">
+  <body>
+    <div class="page-shell">
+      <main class="container">
+        <section class="hero-card card">
+          <div class="hero-accent"></div>
+          <div class="hero-topline">
+            <span class="pill">Personality quiz</span>
+            <button class="link-button" id="how-to-play-button" type="button">How to play</button>
+          </div>
+          <h1 id="quiz-title">What's Your Laundry Personality?</h1>
+          <p class="subtitle" id="quiz-subtitle">12 questions. Possibly life-changing. Definitely accurate.</p>
+          <p class="intro" id="quiz-intro">Answer each question to discover your laundry alter ego.</p>
 
-  <div id="quiz-screen">
-    <div class="header">
-      <div class="header-tag">Personality Quiz</div>
-      <button class="link-button" id="how-to-play-button" type="button">How to play</button>
-      <h1>What's Your Laundry Personality?</h1>
-      <div class="header-sub">12 questions. Possibly life-changing. Definitely accurate.</div>
+          <div class="hero-actions compact-actions">
+            <button class="button button-secondary" id="clear-button" type="button">Restart quiz</button>
+          </div>
+        </section>
+
+        <section class="card main-panel" id="question-panel" hidden>
+          <header class="question-header">
+            <div>
+              <div class="kicker" id="question-kicker"></div>
+              <h2 class="question-title" id="question-title"></h2>
+            </div>
+            <div class="progress-block">
+              <div class="progress-label-row">
+                <span>Progress</span>
+                <span id="progress-text">0 / 0</span>
+              </div>
+              <div class="progress-track" aria-hidden="true">
+                <div class="progress-fill" id="progress-fill"></div>
+              </div>
+            </div>
+          </header>
+
+          <div class="answers-grid" id="answers-grid"></div>
+
+          <footer class="question-footer">
+            <button class="button button-secondary" id="back-button" type="button">Back</button>
+            <p class="footer-note">Pick the answer that feels most like you.</p>
+          </footer>
+        </section>
+
+        <section class="card result-panel" id="result-panel" hidden>
+          <div class="result-hero" id="result-hero">
+            <div class="result-label" id="result-label"></div>
+            <div class="result-icon" id="result-icon" aria-hidden="true"></div>
+            <h2 class="result-title" id="result-title"></h2>
+            <p class="result-subtitle" id="result-subtitle"></p>
+            <p class="result-description" id="result-description"></p>
+          </div>
+
+          <div class="result-body">
+            <section class="result-section">
+              <h3>Your traits</h3>
+              <div class="fit-list" id="fit-list"></div>
+            </section>
+
+            <section class="result-section">
+              <h3>Score breakdown</h3>
+              <div id="score-breakdown" class="score-breakdown"></div>
+            </section>
+
+            <div class="result-actions">
+              <button class="button button-primary" id="share-button" type="button">Copy result</button>
+              <button class="button button-secondary" id="retake-button" type="button">Retake quiz</button>
+              <button class="button button-secondary" id="clear-result-button" type="button">Start over</button>
+            </div>
+            <p class="share-feedback" id="share-feedback" role="status" aria-live="polite"></p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div>What's Your Laundry Personality? is a free browser game by <a href="https://www.linkedin.com/in/yashi-punia-%F0%9F%9F%A5-aa542922a/" target="_blank" rel="noopener noreferrer">Yashi Punia</a> with support from <a href="https://www.linkedin.com/company/obliqua-data/" target="_blank" rel="noopener noreferrer">Obliqua Data</a>.</div>
+        <div><a href="./about.html">About</a> · <a href="./privacy.html">Privacy</a> · <a href="./index.html">All quizzes</a></div>
+      </footer>
     </div>
-    <div class="progress-bar-wrap"><div class="progress-bar" id="prog-bar" style="width:0%"></div></div>
-    <div class="progress-label" id="prog-label">Question 1 of 10</div>
-    <div class="q-card" id="q-card"><div class="q-number">Question 1</div>
-      <div class="q-text">It's laundry day. How do you sort your clothes?</div><div class="options"><button class="opt-btn" onclick="pick(0)">
-          <span class="opt-letter">A</span>
-          <span>I have a colour-coded 6-bin system with labels</span>
-        </button><button class="opt-btn" onclick="pick(1)">
-          <span class="opt-letter">B</span>
-          <span>Darks, lights, colours — the classic trio</span>
-        </button><button class="opt-btn" onclick="pick(2)">
-          <span class="opt-letter">C</span>
-          <span>Everything in. What's the worst that could happen?</span>
-        </button><button class="opt-btn" onclick="pick(3)">
-          <span class="opt-letter">D</span>
-          <span>Sort? I just sniff and decide</span>
-        </button><button class="opt-btn" onclick="pick(4)">
-          <span class="opt-letter">E</span>
-          <span>I don't — I hand wash everything individually</span>
-        </button></div></div>
-  </div>
-
-  <div id="result-screen" class="result-wrap hidden"></div>
-
-  </div>
-
-  
-  <script>
-  let quizData = null;
-  let TYPES = {};
-  let LETTERS = [];
-  let questions = [];
-  let current = 0;
-  let scores = {};
-
-  function normalizeQuizData(data) {
-    quizData = data;
-    TYPES = Object.fromEntries(Object.entries(data.results).map(([key, value]) => [key, {
-      name: value.name,
-      emoji: value.emoji,
-      desc: value.description,
-      traits: value.traits || []
-    }]));
-    LETTERS = Object.keys(TYPES);
-    questions = data.questions.map((q) => ({
-      q: q.prompt,
-      type: q.display || (q.answers.some(a => a.image) ? 'img' : 'list'),
-      opts: q.answers.map((a) => ({
-        txt: a.text,
-        img: a.image ? a.image.url : undefined,
-        scores: a.points || {}
-      }))
-    }));
-    resetScores();
-    applyMeta();
-  }
-
-  function applyMeta() {
-    if (!quizData?.meta) return;
-    document.title = quizData.meta.title || document.title;
-    const h1 = document.querySelector('.header h1');
-    const sub = document.querySelector('.header-sub');
-    if (h1 && quizData.meta.title) h1.textContent = quizData.meta.title;
-    if (sub && quizData.meta.subtitle) sub.textContent = quizData.meta.subtitle;
-  }
-
-  function resetScores() {
-    scores = Object.fromEntries(LETTERS.map(letter => [letter, 0]));
-  }
-
-  function updateProgress() {
-    const pct = ((current) / questions.length) * 100;
-    document.getElementById('prog-bar').style.width = pct + '%';
-    document.getElementById('prog-label').textContent = `Question ${Math.min(current + 1, questions.length)} of ${questions.length}`;
-  }
-
-  function renderQ() {
-    updateProgress();
-    const q = questions[current];
-    const card = document.getElementById('q-card');
-    let html = `<div class="q-number">Question ${current + 1}</div><div class="q-text">${q.q}</div>`;
-
-    if (q.type === 'img') {
-      html += `<div class="photo-options">`;
-      q.opts.forEach((o, i) => {
-        html += `
-          <button class="photo-opt" onclick="pick(${i})">
-            ${o.img ? `<img src="${o.img}" alt="${o.txt}">` : ''}
-            <div class="photo-label">${o.txt}</div>
-          </button>`;
-      });
-      html += `</div>`;
-    } else {
-      html += `<div class="options">`;
-      q.opts.forEach((o, i) => {
-        html += `
-          <button class="opt-btn" onclick="pick(${i})">
-            <span class="opt-letter">${String.fromCharCode(65+i)}</span>
-            <span>${o.txt}</span>
-          </button>`;
-      });
-      html += `</div>`;
-    }
-
-    card.innerHTML = html;
-  }
-
-  function pick(idx) {
-    const q = questions[current];
-    const chosen = q.opts[idx];
-    const btns = document.querySelectorAll('.opt-btn, .img-opt, .photo-opt');
-    if (btns[idx]) btns[idx].classList.add('selected');
-
-    Object.entries(chosen.scores).forEach(([k, v]) => {
-      if (!(k in scores)) scores[k] = 0;
-      scores[k] += v;
-    });
-
-    setTimeout(() => {
-      current++;
-      if (current < questions.length) {
-        renderQ();
-      } else {
-        showResult();
-      }
-    }, 380);
-  }
-
-  function distributePercentages(values) {
-    const total = values.reduce((a, b) => a + b, 0);
-    if (!total) {
-      return values.map((_, i) => i === 0 ? 100 : 0);
-    }
-
-    const exact = values.map(v => (v / total) * 100);
-    const floors = exact.map(v => Math.floor(v));
-    let remainder = 100 - floors.reduce((a, b) => a + b, 0);
-
-    const ranked = exact
-      .map((v, i) => ({ i, frac: v - floors[i], raw: v }))
-      .sort((a, b) => b.frac - a.frac || b.raw - a.raw || a.i - b.i);
-
-    for (let n = 0; n < ranked.length && remainder > 0; n++, remainder--) {
-      floors[ranked[n].i] += 1;
-    }
-    return floors;
-  }
-
-  function showResult() {
-    document.getElementById('quiz-screen').classList.add('hidden');
-    const res = document.getElementById('result-screen');
-    res.classList.remove('hidden');
-
-    const sorted = LETTERS.slice().sort((a, b) => (scores[b] - scores[a]) || LETTERS.indexOf(a) - LETTERS.indexOf(b));
-    const winner = sorted[0];
-    const t = TYPES[winner];
-    const traitsHtml = t.traits.map(tr => `<span class="trait-pill">${tr}</span>`).join('');
-
-    const top5 = sorted.slice(0, 5);
-    const top5Scores = top5.map(k => scores[k]);
-    const top5Percents = distributePercentages(top5Scores);
-
-    const scoreRows = top5.map((k, i) => {
-      const pct = top5Percents[i];
-      return `<div class="score-row">
-        <div class="score-label"><span>${TYPES[k].emoji} ${TYPES[k].name}</span><span>${pct}%</span></div>
-        <div class="score-track"><div class="score-fill" style="width:${pct}%"></div></div>
-      </div>`;
-    }).join('');
-
-    res.innerHTML = `
-      <div class="result-header">
-        <div class="result-tag">You are...</div>
-        <div class="result-emoji">${t.emoji}</div>
-        <div class="result-name">${t.name}</div>
-      </div>
-      <div class="result-body">
-        <div class="result-desc">${t.desc}</div>
-        <div class="result-traits">${traitsHtml}</div>
-        <div class="score-section">
-          <div class="score-title">Your laundry DNA breakdown</div>
-          ${scoreRows}
-        </div>
-        <div class="share-row">
-          <button class="share-btn share-copy" onclick="copyResult('${t.emoji} ${t.name}', \`${t.desc.replace(/'/g, "\\'")} \`)" type="button">📋 Copy My Result</button>
-        </div>
-        <button class="retake-btn" onclick="retake()" type="button">🔄 Retake the Quiz</button>
-      </div>`;
-  }
-
-  function copyResult(name, desc) {
-    const txt = `I took the Laundry Personality Quiz and I'm: ${name}\n\n"${desc}"\n\nWhat are you? 🧺`;
-    navigator.clipboard.writeText(txt).then(() => {
-      const btn = document.querySelector('.share-copy');
-      if (!btn) return;
-      btn.textContent = '✅ Copied!';
-      setTimeout(() => btn.textContent = '📋 Copy My Result', 2000);
-    });
-  }
-
-  function retake() {
-    current = 0;
-    resetScores();
-    document.getElementById('result-screen').classList.add('hidden');
-    document.getElementById('quiz-screen').classList.remove('hidden');
-    renderQ();
-  }
-
-  async function initQuiz() {
-    try {
-      const response = await fetch('./data/laundry-quiz-data.json', { cache: 'no-store' });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const data = await response.json();
-      normalizeQuizData(data);
-      renderQ();
-    } catch (error) {
-      console.error('Could not load laundry quiz data.', error);
-      document.getElementById('q-card').innerHTML = `
-        <div class="q-number">Error</div>
-        <div class="q-text">Could not load laundry-quiz-data.json.</div>
-        <p class="header-sub">Make sure the HTML file and laundry-quiz-data.json are in the same folder.</p>`;
-      document.getElementById('prog-label').textContent = 'Quiz data not loaded';
-    }
-  }
-
-  initQuiz();
-  </script>
 
     <dialog class="modal" id="how-to-play-modal">
       <div class="modal-card">
         <button class="modal-close" id="close-how-to-play" type="button" aria-label="Close">×</button>
         <h2>How to play</h2>
-        <p>Answer each question by choosing the option that feels most like you. Each answer adds points to different market-based instruments. At the end, your highest score becomes your result.</p>
+        <p>Answer each question by choosing the option that feels most like you. Each answer adds points to different laundry personalities. At the end, your highest score becomes your result.</p>
         <p>If you refresh the page, the quiz starts again.</p>
       </div>
     </dialog>
 
+    <template id="answer-card-template">
+      <button class="answer-card" type="button">
+        <img class="answer-image" alt="" />
+        <div class="answer-content">
+          <h3 class="answer-text"></h3>
+          <p class="answer-helper">Choose this answer</p>
+        </div>
+      </button>
+    </template>
 
-    <footer class="site-footer">
-      <div>What's Your Laundry Personality? is a free browser game by <a href="https://www.linkedin.com/in/yashi-punia-%F0%9F%9F%A5-aa542922a/" target="_blank" rel="noopener noreferrer">Yashi Punia</a> with support from <a href="https://www.linkedin.com/company/obliqua-data/" target="_blank" rel="noopener noreferrer">Obliqua Data</a>.</div>
-      <div><a href="./about.html">About</a> · <a href="./privacy.html">Privacy</a> · <a href="./index.html">All quizzes</a></div>
-    </footer>
+    <script>
+      let quizData = null;
+      let currentQuestionIndex = 0;
+      let answers = [];
+      let scores = {};
+      let resultOrder = [];
 
+      const quizTitle = document.getElementById('quiz-title');
+      const quizSubtitle = document.getElementById('quiz-subtitle');
+      const quizIntro = document.getElementById('quiz-intro');
+      const questionPanel = document.getElementById('question-panel');
+      const resultPanel = document.getElementById('result-panel');
+      const questionKicker = document.getElementById('question-kicker');
+      const questionTitle = document.getElementById('question-title');
+      const progressText = document.getElementById('progress-text');
+      const progressFill = document.getElementById('progress-fill');
+      const answersGrid = document.getElementById('answers-grid');
+      const backButton = document.getElementById('back-button');
+      const clearButton = document.getElementById('clear-button');
+      const retakeButton = document.getElementById('retake-button');
+      const clearResultButton = document.getElementById('clear-result-button');
+      const shareButton = document.getElementById('share-button');
+      const shareFeedback = document.getElementById('share-feedback');
+      const answerCardTemplate = document.getElementById('answer-card-template');
+
+      const resultLabel = document.getElementById('result-label');
+      const resultIcon = document.getElementById('result-icon');
+      const resultTitle = document.getElementById('result-title');
+      const resultSubtitle = document.getElementById('result-subtitle');
+      const resultDescription = document.getElementById('result-description');
+      const fitList = document.getElementById('fit-list');
+      const scoreBreakdown = document.getElementById('score-breakdown');
+
+      const howToPlayButton = document.getElementById('how-to-play-button');
+      const howToPlayModal = document.getElementById('how-to-play-modal');
+      const closeHowToPlay = document.getElementById('close-how-to-play');
+
+      function resetScores() {
+        scores = {};
+        resultOrder = Object.keys(quizData.results);
+        for (const key of resultOrder) scores[key] = 0;
+      }
+
+      function applyMeta() {
+        if (!quizData?.meta) return;
+        if (quizData.meta.title) {
+          document.title = quizData.meta.title;
+          quizTitle.textContent = quizData.meta.title;
+        }
+        if (quizData.meta.subtitle) quizSubtitle.textContent = quizData.meta.subtitle;
+        if (quizData.meta.intro) quizIntro.textContent = quizData.meta.intro;
+      }
+
+      function calculateScores() {
+        resetScores();
+        answers.forEach((answerIndex, qIndex) => {
+          const answer = quizData.questions[qIndex].answers[answerIndex];
+          const points = answer.points || {};
+          for (const [key, value] of Object.entries(points)) {
+            if (!(key in scores)) scores[key] = 0;
+            scores[key] += Number(value) || 0;
+          }
+        });
+      }
+
+      function getSortedResults() {
+        const tieBreaker = quizData.scoring?.tieBreaker || resultOrder;
+        const tieIndex = new Map(tieBreaker.map((key, idx) => [key, idx]));
+        return Object.keys(scores).sort((a, b) => {
+          const diff = scores[b] - scores[a];
+          if (diff !== 0) return diff;
+          return (tieIndex.get(a) ?? 999) - (tieIndex.get(b) ?? 999);
+        });
+      }
+
+      function distributePercentages(values) {
+        const total = values.reduce((sum, value) => sum + value, 0);
+        if (!total) {
+          return values.map((_, index) => index === 0 ? 100 : 0);
+        }
+        const raw = values.map(value => (value / total) * 100);
+        const ints = raw.map(Math.floor);
+        let remainder = 100 - ints.reduce((sum, value) => sum + value, 0);
+        const ranked = raw
+          .map((value, index) => ({ index, frac: value - ints[index], raw: value }))
+          .sort((a, b) => b.frac - a.frac || b.raw - a.raw || a.index - b.index);
+        for (let i = 0; i < ranked.length && remainder > 0; i += 1, remainder -= 1) {
+          ints[ranked[i].index] += 1;
+        }
+        return ints;
+      }
+
+      function renderQuestion() {
+        const question = quizData.questions[currentQuestionIndex];
+        questionPanel.hidden = false;
+        resultPanel.hidden = true;
+
+        questionKicker.textContent = question.kicker || `Question ${currentQuestionIndex + 1}`;
+        questionTitle.textContent = question.prompt;
+        progressText.textContent = `${currentQuestionIndex + 1} / ${quizData.questions.length}`;
+        progressFill.style.width = `${((currentQuestionIndex + 1) / quizData.questions.length) * 100}%`;
+
+        answersGrid.innerHTML = '';
+        question.answers.forEach((answer, answerIndex) => {
+          const node = answerCardTemplate.content.firstElementChild.cloneNode(true);
+          const img = node.querySelector('.answer-image');
+          const text = node.querySelector('.answer-text');
+
+          text.textContent = answer.text;
+
+          if (answer.image?.url) {
+            img.src = answer.image.url;
+            img.alt = answer.image.label || answer.text;
+          } else {
+            img.remove();
+          }
+
+          node.addEventListener('click', () => {
+            answers[currentQuestionIndex] = answerIndex;
+            shareFeedback.textContent = '';
+            if (currentQuestionIndex < quizData.questions.length - 1) {
+              currentQuestionIndex += 1;
+              renderQuestion();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+              renderResult();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          });
+
+          answersGrid.appendChild(node);
+        });
+
+        backButton.disabled = currentQuestionIndex === 0;
+      }
+
+      function renderResult() {
+        calculateScores();
+        const sorted = getSortedResults();
+        const winnerKey = sorted[0];
+        const winner = quizData.results[winnerKey];
+
+        questionPanel.hidden = true;
+        resultPanel.hidden = false;
+
+        resultLabel.textContent = quizData.meta?.resultLabel || 'Your result';
+        resultIcon.textContent = winner.emoji || '';
+        resultTitle.textContent = winner.name || '';
+        resultSubtitle.textContent = winner.badge || '';
+        resultDescription.textContent = winner.description || '';
+
+        const palette = winner.palette || ['#dfeccf', '#fffaf0'];
+        document.getElementById('result-hero').style.background =
+          `linear-gradient(135deg, ${palette[1] || palette[0]}, #fffaf0)`;
+
+        fitList.innerHTML = '';
+        (winner.traits || winner.whyItFits || []).forEach(item => {
+          const div = document.createElement('div');
+          div.className = 'fit-item';
+          div.textContent = item;
+          fitList.appendChild(div);
+        });
+
+        const topKeys = sorted.slice(0, 5);
+        const topValues = topKeys.map(key => scores[key]);
+        const percentages = distributePercentages(topValues);
+
+        scoreBreakdown.innerHTML = '';
+        topKeys.forEach((key, index) => {
+          const row = document.createElement('div');
+          row.className = 'score-row';
+          row.innerHTML = `
+            <div>${quizData.results[key].emoji || ''} ${quizData.results[key].name}</div>
+            <div class="score-bar"><div class="score-bar-fill" style="width:${percentages[index]}%"></div></div>
+            <div>${percentages[index]}%</div>
+          `;
+          scoreBreakdown.appendChild(row);
+        });
+      }
+
+      function resetQuiz() {
+        currentQuestionIndex = 0;
+        answers = [];
+        resetScores();
+        shareFeedback.textContent = '';
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      async function copyResult() {
+        const sorted = getSortedResults();
+        const winnerKey = sorted[0];
+        const winner = quizData.results[winnerKey];
+        const topKeys = sorted.slice(0, 5);
+        const percentages = distributePercentages(topKeys.map(key => scores[key]));
+        const breakdown = topKeys
+          .map((key, index) => `${quizData.results[key].emoji || ''} ${quizData.results[key].name}: ${percentages[index]}%`)
+          .join('\n');
+
+        const text = `${quizData.meta?.resultLabel || 'Your result'}: ${winner.emoji || ''} ${winner.name}
+${winner.badge ? `Badge: ${winner.badge}` : ''}
+${winner.description ? `\n${winner.description}` : ''}
+
+Score breakdown:
+${breakdown}
+
+${location.origin}${location.pathname}`;
+
+        try {
+          await navigator.clipboard.writeText(text);
+          shareFeedback.textContent = 'Copied to clipboard.';
+        } catch (error) {
+          shareFeedback.textContent = 'Could not copy automatically.';
+        }
+      }
+
+      async function init() {
+        const response = await fetch('./laundry-quiz-data.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        quizData = await response.json();
+        applyMeta();
+        resetScores();
+        renderQuestion();
+      }
+
+      backButton.addEventListener('click', () => {
+        if (currentQuestionIndex === 0) return;
+        currentQuestionIndex -= 1;
+        renderQuestion();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      clearButton.addEventListener('click', resetQuiz);
+      retakeButton.addEventListener('click', resetQuiz);
+      clearResultButton.addEventListener('click', resetQuiz);
+      shareButton.addEventListener('click', copyResult);
+
+      howToPlayButton.addEventListener('click', () => howToPlayModal.showModal());
+      closeHowToPlay.addEventListener('click', () => howToPlayModal.close());
+      howToPlayModal.addEventListener('click', (event) => {
+        const rect = howToPlayModal.getBoundingClientRect();
+        const inside = rect.top <= event.clientY && event.clientY <= rect.top + rect.height
+          && rect.left <= event.clientX && event.clientX <= rect.left + rect.width;
+        if (!inside) howToPlayModal.close();
+      });
+
+      init().catch((error) => {
+        console.error(error);
+        questionPanel.hidden = false;
+        questionTitle.textContent = 'Could not load quiz data.';
+        questionKicker.textContent = 'Error';
+        answersGrid.innerHTML = '<p class="footer-note">Make sure laundry-quiz-data.json is in the same folder as laundry.html.</p>';
+      });
+    </script>
   </body>
 </html>
