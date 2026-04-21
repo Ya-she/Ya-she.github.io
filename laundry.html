@@ -636,7 +636,7 @@
 
   async function initQuiz() {
     try {
-      const response = await fetch('./laundry-quiz-data.json', { cache: 'no-store' });
+      const response = await fetch('./data/laundry-quiz-data.json', { cache: 'no-store' });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       normalizeQuizData(data);
