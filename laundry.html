@@ -28,7 +28,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body data-quiz-data-url="./data/laundry-quiz-data.json">
     <div class="page-shell">
       <main class="container">
         <section class="hero-card card">
@@ -45,6 +45,8 @@
             <button class="button button-secondary" id="clear-button" type="button">Restart quiz</button>
           </div>
         </section>
+
+        <div id="question-anchor" aria-hidden="true"></div>
 
         <section class="card main-panel" id="question-panel" hidden>
           <header class="question-header">
@@ -81,6 +83,11 @@
           </div>
 
           <div class="result-body">
+            <section class="result-section">
+              <h3>Your badge</h3>
+              <div class="badge-card" id="result-badge"></div>
+            </section>
+
             <section class="result-section">
               <h3>Your traits</h3>
               <div class="fit-list" id="fit-list"></div>
@@ -126,259 +133,6 @@
       </button>
     </template>
 
-    <script>
-      let quizData = null;
-      let currentQuestionIndex = 0;
-      let answers = [];
-      let scores = {};
-      let resultOrder = [];
-
-      const quizTitle = document.getElementById('quiz-title');
-      const quizSubtitle = document.getElementById('quiz-subtitle');
-      const quizIntro = document.getElementById('quiz-intro');
-      const questionPanel = document.getElementById('question-panel');
-      const resultPanel = document.getElementById('result-panel');
-      const questionKicker = document.getElementById('question-kicker');
-      const questionTitle = document.getElementById('question-title');
-      const progressText = document.getElementById('progress-text');
-      const progressFill = document.getElementById('progress-fill');
-      const answersGrid = document.getElementById('answers-grid');
-      const backButton = document.getElementById('back-button');
-      const clearButton = document.getElementById('clear-button');
-      const retakeButton = document.getElementById('retake-button');
-      const clearResultButton = document.getElementById('clear-result-button');
-      const shareButton = document.getElementById('share-button');
-      const shareFeedback = document.getElementById('share-feedback');
-      const answerCardTemplate = document.getElementById('answer-card-template');
-
-      const resultLabel = document.getElementById('result-label');
-      const resultIcon = document.getElementById('result-icon');
-      const resultTitle = document.getElementById('result-title');
-      const resultSubtitle = document.getElementById('result-subtitle');
-      const resultDescription = document.getElementById('result-description');
-      const fitList = document.getElementById('fit-list');
-      const scoreBreakdown = document.getElementById('score-breakdown');
-
-      const howToPlayButton = document.getElementById('how-to-play-button');
-      const howToPlayModal = document.getElementById('how-to-play-modal');
-      const closeHowToPlay = document.getElementById('close-how-to-play');
-
-      function resetScores() {
-        scores = {};
-        resultOrder = Object.keys(quizData.results);
-        for (const key of resultOrder) scores[key] = 0;
-      }
-
-      function applyMeta() {
-        if (!quizData?.meta) return;
-        if (quizData.meta.title) {
-          document.title = quizData.meta.title;
-          quizTitle.textContent = quizData.meta.title;
-        }
-        if (quizData.meta.subtitle) quizSubtitle.textContent = quizData.meta.subtitle;
-        if (quizData.meta.intro) quizIntro.textContent = quizData.meta.intro;
-      }
-
-      function calculateScores() {
-        resetScores();
-        answers.forEach((answerIndex, qIndex) => {
-          const answer = quizData.questions[qIndex].answers[answerIndex];
-          const points = answer.points || {};
-          for (const [key, value] of Object.entries(points)) {
-            if (!(key in scores)) scores[key] = 0;
-            scores[key] += Number(value) || 0;
-          }
-        });
-      }
-
-      function getSortedResults() {
-        const tieBreaker = quizData.scoring?.tieBreaker || resultOrder;
-        const tieIndex = new Map(tieBreaker.map((key, idx) => [key, idx]));
-        return Object.keys(scores).sort((a, b) => {
-          const diff = scores[b] - scores[a];
-          if (diff !== 0) return diff;
-          return (tieIndex.get(a) ?? 999) - (tieIndex.get(b) ?? 999);
-        });
-      }
-
-      function distributePercentages(values) {
-        const total = values.reduce((sum, value) => sum + value, 0);
-        if (!total) {
-          return values.map((_, index) => index === 0 ? 100 : 0);
-        }
-        const raw = values.map(value => (value / total) * 100);
-        const ints = raw.map(Math.floor);
-        let remainder = 100 - ints.reduce((sum, value) => sum + value, 0);
-        const ranked = raw
-          .map((value, index) => ({ index, frac: value - ints[index], raw: value }))
-          .sort((a, b) => b.frac - a.frac || b.raw - a.raw || a.index - b.index);
-        for (let i = 0; i < ranked.length && remainder > 0; i += 1, remainder -= 1) {
-          ints[ranked[i].index] += 1;
-        }
-        return ints;
-      }
-
-      function renderQuestion() {
-        const question = quizData.questions[currentQuestionIndex];
-        questionPanel.hidden = false;
-        resultPanel.hidden = true;
-
-        questionKicker.textContent = question.kicker || `Question ${currentQuestionIndex + 1}`;
-        questionTitle.textContent = question.prompt;
-        progressText.textContent = `${currentQuestionIndex + 1} / ${quizData.questions.length}`;
-        progressFill.style.width = `${((currentQuestionIndex + 1) / quizData.questions.length) * 100}%`;
-
-        answersGrid.innerHTML = '';
-        question.answers.forEach((answer, answerIndex) => {
-          const node = answerCardTemplate.content.firstElementChild.cloneNode(true);
-          const img = node.querySelector('.answer-image');
-          const text = node.querySelector('.answer-text');
-
-          text.textContent = answer.text;
-
-          if (answer.image?.url) {
-            img.src = answer.image.url;
-            img.alt = answer.image.label || answer.text;
-          } else {
-            img.remove();
-          }
-
-          node.addEventListener('click', () => {
-            answers[currentQuestionIndex] = answerIndex;
-            shareFeedback.textContent = '';
-            if (currentQuestionIndex < quizData.questions.length - 1) {
-              currentQuestionIndex += 1;
-              renderQuestion();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-              renderResult();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-          });
-
-          answersGrid.appendChild(node);
-        });
-
-        backButton.disabled = currentQuestionIndex === 0;
-      }
-
-      function renderResult() {
-        calculateScores();
-        const sorted = getSortedResults();
-        const winnerKey = sorted[0];
-        const winner = quizData.results[winnerKey];
-
-        questionPanel.hidden = true;
-        resultPanel.hidden = false;
-
-        resultLabel.textContent = quizData.meta?.resultLabel || 'Your result';
-        resultIcon.textContent = winner.emoji || '';
-        resultTitle.textContent = winner.name || '';
-        resultSubtitle.textContent = winner.badge || '';
-        resultDescription.textContent = winner.description || '';
-
-        const palette = winner.palette || ['#dfeccf', '#fffaf0'];
-        document.getElementById('result-hero').style.background =
-          `linear-gradient(135deg, ${palette[1] || palette[0]}, #fffaf0)`;
-
-        fitList.innerHTML = '';
-        (winner.traits || winner.whyItFits || []).forEach(item => {
-          const div = document.createElement('div');
-          div.className = 'fit-item';
-          div.textContent = item;
-          fitList.appendChild(div);
-        });
-
-        const topKeys = sorted.slice(0, 5);
-        const topValues = topKeys.map(key => scores[key]);
-        const percentages = distributePercentages(topValues);
-
-        scoreBreakdown.innerHTML = '';
-        topKeys.forEach((key, index) => {
-          const row = document.createElement('div');
-          row.className = 'score-row';
-          row.innerHTML = `
-            <div>${quizData.results[key].emoji || ''} ${quizData.results[key].name}</div>
-            <div class="score-bar"><div class="score-bar-fill" style="width:${percentages[index]}%"></div></div>
-            <div>${percentages[index]}%</div>
-          `;
-          scoreBreakdown.appendChild(row);
-        });
-      }
-
-      function resetQuiz() {
-        currentQuestionIndex = 0;
-        answers = [];
-        resetScores();
-        shareFeedback.textContent = '';
-        renderQuestion();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-
-      async function copyResult() {
-        const sorted = getSortedResults();
-        const winnerKey = sorted[0];
-        const winner = quizData.results[winnerKey];
-        const topKeys = sorted.slice(0, 5);
-        const percentages = distributePercentages(topKeys.map(key => scores[key]));
-        const breakdown = topKeys
-          .map((key, index) => `${quizData.results[key].emoji || ''} ${quizData.results[key].name}: ${percentages[index]}%`)
-          .join('\n');
-
-        const text = `${quizData.meta?.resultLabel || 'Your result'}: ${winner.emoji || ''} ${winner.name}
-${winner.badge ? `Badge: ${winner.badge}` : ''}
-${winner.description ? `\n${winner.description}` : ''}
-
-Score breakdown:
-${breakdown}
-
-${location.origin}${location.pathname}`;
-
-        try {
-          await navigator.clipboard.writeText(text);
-          shareFeedback.textContent = 'Copied to clipboard.';
-        } catch (error) {
-          shareFeedback.textContent = 'Could not copy automatically.';
-        }
-      }
-
-      async function init() {
-        const response = await fetch('./laundry-quiz-data.json', { cache: 'no-store' });
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        quizData = await response.json();
-        applyMeta();
-        resetScores();
-        renderQuestion();
-      }
-
-      backButton.addEventListener('click', () => {
-        if (currentQuestionIndex === 0) return;
-        currentQuestionIndex -= 1;
-        renderQuestion();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-
-      clearButton.addEventListener('click', resetQuiz);
-      retakeButton.addEventListener('click', resetQuiz);
-      clearResultButton.addEventListener('click', resetQuiz);
-      shareButton.addEventListener('click', copyResult);
-
-      howToPlayButton.addEventListener('click', () => howToPlayModal.showModal());
-      closeHowToPlay.addEventListener('click', () => howToPlayModal.close());
-      howToPlayModal.addEventListener('click', (event) => {
-        const rect = howToPlayModal.getBoundingClientRect();
-        const inside = rect.top <= event.clientY && event.clientY <= rect.top + rect.height
-          && rect.left <= event.clientX && event.clientX <= rect.left + rect.width;
-        if (!inside) howToPlayModal.close();
-      });
-
-      init().catch((error) => {
-        console.error(error);
-        questionPanel.hidden = false;
-        questionTitle.textContent = 'Could not load quiz data.';
-        questionKicker.textContent = 'Error';
-        answersGrid.innerHTML = '<p class="footer-note">Make sure laundry-quiz-data.json is in the same folder as laundry.html.</p>';
-      });
-    </script>
+        <script src="./scripts/script.js" defer></script>
   </body>
 </html>

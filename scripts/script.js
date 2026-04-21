@@ -1,4 +1,5 @@
-const DATA_URL = "data/quiz-data.json";
+const DEFAULT_DATA_URL = "data/quiz-data.json";
+const DATA_URL = document.body?.dataset?.quizDataUrl || DEFAULT_DATA_URL;
 const LEGACY_COOKIE_NAMES = ["nbs_quiz_state", "mbi_quiz_state", "mbi_quiz_state_mbi-quiz-v2"];
 
 let quizData = null;
@@ -38,6 +39,7 @@ const el = {
   howToPlayButton: document.getElementById("how-to-play-button"),
   howToPlayModal: document.getElementById("how-to-play-modal"),
   closeHowToPlay: document.getElementById("close-how-to-play"),
+  questionAnchor: document.getElementById("question-anchor"),
 };
 
 init();
@@ -57,7 +59,7 @@ async function init() {
   } catch (error) {
     if (el.title) el.title.textContent = "Could not load quiz";
     if (el.subtitle) {
-      el.subtitle.textContent = "Make sure the data folder and quiz-data.json file are uploaded with this page.";
+      el.subtitle.textContent = `Make sure ${DATA_URL} is uploaded with this page.`;
     }
     hideRestoreBanner();
     console.error(error);
@@ -65,7 +67,7 @@ async function init() {
 }
 
 function renderIntro() {
-  if (el.title) el.title.textContent = quizData.meta?.title || "What Market-Based Instrument Are You?";
+  if (el.title) el.title.textContent = quizData.meta?.title || document.title;
   if (el.subtitle) el.subtitle.textContent = quizData.meta?.subtitle || "";
   if (el.intro) el.intro.textContent = quizData.meta?.intro || "";
   document.title = quizData.meta?.title || document.title;
@@ -135,9 +137,13 @@ function renderQuestion() {
 
     if (text) text.textContent = answer.text;
     if (image) {
-      image.src = answer.image?.url || "";
-      image.alt = answer.image?.label || answer.text;
-      image.loading = "lazy";
+      if (answer.image?.url) {
+        image.src = answer.image.url;
+        image.alt = answer.image?.label || answer.text;
+        image.loading = "lazy";
+      } else {
+        image.remove();
+      }
     }
 
     if (selectedAnswers[currentQuestionIndex] === answer.id) {
@@ -155,6 +161,7 @@ function chooseAnswer(answerId) {
   if (currentQuestionIndex < quizData.questions.length - 1) {
     currentQuestionIndex += 1;
     renderQuestion();
+    scrollToQuizArea();
     return;
   }
 
@@ -168,6 +175,7 @@ function goBack() {
   currentQuestionIndex -= 1;
   finishedResultKey = null;
   renderQuestion();
+  scrollToQuizArea();
 }
 
 function calculateScores() {
@@ -211,15 +219,15 @@ function showResult(resultKey, options = {}) {
   const [startColor, endColor] = result.palette || ["#dfeccf", "#fffaf0"];
   if (el.resultHero) el.resultHero.style.background = `linear-gradient(135deg, ${startColor}, ${endColor})`;
   if (el.resultLabel) el.resultLabel.textContent = quizData.meta?.resultLabel || "Your result";
-  if (el.resultIcon) el.resultIcon.textContent = iconFor(resultKey);
-  if (el.resultTitle) el.resultTitle.textContent = result.name;
-  if (el.resultSubtitle) el.resultSubtitle.textContent = result.subtitle || "";
+  if (el.resultIcon) el.resultIcon.textContent = result.emoji || iconFor(resultKey);
+  if (el.resultTitle) el.resultTitle.textContent = result.name || "";
+  if (el.resultSubtitle) el.resultSubtitle.textContent = result.subtitle || result.badge || "";
   if (el.resultDescription) el.resultDescription.textContent = result.description || "";
-  if (el.resultBadge) el.resultBadge.textContent = result.badge || result.name;
+  if (el.resultBadge) el.resultBadge.textContent = result.badge || result.name || "";
 
   if (el.fitList) {
     el.fitList.innerHTML = "";
-    (result.whyItFits || []).forEach((item) => {
+    (result.whyItFits || result.traits || []).forEach((item) => {
       const div = document.createElement("div");
       div.className = "fit-item";
       div.textContent = item;
@@ -284,10 +292,11 @@ function buildShareText() {
   const scores = latestScores && Object.keys(latestScores).length ? latestScores : calculateScores();
   const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
   const highestScore = Math.max(1, ...sortedScores.map(([, score]) => score));
-  const resultLabel = quizData.meta?.resultLabel || "Your market-based instrument";
+  const resultLabel = quizData.meta?.resultLabel || "Your result";
   const url = "https://ya-she.github.io";
 
-  const whyThisFits = (result.whyItFits || [])
+  const fitHeading = result.whyItFits ? "Why this fits:" : "Traits:";
+  const fitLines = (result.whyItFits || result.traits || [])
     .map((item) => `• ${item}`)
     .join("\n");
 
@@ -300,19 +309,19 @@ function buildShareText() {
     .join("\n");
 
   return [
-    "What MBI Are You?",
+    quizData.meta?.title || "Quiz result",
     "",
-    `${resultLabel}: ${result.name}`,
-    `Your badge: ${result.badge || result.name}`,
+    `${resultLabel}: ${result.emoji || ""} ${result.name}`.trim(),
+    result.badge || result.subtitle ? `Your badge: ${result.badge || result.subtitle}` : "",
     "",
-    "Why this fits:",
-    whyThisFits,
+    fitHeading,
+    fitLines,
     "",
     "Score breakdown:",
     scoreBreakdown,
     "",
     url,
-  ].join("\n");
+  ].filter(Boolean).join("\n");
 }
 
 function scoreBar(percent) {
@@ -337,7 +346,7 @@ function hideRestoreBanner() {
 }
 
 function scrollToQuizArea() {
-  const target = el.questionPanel && !el.questionPanel.hidden ? el.questionPanel : el.resultPanel;
+  const target = el.questionPanel && !el.questionPanel.hidden ? (el.questionAnchor || el.questionPanel) : el.resultPanel;
   target?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
