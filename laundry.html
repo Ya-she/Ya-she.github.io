@@ -423,6 +423,7 @@
   <div id="quiz-screen">
     <div class="header">
       <div class="header-tag">Personality Quiz</div>
+      <button class="link-button" id="how-to-play-button" type="button">How to play</button>
       <h1>What's Your Laundry Personality?</h1>
       <div class="header-sub">12 questions. Possibly life-changing. Definitely accurate.</div>
     </div>
@@ -652,6 +653,15 @@
 
   initQuiz();
   </script>
+
+    <dialog class="modal" id="how-to-play-modal">
+      <div class="modal-card">
+        <button class="modal-close" id="close-how-to-play" type="button" aria-label="Close">×</button>
+        <h2>How to play</h2>
+        <p>Answer each question by choosing the option that feels most like you. Each answer adds points to different market-based instruments. At the end, your highest score becomes your result.</p>
+        <p>If you refresh the page, the quiz starts again.</p>
+      </div>
+    </dialog>
 
 
     <footer class="site-footer">
