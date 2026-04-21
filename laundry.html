@@ -451,211 +451,80 @@
 
   </div>
 
+  
   <script>
-  const TYPES = {
-    A: { name: "The Wannabe Dry Cleaner", emoji: "🧴", desc: "You treat your laundry like it's going to The Louvre. Every care label is a sacred text. You have Googled 'can I hand wash cashmere' no fewer than 47 times. Your washing machine is for other people. You're not other people.", traits: ["Label Scholar", "Fabric Whisperer", "Overthinking Champion"] },
-    B: { name: "The Iron Hero", emoji: "👔", desc: "You iron your socks. You iron your tea towels. You once ironed a paper bag 'just to see.' You find ironing deeply meditative and you have opinions about steam pressure that no one asked for and yet you will share them.", traits: ["Steam Enthusiast", "Crease Assassin", "Secretly Loves Chores"] },
-    C: { name: "The Chaotic Hero", emoji: "🌀", desc: "Everything goes in. One setting. One prayer. The reds, the whites, the wool jumper, the shoes — in they go. Somehow nothing has been ruined. You call this strategy. Everyone else calls it recklessness. You call them cowards.", traits: ["Zero Regrets", "60°C Loyalist", "Chaos Gremlin"] },
-    D: { name: "The Hand-Wash Try-Hard", emoji: "🫧", desc: "You have a dedicated basin. A special soap from a small French village. You believe machines are barbaric and your clothes agree. You know what 'gentle agitation' means and you use it in normal conversation.", traits: ["Basin Devotee", "Anti-Machine", "Delicate Soul"] },
-    E: { name: "The ADHD Procrastinator", emoji: "🧠", desc: "The laundry has been in the machine since Tuesday. You rewashed it three times because you forgot. You own 60 pairs of socks as a coping mechanism and you are still — somehow — out of clean socks.", traits: ["Rewash Queen", "Sock Hoarder", "Tuesday is Relative"] },
-    F: { name: "The Laundry Scientist", emoji: "📋", desc: "You have a colour-coded sorting system. A specific detergent for each fabric type. A laminated washing schedule. A spreadsheet. You don't just do laundry — you optimise it. Everyone in your house is both grateful and slightly scared.", traits: ["Spreadsheet Brain", "Sorting Genius", "Scarily Organised"] },
-    G: { name: "The Eco Warrior", emoji: "🌿", desc: "20 degrees only. Always. You make your own detergent from nuts and good intentions. You line-dry in January. You have a look — a very specific look — for people who use a tumble dryer. They know the look.", traits: ["Cold Water Only", "Nut Soap Creator", "Silent Judge"] },
-    H: { name: "The Dry Clean Only Denier", emoji: "💸", desc: "You see 'dry clean only' and think: challenge accepted. You have ruined 11 jumpers. You remain completely confident. 'It's fine,' you say, holding a shrunken cashmere that now fits a chihuahua. 'It's fine.'", traits: ["Label Rebel", "11 Jumpers Down", "Eternal Optimist"] },
-    I: { name: "The Surrenderer", emoji: "🏳️", desc: "You have not done laundry since 2019. You send it to a service, a parent, a partner, or you just buy new clothes when things get bad enough. Laundry is someone else's problem. You have made peace with this.", traits: ["Delegation Expert", "New Clothes Strategist", "Zero Regrets"] },
-    J: { name: "The Label Ignorer", emoji: "🕵️", desc: "You cut out every care label because they're 'scratchy and annoying.' You now have no idea what anything is made of. Is this wool? Polyester? Mystery fabric from a mystery land? Doesn't matter. In it goes.", traits: ["Label Executioner", "Mystery Fabric Fan", "Living Dangerously"] },
-    K: { name: "The Midnight Launcher", emoji: "🌙", desc: "It is 11pm. Somehow, again, you are only now starting laundry. You don't know how this keeps happening. The machine will finish at 1am. This is fine. This is a normal life. You'll deal with it tomorrow. Or Thursday.", traits: ["Night Owl Washer", "11pm Every Time", "Tomorrow's Problem"] },
-    L: { name: "The Cold Water Cultist", emoji: "🧊", desc: "Cold water for EVERYTHING. Your whites are grey and your colours are faded but your carbon footprint is thriving. You will explain the benefits of cold washing to anyone within earshot, solicited or not. The planet thanks you. Your shirts less so.", traits: ["Cold Water Evangelist", "Climate Champion", "Grey Whites Haver"] }
-  };
-
-  const LETTERS = Object.keys(TYPES);
-
-  const questions = [
-    {
-      q: "It's laundry day. How do you sort your clothes?",
-      type: "img",
-      opts: [
-        { txt: "I have a colour-coded 6-bin system", img: "https://images.unsplash.com/photo-1692576855758-318a1fa8ff6d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 3 } },
-        { txt: "The classic trio: darks, lights, colours", img: "https://images.unsplash.com/photo-1550422399-51746f75d61b?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { A: 2, F: 1 } },
-        { txt: "Everything in. What's the worst that could happen?", img: "https://images.unsplash.com/photo-1582735689283-7b70dbe630ea?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 3, H: 1 } },
-        { txt: "Sort? I just sniff and decide", img: "https://images.unsplash.com/photo-1759997725398-462604656f13?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, I: 1 } },
-        { txt: "I hand wash everything individually", img: "https://images.unsplash.com/photo-1582452595604-a8cc65ba5660?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { D: 3 } },
-        { txt: "I sort by colour AND textile, obviously", img: "https://images.unsplash.com/photo-1645088834234-82bc076d8774?q=80&w=522&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 3, A: 1 } }
-      ]
-    },
-    {
-      q: "You spot a care label. What do you do?",
-      type: "img",
-      opts: [
-        { txt: "Read it twice, Google the symbols, proceed with caution", img: "https://images.unsplash.com/photo-1649738701436-62ec0fc9f455?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { A: 3 } },
-        { txt: "Study the label, but I know better anyway", img: "https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZG9pbmclMjBsYXVuZHJ5fGVufDB8fDB8fHwy", scores: { J: 2, H: 1 } },
-        { txt: "Glance at it and do whatever I was going to do anyway", img: "https://images.unsplash.com/photo-1627764843344-24b9c306e61b?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { H: 2, C: 1 } },
-        { txt: "I cut all labels out. They're scratchy and annoying.", img: "https://images.unsplash.com/photo-1655105742471-cca7195b12da?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { J: 3 } },
-        { txt: "Follow it religiously — it's the law", img: "https://images.unsplash.com/photo-1718128306989-a5bd41566cde?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 2, L: 1 } },
-        { txt: "I wash everything at 40°C so this is irrelevant", img: "https://images.unsplash.com/photo-1639580133969-48cbbce72e1f?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, L: 1 } }
-      ]
-    },
-    {
-      q: "Pick a colour.",
-      type: "img",
-      opts: [
-        { txt: "Bubble Bath Pink", img: "https://images.unsplash.com/photo-1582794543462-0d7922e50cf5?q=80&w=654&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { E: 2, C: 1 } },
-        { txt: "White Wash Vanilla", img: "https://images.unsplash.com/photo-1580596090683-f4711170117b?q=80&w=776&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { A: 2, F: 1 } },
-        { txt: "Greenwash Moss", img: "https://images.unsplash.com/photo-1676731058927-28b7325c0241?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { G: 3 } },
-        { txt: "Lovey Wash Red", img: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, H: 1 } },
-        { txt: "Detergent Blue", img: "https://images.unsplash.com/photo-1568145675395-66a2eda0c6d7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { L: 2, F: 1 } },
-        { txt: "Midnight Spin Black", img: "https://images.unsplash.com/photo-1622793139910-e261be0b30a4?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { K: 2, I: 1 } }
-      ]
-    },
-    {
-      q: "A red sock ends up in your white wash. Your reaction?",
-      type: "list",
-      opts: [
-        { txt: "I don't know. This has never happened to me.", scores: { F: 3, A: 1 } },
-        { txt: "A red sock does not bother me. My skills are superior.", scores: { B: 2, J: 1 } },
-        { txt: "Embrace the pink. Pink is great actually.", scores: { C: 3 } },
-        { txt: "Cry. Briefly. Then Google emergency solutions.", scores: { A: 2, E: 1 } },
-        { txt: "This is why I hand wash everything separately", scores: { D: 3 } },
-        { txt: "Give up and go to bed, I fucked up.", scores: { I: 3 } }
-      ]
-    },
-    {
-      q: "It's 1am. You suddenly remember you need clean clothes tomorrow. What do you do?",
-      type: "img",
-      opts: [
-        { txt: "Put a load on immediately", img: "https://images.unsplash.com/photo-1607523751675-a5c894ceb6bc?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { K: 3 } },
-        { txt: "Quick wash + gentle heater drying session", img: "https://images.unsplash.com/photo-1649105057951-e3006c21a664?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 2, K: 1 } },
-        { txt: "Sniff test everything and find something acceptable", img: "https://images.unsplash.com/photo-1753161025126-34c0d643a468?q=80&w=2062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { E: 2, I: 1 } },
-        { txt: "This is tomorrow's problem. Or a shopping problem.", img: "https://images.unsplash.com/photo-1541480601022-2308c0f02487?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { I: 3 } },
-        { txt: "My clothes are always clean. This doesn't apply.", img: "https://images.unsplash.com/photo-1567113463300-102a7eb3cb26?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 2, B: 1 } },
-        { txt: "Hand wash just the essentials in the sink", img: "https://images.unsplash.com/photo-1775642545871-ba7503fec638?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { D: 3 } }
-      ]
-    },
-    {
-      q: "Pick the outfit you'd most like to wash",
-      type: "img",
-      opts: [
-        { txt: "Vintage silk blouse from 1950", img: "https://images.unsplash.com/photo-1597533456455-39defa5bf390?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { A: 3, D: 1 } },
-        { txt: "A massive pile of stanky gym kit", img: "https://images.unsplash.com/photo-1698586252650-f0d15ff0c8da?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, L: 1 } },
-        { txt: "A coat with fur, leather and wool", img: "https://images.unsplash.com/photo-1704915049575-13b62dc7e812?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { H: 3, J: 1 } },
-        { txt: "Jeans from the clerb with suspicious stains", img: "https://images.unsplash.com/photo-1490551537373-f7a2d1f6fa82?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { K: 2, E: 1 } },
-        { txt: "Chunky wool jumper caked with mud", img: "https://images.unsplash.com/photo-1757234531806-daf38c07641a?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { D: 2, A: 1 } },
-        { txt: "Period stained undies, pants + sheets, all different materials", img: "https://images.unsplash.com/photo-1596418968852-b608095b6e2c?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 3, G: 1 } }
-      ]
-    },
-    {
-      q: "Which laundry detergent are you reaching for?",
-      type: "img",
-      opts: [
-        { txt: "The newest eco-bougie one from ekoplaza", img: "https://images.unsplash.com/photo-1624372635310-01d078c05dd9?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { G: 3 } },
-        { txt: "Homemade from soap nuts obviously", img: "https://images.unsplash.com/photo-1612399200889-bc4208f0167c?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { G: 3, D: 1 } },
-        { txt: "Whatever's on offer, I am always broke", img: "https://images.unsplash.com/photo-1649005011845-ef225c89da86?q=80&w=1162&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, I: 1 } },
-        { txt: "A specific one for each fabric and colour type", img: "https://images.unsplash.com/photo-1635369306367-9d891c6c1a7c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 3, A: 1 } },
-        { txt: "Whatever my mum uses. I will die on that hill.", img: "https://images.unsplash.com/photo-1757087824089-bdb33ecc3439?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { I: 2, E: 1 } },
-        { txt: "3-in-1 pods — fast, simple, done", img: "https://images.unsplash.com/photo-1517441275572-cba86fee9357?q=80&w=1160&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, K: 1 } }
-      ]
-    },
-    {
-      q: "What temperature do you wash at?",
-      type: "list",
-      opts: [
-        { txt: "Cold for everything. Always. It's better for the planet.", scores: { L: 3 } },
-        { txt: "Whatever the label says — to the degree", scores: { A: 3, F: 1 } },
-        { txt: "60°C. Everything. Always.", scores: { C: 3 } },
-        { txt: "30°C as a default, 40°C if I'm feeling rebellious or tired", scores: { G: 2, F: 1 } },
-        { txt: "I go by vibes and feels only. Fucks cannot be found.", scores: { J: 2, C: 1 } },
-        { txt: "I hand wash in cold water with a specific soap", scores: { D: 3 } }
-      ]
-    },
-    {
-      q: "Your clothes are done. When do you take them out?",
-      type: "list",
-      opts: [
-        { txt: "Immediately. I set a timer.", scores: { F: 3, B: 1 } },
-        { txt: "Within the hour, probably, if I'm not distracted", scores: { A: 2, G: 1 } },
-        { txt: "A few hours later when I remember, if I do", scores: { E: 2, K: 1 } },
-        { txt: "Tomorrow morning when I need them", scores: { K: 3, E: 1 } },
-        { txt: "I rewash them because I forgot. Again.", scores: { E: 3 } },
-        { txt: "What machine? I've been hand washing.", scores: { D: 3 } }
-      ]
-    },
-    {
-      q: "Pick a laundromat.",
-      type: "img",
-      opts: [
-        { txt: " ", img: "https://images.unsplash.com/photo-1730068276499-5225cb4f25a8?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 2, A: 1 } },
-        { txt: " ", img: "https://images.unsplash.com/photo-1652664767434-9cf9447d499a?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, K: 1 } },
-        { txt: " ", img: "https://images.unsplash.com/photo-1536520872842-24a7ef829afc?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { G: 2, L: 1 } },
-        { txt: " ", img: "https://images.unsplash.com/photo-1514390539068-b9a370c31575?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { E: 2, I: 1 } },
-        { txt: " ", img: "https://images.unsplash.com/photo-1532916697008-5bc24f95592a?q=80&w=1580&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { B: 2, H: 1 } },
-        { txt: " ", img: "https://images.unsplash.com/photo-1744168915792-024b5af160b1?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { K: 2, D: 1 } }
-      ]
-    },
-    {
-      q: "How do you air your dirty laundry?",
-      type: "list",
-      opts: [
-        { txt: "My entire flat is my drying rack", scores: { E: 2, C: 1 } },
-        { txt: "Every sock gets an individual cloth peg", scores: { F: 3, B: 1 } },
-        { txt: "My wool is holy and has its own drying ceremony", scores: { D: 3, A: 1 } },
-        { txt: "I toss it in the dryer, I'm tired, okay?", scores: { I: 2, K: 1 } },
-        { txt: "On a drying rack. Sorted by type. Heavier items on the outside, delicates in the middle.", scores: { F: 2, G: 1 } },
-        { txt: "Loudly, on social media, in real time, with screenshots.", scores: { C: 2, H: 1 } }
-      ]
-    },
-    {
-      q: "What is your relationship with ironing?",
-      type: "img",
-      opts: [
-        { txt: "I iron everything. Including socks.", img: "https://images.unsplash.com/photo-1740684589228-54b6fba08985?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { B: 3 } },
-        { txt: "Shirts only, when I absolutely have to", img: "https://images.unsplash.com/photo-1714321960831-c8753b534400?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { F: 1, A: 1 } },
-        { txt: "Shake things out and hang them up. Close enough.", img: "https://images.unsplash.com/photo-1558171813-4c088753af8f?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { G: 2, L: 1 } },
-        { txt: "I send stuff to the dry cleaner to avoid ironing", img: "https://images.unsplash.com/photo-1609356773325-9c4b7e82e621?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { A: 2, I: 1 } },
-        { txt: "Ironing is a myth perpetuated by Big Iron", img: "https://images.unsplash.com/photo-1758279744970-b32360a5e907?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { C: 2, J: 1 } },
-        { txt: "I slide my shirt on my iron machine while I drink my coffee", img: "https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", scores: { B: 2, F: 1 } }
-      ]
-    }
-  ];
-
+  let quizData = null;
+  let TYPES = {};
+  let LETTERS = [];
+  let questions = [];
   let current = 0;
   let scores = {};
-  LETTERS.forEach(l => scores[l] = 0);
+
+  function normalizeQuizData(data) {
+    quizData = data;
+    TYPES = Object.fromEntries(Object.entries(data.results).map(([key, value]) => [key, {
+      name: value.name,
+      emoji: value.emoji,
+      desc: value.description,
+      traits: value.traits || []
+    }]));
+    LETTERS = Object.keys(TYPES);
+    questions = data.questions.map((q) => ({
+      q: q.prompt,
+      type: q.display || (q.answers.some(a => a.image) ? 'img' : 'list'),
+      opts: q.answers.map((a) => ({
+        txt: a.text,
+        img: a.image ? a.image.url : undefined,
+        scores: a.points || {}
+      }))
+    }));
+    resetScores();
+    applyMeta();
+  }
+
+  function applyMeta() {
+    if (!quizData?.meta) return;
+    document.title = quizData.meta.title || document.title;
+    const h1 = document.querySelector('.header h1');
+    const sub = document.querySelector('.header-sub');
+    if (h1 && quizData.meta.title) h1.textContent = quizData.meta.title;
+    if (sub && quizData.meta.subtitle) sub.textContent = quizData.meta.subtitle;
+  }
+
+  function resetScores() {
+    scores = Object.fromEntries(LETTERS.map(letter => [letter, 0]));
+  }
+
+  function updateProgress() {
+    const pct = ((current) / questions.length) * 100;
+    document.getElementById('prog-bar').style.width = pct + '%';
+    document.getElementById('prog-label').textContent = `Question ${Math.min(current + 1, questions.length)} of ${questions.length}`;
+  }
 
   function renderQ() {
+    updateProgress();
     const q = questions[current];
-    const pct = (current / questions.length) * 100;
-    document.getElementById('prog-bar').style.width = pct + '%';
-    document.getElementById('prog-label').textContent = `Question ${current + 1} of ${questions.length}`;
-
     const card = document.getElementById('q-card');
-    let html = `<div class="q-number">Question ${current + 1}</div>
-      <div class="q-text">${q.q}</div>`;
+    let html = `<div class="q-number">Question ${current + 1}</div><div class="q-text">${q.q}</div>`;
 
     if (q.type === 'img') {
       html += `<div class="photo-options">`;
       q.opts.forEach((o, i) => {
-        html += `<div class="photo-opt" onclick="pick(${i})">
-          <img src="${o.img}" alt="${o.txt}" loading="lazy" />
-          <div class="photo-label">${o.txt}</div>
-        </div>`;
-      });
-      html += `</div>`;
-    } else if (q.type === 'grid') {
-      html += `<div class="img-options">`;
-      q.opts.forEach((o, i) => {
-        html += `<div class="img-opt" onclick="pick(${i})">
-          <span class="big-emoji">${o.emoji}</span>
-          <div class="img-label">${o.txt}</div>
-        </div>`;
+        html += `
+          <button class="photo-opt" onclick="pick(${i})">
+            ${o.img ? `<img src="${o.img}" alt="${o.txt}">` : ''}
+            <div class="photo-label">${o.txt}</div>
+          </button>`;
       });
       html += `</div>`;
     } else {
       html += `<div class="options">`;
-      const letters = ['A','B','C','D','E','F'];
       q.opts.forEach((o, i) => {
-        html += `<button class="opt-btn" onclick="pick(${i})">
-          <span class="opt-letter">${letters[i]}</span>
-          <span>${o.txt}</span>
-        </button>`;
+        html += `
+          <button class="opt-btn" onclick="pick(${i})">
+            <span class="opt-letter">${String.fromCharCode(65+i)}</span>
+            <span>${o.txt}</span>
+          </button>`;
       });
       html += `</div>`;
     }
@@ -666,13 +535,13 @@
   function pick(idx) {
     const q = questions[current];
     const chosen = q.opts[idx];
-
-    // highlight
     const btns = document.querySelectorAll('.opt-btn, .img-opt, .photo-opt');
     if (btns[idx]) btns[idx].classList.add('selected');
 
-    // add scores
-    Object.entries(chosen.scores).forEach(([k, v]) => { scores[k] += v; });
+    Object.entries(chosen.scores).forEach(([k, v]) => {
+      if (!(k in scores)) scores[k] = 0;
+      scores[k] += v;
+    });
 
     setTimeout(() => {
       current++;
@@ -684,23 +553,42 @@
     }, 380);
   }
 
+  function distributePercentages(values) {
+    const total = values.reduce((a, b) => a + b, 0);
+    if (!total) {
+      return values.map((_, i) => i === 0 ? 100 : 0);
+    }
+
+    const exact = values.map(v => (v / total) * 100);
+    const floors = exact.map(v => Math.floor(v));
+    let remainder = 100 - floors.reduce((a, b) => a + b, 0);
+
+    const ranked = exact
+      .map((v, i) => ({ i, frac: v - floors[i], raw: v }))
+      .sort((a, b) => b.frac - a.frac || b.raw - a.raw || a.i - b.i);
+
+    for (let n = 0; n < ranked.length && remainder > 0; n++, remainder--) {
+      floors[ranked[n].i] += 1;
+    }
+    return floors;
+  }
+
   function showResult() {
     document.getElementById('quiz-screen').classList.add('hidden');
     const res = document.getElementById('result-screen');
     res.classList.remove('hidden');
 
-    // find winner
-    const sorted = LETTERS.slice().sort((a,b) => scores[b] - scores[a]);
+    const sorted = LETTERS.slice().sort((a, b) => (scores[b] - scores[a]) || LETTERS.indexOf(a) - LETTERS.indexOf(b));
     const winner = sorted[0];
     const t = TYPES[winner];
-    const total = Object.values(scores).reduce((a,b) => a+b, 0) || 1;
+    const traitsHtml = t.traits.map(tr => `<span class="trait-pill">${tr}</span>`).join('');
 
-    let traitsHtml = t.traits.map(tr => `<span class="trait-pill">${tr}</span>`).join('');
+    const top5 = sorted.slice(0, 5);
+    const top5Scores = top5.map(k => scores[k]);
+    const top5Percents = distributePercentages(top5Scores);
 
-    // top 5 for breakdown
-    const top5 = sorted.slice(0,5);
-    let scoreRows = top5.map(k => {
-      const pct = Math.round((scores[k] / total) * 100);
+    const scoreRows = top5.map((k, i) => {
+      const pct = top5Percents[i];
       return `<div class="score-row">
         <div class="score-label"><span>${TYPES[k].emoji} ${TYPES[k].name}</span><span>${pct}%</span></div>
         <div class="score-track"><div class="score-fill" style="width:${pct}%"></div></div>
@@ -721,9 +609,9 @@
           ${scoreRows}
         </div>
         <div class="share-row">
-          <button class="share-btn share-copy" onclick="copyResult('${t.emoji} ${t.name}', \`${t.desc.replace(/'/g,"\\'")} \`)">📋 Copy My Result</button>
+          <button class="share-btn share-copy" onclick="copyResult('${t.emoji} ${t.name}', \`${t.desc.replace(/'/g, "\\'")} \`)" type="button">📋 Copy My Result</button>
         </div>
-        <button class="retake-btn" onclick="retake()">🔄 Retake the Quiz</button>
+        <button class="retake-btn" onclick="retake()" type="button">🔄 Retake the Quiz</button>
       </div>`;
   }
 
@@ -731,6 +619,7 @@
     const txt = `I took the Laundry Personality Quiz and I'm: ${name}\n\n"${desc}"\n\nWhat are you? 🧺`;
     navigator.clipboard.writeText(txt).then(() => {
       const btn = document.querySelector('.share-copy');
+      if (!btn) return;
       btn.textContent = '✅ Copied!';
       setTimeout(() => btn.textContent = '📋 Copy My Result', 2000);
     });
@@ -738,14 +627,32 @@
 
   function retake() {
     current = 0;
-    LETTERS.forEach(l => scores[l] = 0);
+    resetScores();
     document.getElementById('result-screen').classList.add('hidden');
     document.getElementById('quiz-screen').classList.remove('hidden');
     renderQ();
   }
 
-  renderQ();
+  async function initQuiz() {
+    try {
+      const response = await fetch('./laundry-quiz-data.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      normalizeQuizData(data);
+      renderQ();
+    } catch (error) {
+      console.error('Could not load laundry quiz data.', error);
+      document.getElementById('q-card').innerHTML = `
+        <div class="q-number">Error</div>
+        <div class="q-text">Could not load laundry-quiz-data.json.</div>
+        <p class="header-sub">Make sure the HTML file and laundry-quiz-data.json are in the same folder.</p>`;
+      document.getElementById('prog-label').textContent = 'Quiz data not loaded';
+    }
+  }
+
+  initQuiz();
   </script>
+
 
     <footer class="site-footer">
       <div>What's Your Laundry Personality? is a free browser game by <a href="https://www.linkedin.com/in/felice-diekel-9ba593152/" target="_blank" rel="noopener noreferrer">Felice Diekel</a> and <a href="https://www.linkedin.com/in/yashi-punia-%F0%9F%9F%A5-aa542922a/" target="_blank" rel="noopener noreferrer">Yashi Punia</a> with support from <a href="https://www.linkedin.com/company/obliqua-data/" target="_blank" rel="noopener noreferrer">Obliqua Data</a>.</div>
