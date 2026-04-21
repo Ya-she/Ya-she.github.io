@@ -194,6 +194,29 @@ function calculateScores() {
   return scores;
 }
 
+
+function distributePercentages(values) {
+  const total = values.reduce((sum, value) => sum + value, 0);
+  if (!total) {
+    return values.map((_, index) => index === 0 ? 100 : 0);
+  }
+
+  const raw = values.map((value) => (value / total) * 100);
+  const ints = raw.map(Math.floor);
+  let remainder = 100 - ints.reduce((sum, value) => sum + value, 0);
+
+  const ranked = raw
+    .map((value, index) => ({ index, frac: value - ints[index], raw: value }))
+    .sort((a, b) => b.frac - a.frac || b.raw - a.raw || a.index - b.index);
+
+  for (let i = 0; i < ranked.length && remainder > 0; i += 1, remainder -= 1) {
+    ints[ranked[i].index] += 1;
+  }
+
+  return ints;
+}
+
+
 function pickWinner(scores) {
   const resultKeys = Object.keys(quizData.results || {});
   const tieBreaker = quizData.scoring?.tieBreaker || resultKeys;
@@ -244,12 +267,13 @@ function renderScoreBreakdown() {
   if (!el.scoreBreakdown) return;
 
   const scores = latestScores && Object.keys(latestScores).length ? latestScores : calculateScores();
-  const maxScore = Math.max(1, ...Object.values(scores));
   const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+  const percentages = distributePercentages(sorted.map(([, score]) => score));
 
   el.scoreBreakdown.innerHTML = "";
 
-  sorted.forEach(([key, score]) => {
+  sorted.forEach(([key], index) => {
+    const percent = percentages[index];
     const row = document.createElement("div");
     row.className = "score-row";
 
@@ -261,11 +285,11 @@ function renderScoreBreakdown() {
 
     const fill = document.createElement("div");
     fill.className = "score-bar-fill";
-    fill.style.width = `${(score / maxScore) * 100}%`;
+    fill.style.width = `${percent}%`;
     bar.appendChild(fill);
 
     const value = document.createElement("span");
-    value.textContent = score;
+    value.textContent = `${percent}%`;
 
     row.append(label, bar, value);
     el.scoreBreakdown.appendChild(row);
@@ -291,7 +315,7 @@ function buildShareText() {
   const result = quizData.results[finishedResultKey];
   const scores = latestScores && Object.keys(latestScores).length ? latestScores : calculateScores();
   const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-  const highestScore = Math.max(1, ...sortedScores.map(([, score]) => score));
+  const percentages = distributePercentages(sortedScores.map(([, score]) => score));
   const resultLabel = quizData.meta?.resultLabel || "Your result";
   const url = "https://ya-she.github.io";
 
@@ -301,10 +325,10 @@ function buildShareText() {
     .join("\n");
 
   const scoreBreakdown = sortedScores
-    .map(([key, score]) => {
+    .map(([key], index) => {
       const name = quizData.results[key]?.name || key;
-      const percent = Math.round((score / highestScore) * 100);
-      return `${scoreBar(percent)} ${name}: ${score} pts (${percent}%)`;
+      const percent = percentages[index];
+      return `${scoreBar(percent)} ${name}: ${percent}%`;
     })
     .join("\n");
 
