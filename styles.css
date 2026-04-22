@@ -451,7 +451,7 @@ h1 {
 }
 
 
-/* CookieYes banner: match World Leaderle theme */
+/* CookieYes banner: match theme */
 .cky-consent-container,
 .cky-consent-container * {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
@@ -504,4 +504,71 @@ h1 {
 
 .cky-consent-container .cky-banner-btn-close img {
   filter: invert(22%) sepia(21%) saturate(1125%) hue-rotate(61deg) brightness(92%) contrast(87%) !important;
+}
+
+/* Light theme */
+.cky-modal .cky-preference-center,
+.cky-modal .cky-footer-wrapper {
+  background: rgba(252, 248, 239, 0.97) !important;
+  border-color: rgba(50, 95, 34, 0.14) !important;
+}
+
+.cky-modal .cky-accordion,
+.cky-modal .cky-audit-table {
+  background: rgba(255, 251, 243, 0.82) !important;
+  border-color: rgba(50, 95, 34, 0.14) !important;
+}
+
+.cky-modal .cky-btn-accept,
+.cky-modal .cky-btn-preferences {
+  background: linear-gradient(135deg, #5b9440, #3f7d2f) !important;
+  color: #f8fbf3 !important;
+}
+
+.cky-modal .cky-policy,
+.cky-modal .cky-show-desc-btn {
+  color: #3f7d2f !important;
+}
+
+.cky-modal .cky-btn-close img {
+  filter: invert(22%) sepia(21%) saturate(1125%) hue-rotate(61deg) brightness(92%) contrast(87%) !important;
+}
+
+.cky-modal .cky-footer-shadow {
+  background: linear-gradient(180deg, rgba(252, 248, 239, 0), rgba(252, 248, 239, 0.97) 100%) !important;
+}
+
+.cky-modal .cky-preference-center,
+.cky-modal .cky-footer-wrapper {
+  background: rgba(252, 248, 239, 0.97) !important;
+  border-color: rgba(50, 95, 34, 0.14) !important;
+}
+
+.cky-modal .cky-accordion,
+.cky-modal .cky-audit-table {
+  background: rgba(255, 251, 243, 0.82) !important;
+  border-color: rgba(50, 95, 34, 0.14) !important;
+}
+
+.cky-modal .cky-btn-accept,
+.cky-modal .cky-btn-preferences {
+  background: linear-gradient(135deg, #5b9440, #3f7d2f) !important;
+  color: #f8fbf3 !important;
+}
+
+.cky-modal .cky-policy,
+.cky-modal .cky-show-desc-btn {
+  color: #3f7d2f !important;
+}
+
+.cky-modal .cky-btn-close img {
+  filter: invert(22%) sepia(21%) saturate(1125%) hue-rotate(61deg) brightness(92%) contrast(87%) !important;
+}
+
+.cky-modal .cky-footer-shadow {
+  background: linear-gradient(180deg, rgba(252, 248, 239, 0), rgba(252, 248, 239, 0.97) 100%) !important;
+}
+
+.cky-modal {
+  background: transparent !important;
 }
