@@ -572,3 +572,14 @@ h1 {
 .cky-modal {
   background: transparent !important;
 }
+
+body {
+  cursor: url("./assets/cursor.png") 0 0, auto;
+}
+
+a,
+button,
+[role="button"],
+.landsat-letter {
+  cursor: url("./assets/click.png") 0 0, pointer;
+}
